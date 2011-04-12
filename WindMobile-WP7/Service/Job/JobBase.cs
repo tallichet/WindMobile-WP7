@@ -20,6 +20,8 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         private string downloadedString;
         private object result;
 
+        protected string baseUrl = "http://windmobile.vol-libre-suchet.ch:1588/windmobile/";
+
         public JobBase()
         {
             InitWebClient();
@@ -36,10 +38,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         /// Just return the URL for the download string
         /// </summary>
         /// <returns>Url to access the data</returns>
-        protected virtual Uri GetUrl()
-        {
-            return new Uri("http://windmobile.vol-libre-suchet.ch:1588/windmobile/");
-        }
+        protected abstract Uri GetUrl();
 
         /// <summary>
         /// Occurs when the string was downloaded correctly

@@ -85,8 +85,12 @@
     <Compile Include="Model\IWindDirectionChart.cs" />
     <Compile Include="Model\MaintenanceStatus.cs" />
     <Compile Include="Model\Xml\LastUpdate.cs" />
+    <Compile Include="Model\Xml\StationInfo.cs" />
+    <Compile Include="Model\Xml\XmlBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Job\JobBase.cs" />
+    <Compile Include="Service\Job\LastUpdateJob.cs" />
+    <Compile Include="Service\Job\ListStationInfoJob.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
