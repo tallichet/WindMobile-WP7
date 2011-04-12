@@ -24,5 +24,10 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         {
             return new Uri(baseUrl + "lastupdate/" + StationId);
         }
+
+        public override void Execute()
+        {
+            StartDownloadJob();
+        }
     }
 }

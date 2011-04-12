@@ -12,12 +12,12 @@ using System.ComponentModel;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Job
 {
-    public abstract class JobBase
+    public abstract class JobBase : IJob
     {
         private BackgroundWorker worker;
         private WebClient client;
 
-        private string downloadedString;
+        private object downloadedObject;
         private object result;
 
         protected string baseUrl = "http://windmobile.vol-libre-suchet.ch:1588/windmobile/";
@@ -28,11 +28,22 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             InitWorker();
         }
 
+        public virtual bool IsBusy
+        {
+            get;
+            private set;
+        }
+
+        public abstract void Execute();
+
         /// <summary>
         /// Executed before doing anything else. 
         /// Thread: UI
         /// </summary>
-        protected virtual void Init() { }
+        protected virtual void Init() 
+        {
+            IsBusy = true;
+        }
 
         /// <summary>
         /// Just return the URL for the download string
@@ -111,9 +122,9 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
                 }
                 else if (e.Cancelled == false)
                 {
-                    result = OnDownloadStringCompleted(e.Result);
+                    downloadedObject = OnDownloadStringCompleted(e.Result);
                 }
-                worker.RunWorkerAsync(downloadedString);
+                worker.RunWorkerAsync(downloadedObject);
             };
         }
 
@@ -126,6 +137,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
                 {
                     bool cancel = false;
                     e.Result = JobRun(ref cancel, e.Argument);
+                    e.Cancel = cancel;
                 };
             worker.RunWorkerCompleted += (s, e) =>
                 {
@@ -134,6 +146,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
                         result = e.Result;
                         RaiseJobCompleted(result);
                     }
+                    IsBusy = false;
                 };
         }
 
@@ -146,13 +159,5 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         }
     }
 
-    public class JobFinishedEventArgs : EventArgs
-    {
-        internal JobFinishedEventArgs(object r)
-        {
-            Result = r;
-        }
-
-        public object Result { get; private set; }
-    }
+    
 }

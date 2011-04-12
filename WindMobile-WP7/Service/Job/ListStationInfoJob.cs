@@ -38,5 +38,10 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             }
             return result;
         }
+
+        public override void Execute()
+        {
+            StartDownloadJob();
+        }
     }
 }

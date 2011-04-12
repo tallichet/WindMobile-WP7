@@ -1,4 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
+using System.Windows.Input;
+using Ch.Epix.WindMobile.WP7.Model;
+using System.Collections.Generic;
+using Ch.Epix.WindMobile.WP7.Service.Job;
+using Ch.Epix.WindMobile.WP7.Service.Design;
+using GalaSoft.MvvmLight.Command;
 
 namespace Ch.Epix.WindMobile.WP7.ViewModel
 {
@@ -28,9 +34,17 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         {
             get
             {
-                return "location";
+                return "station list";
             }
         }
+
+        public List<IStationInfo> StationInfoList
+        {
+            get;
+            private set;
+        }
+
+        public RelayCommand GetStationInfoListCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -40,18 +54,32 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             if (IsInDesignMode)
             {
                 // Code runs in Blend --> create design time data.
+                listStationInfoJob = new DesignJobBase();
+                GetStationInfoListCommand = new RelayCommand(null);
             }
             else
             {
-                // Code runs "for real"
+                // Init Job
+                listStationInfoJob = new ListStationInfoJob();
+                listStationInfoJob.JobCompleted += (s, e) => {
+                    StationInfoList = (List<IStationInfo>)e.Result;
+                    RaisePropertyChanged("StationInfoList");
+                    GetStationInfoListCommand.RaiseCanExecuteChanged();
+                };
+
+                // Init Command
+                GetStationInfoListCommand = new RelayCommand(
+                    () => {
+                        listStationInfoJob.Execute();
+                        GetStationInfoListCommand.RaiseCanExecuteChanged();
+                    },
+                    () => {
+                        return listStationInfoJob.IsBusy == false;
+                    }
+                );
             }
         }
 
-        ////public override void Cleanup()
-        ////{
-        ////    // Clean up if needed
-
-        ////    base.Cleanup();
-        ////}
+        private IJob listStationInfoJob;
     }
 }
