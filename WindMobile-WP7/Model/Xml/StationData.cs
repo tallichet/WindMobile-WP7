@@ -41,42 +41,42 @@ namespace Ch.Epix.WindMobile.WP7.Model.Xml
 
         public double WindAverage
         {
-            get { return Double.Parse(element.Attribute("windAverage").Value); }
+            get { return Double.Parse(element.Element("windAverage").Value); }
         }
 
         public double WindMax
         {
-            get { return Double.Parse(element.Attribute("windMax").Value); }
+            get { return Double.Parse(element.Element("windMax").Value); }
         }
 
         public int WindTrend
         {
-            get { return int.Parse(element.Attribute("windTrend").Value); }
+            get { return int.Parse(element.Element("windTrend").Value); }
         }
 
         public double WindHistoryMin
         {
-            get { return Double.Parse(element.Attribute("windHistoryMin").Value); }
+            get { return Double.Parse(element.Element("windHistoryMin").Value); }
         }
 
         public double WindHistoryAverage
         {
-            get { return Double.Parse(element.Attribute("windHistoryAverage").Value); }
+            get { return Double.Parse(element.Element("windHistoryAverage").Value); }
         }
 
         public double WindHistoryMax
         {
-            get { return Double.Parse(element.Attribute("windHistoryMax").Value); }
+            get { return Double.Parse(element.Element("windHistoryMax").Value); }
         }
 
         public double AirTemperature
         {
-            get { return Double.Parse(element.Attribute("airTemperature").Value); }
+            get { return Double.Parse(element.Element("airTemperature").Value); }
         }
 
         public double AirHumidity
         {
-            get { return Double.Parse(element.Attribute("airHumidity").Value); }
+            get { return Double.Parse(element.Element("airHumidity").Value); }
         }
     }
 }

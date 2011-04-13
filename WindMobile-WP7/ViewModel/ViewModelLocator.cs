@@ -56,7 +56,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
     public class ViewModelLocator
     {
         private static MainViewModel _main;
-        private static StationInfoViewModel _stationInfo;
+        //private static StationInfoViewModel _stationInfo;
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
@@ -82,21 +82,21 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             }
         }
 
-        /// <summary>
-        /// Gets the StationInfo property.
-        /// </summary>
-        public static StationInfoViewModel StationInfoStatic
-        {
-            get
-            {
-                if (_stationInfo == null)
-                {
-                    _stationInfo = new StationInfoViewModel();
-                }
+        ///// <summary>
+        ///// Gets the StationInfo property.
+        ///// </summary>
+        //public static StationInfoViewModel StationInfoStatic
+        //{
+        //    get
+        //    {
+        //        if (_stationInfo == null)
+        //        {
+        //            _stationInfo = new StationInfoViewModel();
+        //        }
 
-                return _stationInfo;
-            }
-        }
+        //        return _stationInfo;
+        //    }
+        //}
 
         /// <summary>
         /// Gets the Main property.
@@ -122,7 +122,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         {
             get
             {
-                return StationInfoStatic;
+                return new StationInfoViewModel();
             }
         }
 

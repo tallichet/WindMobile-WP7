@@ -47,7 +47,11 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             else
             {
                 GetStationDataJob = new GetStationDataJob();
-                GetStationDataJob.JobCompleted += (s, e) => StationData = e.Result as IStationData;
+                GetStationDataJob.JobCompleted += (s, e) => 
+                    {
+                        StationData = e.Result as IStationData;
+                        this.RaisePropertyChanged("StationData");
+                    };
 
                 GetStationDataCommand = new RelayCommand<string>(
                     (s) => GetStationDataJob.Execute(s),

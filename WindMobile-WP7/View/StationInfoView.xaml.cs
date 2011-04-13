@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using Ch.Epix.WindMobile.WP7.ViewModel;
 
 namespace Ch.Epix.WindMobile.WP7.View
 {
@@ -13,6 +14,12 @@ namespace Ch.Epix.WindMobile.WP7.View
         public StationInfoView()
         {
             InitializeComponent();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            (this.DataContext as StationInfoViewModel).GetStationDataCommand.Execute(
+                ViewModel.ViewModelLocator.MainStatic.CurrentStationInfo.Id);
         }
     }
 }

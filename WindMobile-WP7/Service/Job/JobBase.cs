@@ -65,7 +65,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         /// </summary>
         /// <param name="downloadedString">The resulting string</param>
         /// <returns></returns>
-        protected virtual Object OnDownloadStringCompleted(String downloadedString) { return null; }
+        protected virtual Object OnDownloadStringCompleted(String downloadedString) { return downloadedString; }
         /// <summary>
         /// Allow to process download error message
         /// </summary>
