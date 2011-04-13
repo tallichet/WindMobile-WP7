@@ -5,6 +5,7 @@
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converter="clr-namespace:Ch.Epix.WindMobile.WP7.ViewModel.Converter"
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:Ch.Epix.WindMobile.WP7.ViewModel">
 
@@ -12,6 +13,7 @@
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator"
                              d:IsDataSource="True" />
+        <converter:MaintenanceStatusToSolidColorBrushConverter x:Key="MaintenanceStatusConverter"/>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

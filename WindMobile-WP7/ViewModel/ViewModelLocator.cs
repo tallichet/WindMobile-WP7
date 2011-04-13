@@ -56,21 +56,13 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
     public class ViewModelLocator
     {
         private static MainViewModel _main;
+        private static StationInfoViewModel _stationInfo;
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
         public ViewModelLocator()
         {
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view models
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view models
-            ////}
-
             CreateMain();
         }
 
@@ -91,6 +83,22 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         }
 
         /// <summary>
+        /// Gets the StationInfo property.
+        /// </summary>
+        public static StationInfoViewModel StationInfoStatic
+        {
+            get
+            {
+                if (_stationInfo == null)
+                {
+                    _stationInfo = new StationInfoViewModel();
+                }
+
+                return _stationInfo;
+            }
+        }
+
+        /// <summary>
         /// Gets the Main property.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
@@ -101,6 +109,20 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             get
             {
                 return MainStatic;
+            }
+        }
+
+        /// <summary>
+        /// Gets the StationInfo property.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public StationInfoViewModel StationInfo
+        {
+            get
+            {
+                return StationInfoStatic;
             }
         }
 

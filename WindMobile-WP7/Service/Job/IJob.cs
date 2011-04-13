@@ -9,7 +9,10 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
     {
         bool IsBusy { get; }
         void Execute();
+        void Execute(string s);
         event EventHandler<JobFinishedEventArgs> JobCompleted;
+
+        
     }
 
     public class JobFinishedEventArgs : EventArgs

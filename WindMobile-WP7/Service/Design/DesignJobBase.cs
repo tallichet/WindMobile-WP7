@@ -27,5 +27,10 @@ namespace Ch.Epix.WindMobile.WP7.Service.Design
         {
             throw new NotImplementedException();
         }
+
+        public void Execute(string s)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

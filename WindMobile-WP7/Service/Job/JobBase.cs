@@ -26,6 +26,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         {
             InitWebClient();
             InitWorker();
+            IsBusy = false;
         }
 
         public virtual bool IsBusy
@@ -34,7 +35,15 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             private set;
         }
 
-        public abstract void Execute();
+        public virtual void Execute()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void Execute(string s)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Executed before doing anything else. 
@@ -141,12 +150,16 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
                 };
             worker.RunWorkerCompleted += (s, e) =>
                 {
-                    if (e.Cancelled == false && e.Error == null)
+                    if (e.Cancelled && e.Error != null)
                     {
+                        result = null;
+                    }
+                    else {
                         result = e.Result;
-                        RaiseJobCompleted(result);
+                        OnJobCompleted(result);
                     }
                     IsBusy = false;
+                    RaiseJobCompleted(result);
                 };
         }
 

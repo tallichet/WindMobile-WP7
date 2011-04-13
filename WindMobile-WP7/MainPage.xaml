@@ -2,9 +2,11 @@
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.WP7"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -40,13 +42,56 @@
 		<!--ContentPanel - place additional content here-->
 		<Grid x:Name="ContentGrid"
 		      Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-			<TextBlock Text="{Binding Welcome}"
-			           Style="{StaticResource PhoneTextNormalStyle}"
-			           HorizontalAlignment="Center"
-			           VerticalAlignment="Center"
-			           FontSize="40" />
+            <Button Content="Refresh"
+                    cmd:ButtonBaseExtensions.Command="{Binding GetStationInfoListCommand}"/>
+            
 
+            <ListBox ItemsSource="{Binding StationInfoList, Mode=OneWay}" 
+                     SelectedItem="{Binding CurrentStationInfo, Mode=TwoWay}"
+                     Grid.Row="1" toolkit:TiltEffect.IsTiltEnabled="True">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+                        <Grid MouseLeftButtonUp="ListBox_MouseLeftButtonUp">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" >
+                                <Ellipse Fill="{Binding MaintenanceStatus, Converter={StaticResource MaintenanceStatusConverter}}" 
+                                         Width="20" Height="20" />
+                                <TextBlock Text="{Binding ShortName}" 
+                                           Style="{StaticResource PhoneTextTitle2Style}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
+                                <TextBlock Text="{Binding Altitude}"
+                                           Style="{StaticResource PhoneTextTitle3Style}" />
+                                <TextBlock Text="m" Margin="0"             
+                                           Style="{StaticResource PhoneTextTitle3Style}" />
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Name}"
+                                       Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                                       Style="{StaticResource PhoneTextSmallStyle}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
 		</Grid>
 	</Grid>
     

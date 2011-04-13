@@ -44,6 +44,8 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             private set;
         }
 
+        public IStationInfo CurrentStationInfo { get; set; }
+
         public RelayCommand GetStationInfoListCommand { get; private set; }
 
         /// <summary>
@@ -55,7 +57,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             {
                 // Code runs in Blend --> create design time data.
                 listStationInfoJob = new DesignJobBase();
-                GetStationInfoListCommand = new RelayCommand(null);
+                //GetStationInfoListCommand = new RelayCommand(null);
             }
             else
             {
