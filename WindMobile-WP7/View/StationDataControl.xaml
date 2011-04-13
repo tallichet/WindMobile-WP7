@@ -1,0 +1,72 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="Ch.Epix.WindMobile.WP7.StationDataControl"
+	d:DesignWidth="480" d:DesignHeight="617">
+
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid x:Name="ContentGrid"
+			RenderTransformOrigin="0.529,0.396">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.05*"/>
+				<RowDefinition Height="0.036*"/>
+				<RowDefinition Height="0.097*"/>
+				<RowDefinition Height="0.042*"/>
+				<RowDefinition Height="0.041*"/>
+				<RowDefinition Height="0.066*"/>
+				<RowDefinition Height="0.066*"/>
+				<RowDefinition Height="0.086*"/>
+				<RowDefinition Height="0.083*"/>
+				<RowDefinition Height="0.088*"/>
+				<RowDefinition Height="0.078*"/>
+				<RowDefinition Height="0.083*"/>
+				<RowDefinition Height="0.185*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.194*"/>
+				<ColumnDefinition Width="0.183*"/>
+				<ColumnDefinition Width="0.117*"/>
+				<ColumnDefinition Width="0.325*"/>
+				<ColumnDefinition Width="0.181*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Altitude" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource PhoneSubtleBrush}" />
+			<TextBlock Text="{Binding StationInfo.Altitude, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Foreground="{StaticResource PhoneSubtleBrush}" />
+			
+			<TextBlock Text="Vent" d:LayoutOverrides="Width, Height" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<TextBlock Text="{Binding StationData.WindAverage, Mode=OneWay}" HorizontalAlignment="Right" FontSize="48" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1"/>
+			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="2" Text="km/h" Foreground="{StaticResource PhoneSubtleBrush}" VerticalAlignment="Bottom"/>
+			
+			<TextBlock Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="Rafale" Foreground="{StaticResource PhoneSubtleBrush}" />
+			<TextBlock Text="{Binding StationData.WindMax, Mode=OneWay}" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" />
+			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}"/>
+			
+			<TextBlock Text="Tendance" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<Path Grid.ColumnSpan="5" Data="M0,180 L480,180" Height="1" Grid.Row="5" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" StrokeThickness="2" Stroke="{StaticResource PhoneForegroundBrush}"/>
+			
+            
+            <TextBlock Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Vent dernière heure"/>
+			<TextBlock Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Minimum" Foreground="{StaticResource PhoneSubtleBrush}" />
+			<TextBlock Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Moyenne" Foreground="{StaticResource PhoneSubtleBrush}"/>
+			<TextBlock Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Maximum" Foreground="{StaticResource PhoneSubtleBrush}"/>
+			<TextBlock Text="{Binding StationData.WindHistoryMin, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="6" FontSize="29.333"/>
+			<TextBlock Text="{Binding StationData.WindHistoryMax, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="8" FontSize="29.333"/>
+			<TextBlock Text="{Binding StationData.WindHistoryAverage, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="7" FontSize="29.333"/>
+			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="6" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="7" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="8" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+			<Path Grid.ColumnSpan="5" Data="M0,180 L480,180" Height="1" Grid.Row="9" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" StrokeThickness="2" Stroke="{StaticResource PhoneForegroundBrush}"/>
+			
+            
+            <TextBlock Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Air"/>
+			<TextBlock Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Température" Foreground="{StaticResource PhoneSubtleBrush}" Grid.ColumnSpan="3"/>
+			<TextBlock Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Humidité" Foreground="{StaticResource PhoneSubtleBrush}" Grid.ColumnSpan="3"/>
+			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="10" Text="degré" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="11" Text="% relatif" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+			<TextBlock Text="{Binding StationData.AirTemperature, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="10" FontSize="29.333"/>
+			<TextBlock Text="{Binding StationData.AirHumidity, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="11" FontSize="29.333"/>
+		</Grid>
+	</Grid>
+</UserControl>

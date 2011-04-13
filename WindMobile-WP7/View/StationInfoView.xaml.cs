@@ -21,5 +21,6 @@ namespace Ch.Epix.WindMobile.WP7.View
             (this.DataContext as StationInfoViewModel).GetStationDataCommand.Execute(
                 ViewModel.ViewModelLocator.MainStatic.CurrentStationInfo.Id);
         }
+
     }
 }

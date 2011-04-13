@@ -25,6 +25,8 @@
     <SilverlightAppEntry>Ch.Epix.WindMobile.WP7.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,6 +106,9 @@
     <Compile Include="Model\Design\StationData.cs" />
     <Compile Include="ViewModel\StationInfoViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\StationDataControl.xaml.cs">
+      <DependentUpon>StationDataControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StationInfoView.xaml.cs">
       <DependentUpon>StationInfoView.xaml</DependentUpon>
     </Compile>
@@ -115,6 +120,10 @@
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\StationDataControl.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\StationInfoView.xaml">
