@@ -79,6 +79,8 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                         return listStationInfoJob.IsBusy == false;
                     }
                 );
+
+                GetStationInfoListCommand.Execute(null);
             }
         }
 

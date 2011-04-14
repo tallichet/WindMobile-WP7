@@ -106,8 +106,14 @@
     <Compile Include="Model\Design\StationData.cs" />
     <Compile Include="ViewModel\StationInfoViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\MainPanoramaView.xaml.cs">
+      <DependentUpon>MainPanoramaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StationDataControl.xaml.cs">
       <DependentUpon>StationDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StationInfoControl.xaml.cs">
+      <DependentUpon>StationInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StationInfoView.xaml.cs">
       <DependentUpon>StationInfoView.xaml</DependentUpon>
@@ -122,9 +128,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\MainPanoramaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\StationDataControl.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\StationInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StationInfoView.xaml">
       <SubType>Form</SubType>
@@ -142,6 +156,8 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\Panorama.png" />
+    <Resource Include="Images\Panorama2.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
