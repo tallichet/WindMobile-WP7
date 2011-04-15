@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:view="clr-namespace:Ch.Epix.WindMobile.WP7.View"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:bing="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -48,25 +49,61 @@
                 </ListBox>
             </controls:PanoramaItem>
 
+            <controls:PanoramaItem>
+                <controls:PanoramaItem.Header>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="carte" Style="{StaticResource PhoneTextTitle1Style}" Grid.Column="0"/>
+                        <Button Content="Full" Grid.Column="1" />
+                    </Grid>
+                </controls:PanoramaItem.Header>
+                <bing:Map Name="StationMap" CredentialsProvider="{Binding CredentialsProvider, Mode=OneTime}" >
+                    <bing:MapItemsControl ItemsSource="{Binding StationInfoList, Mode=OneWay}">
+                        <bing:MapItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <bing:Pushpin Location="{Binding Converter={StaticResource StationInfoToGeoCoordinateConverter}, Mode=OneWay}" Padding="0" >
+                                    <Button Click="PushPin_Button_Click" Tag="{Binding Mode=OneTime}"
+                                    Style="{StaticResource InvisibleButton}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Ellipse Margin="5" Width="8" Height="8" Fill="{Binding Path=MaintenanceStatus, Converter={StaticResource MaintenanceStatusConverter}}" />
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding ShortName}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Button>
+                                </bing:Pushpin>
+                            </DataTemplate>
+                        </bing:MapItemsControl.ItemTemplate>
+                    </bing:MapItemsControl>
+                </bing:Map>
+            </controls:PanoramaItem>
+
             <!--Panorama item two-->
-            <controls:PanoramaItem Header="paramètres">
+            <controls:PanoramaItem Header="menu">
                 <ScrollViewer>
-                    <StackPanel>
+                    <StackPanel toolkit:TiltEffect.IsTiltEnabled="True">
+                        <HyperlinkButton NavigateUri="/view/MapView.xaml" Content="carte"
+                                         HorizontalAlignment="Left"                                         
+                                         Style="{StaticResource InvisibleHyperlingButton}"
+                                         />
+                        
                         <HyperlinkButton NavigateUri="http://www.epyx.ch" TargetName="Epyx.ch" Content="epyx"
-                                         HorizontalAlignment="Left"
-                                         FontSize="26">
+                                         HorizontalAlignment="Left"                                         
+                                         Style="{StaticResource InvisibleHyperlingButton}" />
+
+                        <HyperlinkButton NavigateUri="http://www.la-haut.info" TargetName="La-Haut.info" Content="la-haut.info"
+                                         Style="{StaticResource InvisibleHyperlingButton}" />
+
+                        <HyperlinkButton NavigateUri="/view/SettingsView.xaml" Content="paramètres"
+                                         Style="{StaticResource InvisibleHyperlingButton}" />
                             
-                        </HyperlinkButton>
-                        <HyperlinkButton NavigateUri="http://www.la-haut.info" TargetName="La-Haut.info" Background="Bisque">
-                            <TextBlock Text="la-haut.info"/>
-                        </HyperlinkButton>
-                        <HyperlinkButton NavigateUri="/view/SettingsView.xaml" Background="DarkCyan">
-                            <TextBlock Text="paramètres"/>
-                        </HyperlinkButton>
                     </StackPanel>
                 </ScrollViewer>
             </controls:PanoramaItem>
-        </controls:Panorama>
+        </controls:Panorama>        
     </Grid>
 
     <!--Panorama-based applications should not show an ApplicationBar-->

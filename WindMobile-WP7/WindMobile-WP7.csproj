@@ -61,6 +61,7 @@
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Windows.Interactivity">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP7\System.Windows.Interactivity.dll</HintPath>
@@ -102,12 +103,16 @@
     <Compile Include="Service\Job\LastUpdateJob.cs" />
     <Compile Include="Service\Job\ListStationInfoJob.cs" />
     <Compile Include="ViewModel\Converter\MaintenanceStatusToSolidColorBrushConverter.cs" />
+    <Compile Include="ViewModel\Converter\StationInfoToGeoCoordinateConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Model\Design\StationData.cs" />
     <Compile Include="ViewModel\StationInfoViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainPanoramaView.xaml.cs">
       <DependentUpon>MainPanoramaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StationDataControl.xaml.cs">
       <DependentUpon>StationDataControl.xaml</DependentUpon>
@@ -117,6 +122,9 @@
     </Compile>
     <Compile Include="View\StationInfoView.xaml.cs">
       <DependentUpon>StationInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WindMobileMap.xaml.cs">
+      <DependentUpon>WindMobileMap.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +140,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\StationDataControl.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
@@ -142,6 +154,10 @@
     </Page>
     <Page Include="View\StationInfoView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindMobileMap.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

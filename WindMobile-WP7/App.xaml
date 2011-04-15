@@ -14,6 +14,36 @@
         <vm:ViewModelLocator x:Key="Locator"
                              d:IsDataSource="True" />
         <converter:MaintenanceStatusToSolidColorBrushConverter x:Key="MaintenanceStatusConverter"/>
+        <converter:StationInfoToGeoCoordinateConverter x:Key="StationInfoToGeoCoordinateConverter" />
+        
+        <Style TargetType="Button" x:Key="InvisibleButton">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        
+                        <ContentControl x:Name="ContentContainer" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Padding="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="HyperlinkButton" x:Key="InvisibleHyperlingButton">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HyperlinkButton">
+                        <TextBlock Text="{TemplateBinding Content}" Style="{StaticResource PhoneTextTitle1Style}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

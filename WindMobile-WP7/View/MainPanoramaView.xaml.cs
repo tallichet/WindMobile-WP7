@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Ch.Epix.WindMobile.WP7.Model;
 using System.Diagnostics;
+using Microsoft.Phone.Controls.Maps;
 
 namespace Ch.Epix.WindMobile.WP7.View
 {
@@ -30,6 +31,9 @@ namespace Ch.Epix.WindMobile.WP7.View
         public MainPanoramaView()
         {
             InitializeComponent();
+            //StationMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Aru7Ud6JR_vLA3MC_Vof2xFOXVejAASIjZzfy5pZuh3OUWLGkwMj--c8GWkutwCj");
+            StationMap.SetView(ViewModel.GeoCoordinateWatcher.Position.Location, 8.0d);
+
         }
 
         private void StationInfoControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -54,6 +58,12 @@ namespace Ch.Epix.WindMobile.WP7.View
             {
                 lastUsedListBox.SelectedItem = null;
             }
+        }
+
+        private void PushPin_Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CurrentStationInfo = ((sender as Button).Tag as IStationInfo);
+            NavigationService.Navigate(new Uri("/View/StationInfoView.xaml", UriKind.Relative));
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Ch.Epix.WindMobile.WP7.Service.Job;
 using Ch.Epix.WindMobile.WP7.Service.Design;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Phone.Controls.Maps;
 
 namespace Ch.Epix.WindMobile.WP7.ViewModel
 {
@@ -48,6 +49,16 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
 
         public RelayCommand GetStationInfoListCommand { get; private set; }
 
+        public System.Device.Location.GeoCoordinateWatcher GeoCoordinateWatcher { get; private set; }
+
+        public CredentialsProvider CredentialsProvider
+        {
+            get
+            {
+                return new ApplicationIdCredentialsProvider("Aru7Ud6JR_vLA3MC_Vof2xFOXVejAASIjZzfy5pZuh3OUWLGkwMj--c8GWkutwCj");
+            }
+
+        }
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -81,6 +92,10 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                 );
 
                 GetStationInfoListCommand.Execute(null);
+
+                // Maintain only one Coord Watcher for better performance.
+                GeoCoordinateWatcher = new System.Device.Location.GeoCoordinateWatcher();
+                GeoCoordinateWatcher.Start();
             }
         }
 
