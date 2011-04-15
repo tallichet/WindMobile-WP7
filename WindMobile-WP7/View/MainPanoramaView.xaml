@@ -33,19 +33,16 @@
             <controls:PanoramaItem Header="stations">
                 <ListBox ItemsSource="{Binding StationInfoList}" 
                          SelectedItem="{Binding CurrentStationInfo, Mode=TwoWay}"
-                         toolkit:TiltEffect.IsTiltEnabled="True">
+                         toolkit:TiltEffect.IsTiltEnabled="True"
+                         SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Button Click="Button_Click"
-                                    HorizontalContentAlignment="Stretch" 
-                                    Padding="0" Margin="0" BorderThickness="0" >
-                                <view:StationInfoControl DataContext="{Binding}" />
-                            </Button>
+                        <DataTemplate>                           
+                            <view:StationInfoControl DataContext="{Binding}"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
