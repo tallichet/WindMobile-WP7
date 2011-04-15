@@ -41,7 +41,11 @@
                     </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <view:StationInfoControl DataContext="{Binding}" MouseLeftButtonUp="StationInfoControl_MouseLeftButtonUp" />
+                            <Button Click="Button_Click"
+                                    HorizontalContentAlignment="Stretch" 
+                                    Padding="0" Margin="0" BorderThickness="0" >
+                                <view:StationInfoControl DataContext="{Binding}" />
+                            </Button>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

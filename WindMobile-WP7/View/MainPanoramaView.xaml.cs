@@ -22,6 +22,11 @@ namespace Ch.Epix.WindMobile.WP7.View
 
         private void StationInfoControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            //NavigationService.Navigate(new Uri("/View/StationInfoView.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             NavigationService.Navigate(new Uri("/View/StationInfoView.xaml", UriKind.Relative));
         }
     }
