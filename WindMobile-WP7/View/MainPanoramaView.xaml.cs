@@ -49,6 +49,7 @@ namespace Ch.Epix.WindMobile.WP7.View
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            // Clear selection, so we can 
             if (lastUsedListBox != null)
             {
                 lastUsedListBox.SelectedItem = null;
