@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Ch.Epix.WindMobile.WP7.View.WindMobileMap"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bing="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+        <bing:Map Name="StationMap">
+            <bing:MapItemsControl Name="StationMapControl">
+                <bing:MapItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <bing:Pushpin Location="{Binding Converter={StaticResource StationInfoToGeoCoordinateConverter}}" Background="Aqua" Padding="0" >
+                            <Button Click="PushPin_Button_Click" Tag="{Binding}"
+                                    Style="{StaticResource InvisibleButton}"
+                                    BorderThickness="0" Margin="0" Padding="0" Background="Beige">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Margin="5" Width="8" Height="8" Fill="{Binding Path=MaintenanceStatus, Converter={StaticResource MaintenanceStatusConverter}}" />
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding ShortName}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Button>
+                        </bing:Pushpin>
+                    </DataTemplate>
+                </bing:MapItemsControl.ItemTemplate>
+            </bing:MapItemsControl>
+        </bing:Map>
+    </Grid>
+</UserControl>
