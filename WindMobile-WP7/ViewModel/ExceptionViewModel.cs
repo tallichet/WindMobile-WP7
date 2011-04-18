@@ -36,5 +36,10 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         {
             Exception = ex;
         }
+
+        public Type Type
+        {
+            get { return Exception.GetType(); }
+        }
     }
 }

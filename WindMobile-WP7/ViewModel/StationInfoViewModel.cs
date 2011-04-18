@@ -31,6 +31,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         }
 
         public IStationData StationData { get; private set; }
+        public string ErrorMessage { get; private set; }
 
         public RelayCommand<string> GetStationDataCommand { get; private set; }
 
@@ -43,6 +44,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             {
                 StationData = new Ch.Epix.WindMobile.WP7.Model.Design.StationData();
                 GetStationDataJob = new DesignJobBase();
+                StationInfo = new Ch.Epix.WindMobile.WP7.Model.Design.StationInfo();
             }
             else
             {
@@ -52,27 +54,24 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                         StationData = e.Result as IStationData;
                         this.RaisePropertyChanged("StationData");
                     };
+                GetStationDataJob.JobError += (s, e) =>
+                    {
+                        ErrorMessage = "Impossible de récupérer les informations pour " + StationInfo.ShortName + "\r\n" + e.Exception;
+                        this.RaisePropertyChanged("ErrorMessage");
+                    };
 
                 GetStationDataCommand = new RelayCommand<string>(
                     (s) => GetStationDataJob.Execute(s),
                     (s) => string.IsNullOrEmpty(s) == false
                 );
+                StationInfo = ViewModelLocator.MainStatic.CurrentStationInfo;
             }
         }
 
         public IStationInfo StationInfo
         {
-            get
-            {
-                if (IsInDesignMode)
-                {
-                    return new Ch.Epix.WindMobile.WP7.Model.Design.StationInfo();
-                }
-                else
-                {
-                    return ViewModelLocator.MainStatic.CurrentStationInfo;
-                }
-            }
+            get;
+            private set;
         }
     }
 }

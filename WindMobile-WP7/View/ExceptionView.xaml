@@ -28,11 +28,11 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding Exception}">
+        <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <TextBlock Text="{Binding Type.Name}" Style="{StaticResource PhoneTextTitle2Style}" />
-                <TextBlock Text="{Binding Message}" Style="{StaticResource PhoneTextTitle3Style}" />
-                <TextBlock Text="{Binding StackTrace}" />
+                <TextBlock Text="{Binding Path=Type.Name}" Style="{StaticResource PhoneTextTitle2Style}" />
+                <TextBlock Text="{Binding Path=Exception.Message}" Style="{StaticResource PhoneTextTitle3Style}" />
+                <TextBlock Text="{Binding Path=Exception.StackTrace}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

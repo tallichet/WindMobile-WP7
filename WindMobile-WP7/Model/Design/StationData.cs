@@ -39,7 +39,7 @@ namespace Ch.Epix.WindMobile.WP7.Model.Design
 
         public int WindTrend
         {
-            get { return 2; }
+            get { return 25; }
         }
 
         public double WindHistoryMin

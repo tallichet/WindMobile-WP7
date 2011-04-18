@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Ch.Epix.WindMobile.WP7.ViewModel;
+using System.Diagnostics;
 
 namespace Ch.Epix.WindMobile.WP7
 {
@@ -78,6 +79,10 @@ namespace Ch.Epix.WindMobile.WP7
         {
             if (System.Diagnostics.Debugger.IsAttached)
             {
+                Debug.WriteLine(e.ExceptionObject.GetType().Name);
+                Debug.WriteLine(e.ExceptionObject.Message);
+                Debug.WriteLine(e.ExceptionObject.StackTrace);
+
                 // An unhandled exception has occurred; break into the debugger
                 System.Diagnostics.Debugger.Break();
             }

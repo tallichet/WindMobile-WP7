@@ -98,6 +98,11 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         public event EventHandler<JobFinishedEventArgs> JobCompleted;
 
         /// <summary>
+        /// Occurs when the job got an error (like a download error)
+        /// </summary>
+        public event EventHandler<ErrorEventArgs> JobError;
+
+        /// <summary>
         /// Start a job when needing to download
         /// </summary>
         public void StartDownloadJob()
@@ -132,8 +137,8 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
                 else if (e.Cancelled == false)
                 {
                     downloadedObject = OnDownloadStringCompleted(e.Result);
+                    worker.RunWorkerAsync(downloadedObject);
                 }
-                worker.RunWorkerAsync(downloadedObject);
             };
         }
 

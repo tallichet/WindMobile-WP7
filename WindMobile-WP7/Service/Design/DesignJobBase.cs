@@ -21,7 +21,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Design
         }
 
         public event EventHandler<JobFinishedEventArgs> JobCompleted;
-
+        public event EventHandler<ErrorEventArgs> JobError;
 
         public void Execute()
         {
@@ -32,5 +32,8 @@ namespace Ch.Epix.WindMobile.WP7.Service.Design
         {
             throw new NotImplementedException();
         }
+
+
+        
     }
 }

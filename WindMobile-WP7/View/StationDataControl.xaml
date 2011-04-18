@@ -5,7 +5,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	x:Class="Ch.Epix.WindMobile.WP7.StationDataControl"
-	d:DesignWidth="480" d:DesignHeight="617">
+	d:DesignWidth="480" d:DesignHeight="617"
+    Loaded="UserControl_Loaded">
 
 	<Grid x:Name="LayoutRoot" Background="Transparent">
 		<Grid x:Name="ContentGrid"
@@ -15,7 +16,7 @@
 				<RowDefinition Height="0.036*"/>
 				<RowDefinition Height="0.097*"/>
 				<RowDefinition Height="0.042*"/>
-				<RowDefinition Height="0.041*"/>
+				<RowDefinition Height="60"/>
 				<RowDefinition Height="0.066*"/>
 				<RowDefinition Height="0.066*"/>
 				<RowDefinition Height="0.086*"/>
@@ -32,6 +33,8 @@
 				<ColumnDefinition Width="0.325*"/>
 				<ColumnDefinition Width="0.181*"/>
 			</Grid.ColumnDefinitions>
+            
+            
 			<TextBlock Text="Altitude" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource PhoneSubtleBrush}" />
 			<TextBlock Text="{Binding StationInfo.Altitude, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Foreground="{StaticResource PhoneSubtleBrush}" />
 			
@@ -44,7 +47,24 @@
 			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}"/>
 			
 			<TextBlock Text="Tendance" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-			<Path Grid.ColumnSpan="5" Data="M0,180 L480,180" Height="1" Grid.Row="5" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" StrokeThickness="2" Stroke="{StaticResource PhoneForegroundBrush}"/>
+            <Canvas Grid.Column="2" Grid.Row="4" Width="50" Height="50" Margin="5">
+                <Canvas.RenderTransform>
+                    <RotateTransform x:Name="TrendRotateTransform" Angle="0" CenterX="25" CenterY="25" />
+                </Canvas.RenderTransform>
+                <Polygon Fill="{Binding StationData.WindTrend, Converter={StaticResource TrendToColorConverter}, ConverterParameter=Fill}" 
+                         Stroke="{Binding StationData.WindTrend, Converter={StaticResource TrendToColorConverter}, ConverterParameter=Stroke}">
+                    <Polygon.Points>
+                        <Point X="10" Y="25" />
+                        <Point X="3" Y="10" />
+                        <Point X="50" Y="25" />
+                        <Point X="3" Y="40" />
+                    </Polygon.Points>
+                </Polygon>
+            </Canvas>
+
+            <Path Grid.Column="3" Data="M237,0 L237,164" HorizontalAlignment="Left" Margin="1" Grid.RowSpan="5" Stretch="Fill" Stroke="{StaticResource PhoneForegroundBrush}" UseLayoutRounding="False" Width="1" StrokeThickness="2"/>
+            
+            <Path Grid.ColumnSpan="5" Data="M0,180 L480,180" Height="1" Grid.Row="5" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" StrokeThickness="2" Stroke="{StaticResource PhoneForegroundBrush}"/>
 			
             
             <TextBlock Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Vent dernière heure"/>
