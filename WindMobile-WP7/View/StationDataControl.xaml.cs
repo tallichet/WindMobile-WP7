@@ -47,7 +47,9 @@ namespace Ch.Epix.WindMobile.WP7
         {
             if (ViewModel != null && ViewModel.StationData != null)
             {
-                this.TrendRotateTransform.Angle = -ViewModel.StationData.WindTrend;
+                //this.TrendRotateTransform.Angle = -ViewModel.StationData.WindTrend;
+                this.RotateTrendAnimationAngle.To = -ViewModel.StationData.WindTrend;
+                this.RotateTrendAnimation.Begin();
                 ImageTrend.Source = new BitmapImage(
                     new Uri("../Images/arrow_" + 
                         (ViewModel.StationData.WindTrend > 0 ? "red" : "green") + ".png", UriKind.Relative)
