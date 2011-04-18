@@ -31,8 +31,7 @@ namespace Ch.Epix.WindMobile.WP7.View
         public MainPanoramaView()
         {
             InitializeComponent();
-            //StationMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Aru7Ud6JR_vLA3MC_Vof2xFOXVejAASIjZzfy5pZuh3OUWLGkwMj--c8GWkutwCj");
-            StationMap.SetView(ViewModel.GeoCoordinateWatcher.Position.Location, 8.0d);
+            StationMap.SetView(ViewModel.Location, 8.0d);
 
         }
 

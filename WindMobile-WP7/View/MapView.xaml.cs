@@ -30,20 +30,7 @@ namespace Ch.Epix.WindMobile.WP7.View
         {
             InitializeComponent();
             StationMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Aru7Ud6JR_vLA3MC_Vof2xFOXVejAASIjZzfy5pZuh3OUWLGkwMj--c8GWkutwCj");
-            StationMap.SetView(ViewModel.GeoCoordinateWatcher.Position.Location, 9.0d);
-
-            //foreach (var station in ViewModel.StationInfoList)
-            //{
-            //    StationMap.Children.Add(
-            //        new Pushpin() { 
-            //            Location = new System.Device.Location.GeoCoordinate(station.Wgs84Latitude, station.Wgs84Longitude, station.Altitude),
-            //            DataContext = station,
-            //            ContentTemplate = this.Resources["PushPinDataTemplate"] as DataTemplate,
-            //            IsHitTestVisible = true,
-            //            IsTabStop = true
-                        
-            //        });
-            //}
+            StationMap.SetView(ViewModel.Location, 9.0d);
         }
 
         private void PushPin_Button_Click(object sender, RoutedEventArgs e)
