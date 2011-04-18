@@ -34,6 +34,8 @@ namespace Ch.Epix.WindMobile.WP7
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -79,6 +81,9 @@ namespace Ch.Epix.WindMobile.WP7
                 // An unhandled exception has occurred; break into the debugger
                 System.Diagnostics.Debugger.Break();
             }
+            e.Handled = true;
+            ViewModel.ViewModelLocator.ExceptionStatic = new ExceptionViewModel(e.ExceptionObject);
+            (RootVisual as PhoneApplicationFrame).Source = new Uri("/View/ExceptionView.xaml", UriKind.Relative);
         }
 
         #region Phone application initialization

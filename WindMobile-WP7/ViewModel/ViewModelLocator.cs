@@ -82,6 +82,12 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             }
         }
 
+        public static ExceptionViewModel ExceptionStatic
+        {
+            get;
+            set;
+        }
+
         ///// <summary>
         ///// Gets the StationInfo property.
         ///// </summary>
@@ -123,6 +129,24 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             get
             {
                 return new StationInfoViewModel();
+            }
+        }
+
+        /// <summary>
+        /// Gets the StationInfo property.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ExceptionViewModel Exception
+        {
+            get
+            {
+                return ExceptionStatic;   
+            }
+            set
+            {
+                ExceptionStatic = value;
             }
         }
 
