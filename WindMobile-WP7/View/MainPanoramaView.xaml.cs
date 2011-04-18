@@ -32,7 +32,6 @@ namespace Ch.Epix.WindMobile.WP7.View
         {
             InitializeComponent();
             StationMap.SetView(ViewModel.Location, 8.0d);
-
         }
 
         private void StationInfoControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

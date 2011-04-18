@@ -24,13 +24,8 @@
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="../Images/Panorama2.png"/>
             </controls:Panorama.Background>
-
-            <!--Panorama item one-->
-            <!--<controls:PanoramaItem Header="favoris">
-                <Grid/>
-            </controls:PanoramaItem>-->
-
-            <!--Panorama item two-->
+            
+            <!-- stations -->
             <controls:PanoramaItem Header="stations">
                 <ListBox ItemsSource="{Binding StationInfoList}" 
                          SelectedItem="{Binding CurrentStationInfo, Mode=TwoWay}"
@@ -49,7 +44,8 @@
                 </ListBox>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem>
+            <!-- Carte -->
+            <controls:PanoramaItem HorizontalContentAlignment="Stretch">
                 <controls:PanoramaItem.Header>
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
@@ -57,10 +53,11 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="carte" Style="{StaticResource PhoneTextTitle1Style}" Grid.Column="0"/>
-                        <Button Content="Full" Grid.Column="1" />
+                        <HyperlinkButton Content="plein écran" NavigateUri="/View/MapView.xaml"
+                                         Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                     </Grid>
                 </controls:PanoramaItem.Header>
-                <bing:Map Name="StationMap" CredentialsProvider="{Binding CredentialsProvider, Mode=OneTime}" >
+                <bing:Map Name="StationMap" CredentialsProvider="{Binding CredentialsProvider, Mode=OneTime}" Opacity="1" >
                     <bing:MapItemsControl ItemsSource="{Binding StationInfoList, Mode=OneWay}">
                         <bing:MapItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -81,7 +78,7 @@
                 </bing:Map>
             </controls:PanoramaItem>
 
-            <!--Panorama item two-->
+            <!-- Menu -->
             <controls:PanoramaItem Header="menu">
                 <ScrollViewer>
                     <StackPanel toolkit:TiltEffect.IsTiltEnabled="True">
