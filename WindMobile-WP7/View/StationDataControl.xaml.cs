@@ -9,6 +9,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Ch.Epix.WindMobile.WP7.Model;
 using Ch.Epix.WindMobile.WP7.ViewModel;
+using System.Windows.Media.Imaging;
 
 namespace Ch.Epix.WindMobile.WP7
 {
@@ -47,6 +48,11 @@ namespace Ch.Epix.WindMobile.WP7
             if (ViewModel != null && ViewModel.StationData != null)
             {
                 this.TrendRotateTransform.Angle = -ViewModel.StationData.WindTrend;
+                ImageTrend.Source = new BitmapImage(
+                    new Uri("../Images/arrow_" + 
+                        (ViewModel.StationData.WindTrend > 0 ? "red" : "green") + ".png", UriKind.Relative)
+                    );
+                //"/WindMobile-WP7;component
             }
         }
 

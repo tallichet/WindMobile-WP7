@@ -47,7 +47,7 @@
 			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}"/>
 			
 			<TextBlock Text="Tendance" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Canvas Grid.Column="2" Grid.Row="4" Width="50" Height="50" Margin="5">
+            <!--<Canvas Grid.Column="2" Grid.Row="4" Width="50" Height="50" Margin="5">
                 <Canvas.RenderTransform>
                     <RotateTransform x:Name="TrendRotateTransform" Angle="0" CenterX="25" CenterY="25" />
                 </Canvas.RenderTransform>
@@ -60,7 +60,12 @@
                         <Point X="3" Y="40" />
                     </Polygon.Points>
                 </Polygon>
-            </Canvas>
+            </Canvas>-->
+            <Image x:Name="ImageTrend" Grid.Row="4" Grid.Column="2" Width="50" Height="50" Margin="5" Stretch="Fill"  >  <!--Source="../Images/arrow_green.png">-->
+                <Image.RenderTransform>
+                    <RotateTransform x:Name="TrendRotateTransform" Angle="0" CenterX=".5" CenterY=".5" />
+                </Image.RenderTransform>
+            </Image>
 
             <Path Grid.Column="3" Data="M237,0 L237,164" HorizontalAlignment="Left" Margin="1" Grid.RowSpan="5" Stretch="Fill" Stroke="{StaticResource PhoneForegroundBrush}" UseLayoutRounding="False" Width="1" StrokeThickness="2"/>
             

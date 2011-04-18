@@ -183,6 +183,8 @@
     </Content>
     <Resource Include="Images\Panorama.png" />
     <Resource Include="Images\Panorama2.png" />
+    <Resource Include="Images\arrow_green.png" />
+    <Resource Include="Images\arrow_red.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
