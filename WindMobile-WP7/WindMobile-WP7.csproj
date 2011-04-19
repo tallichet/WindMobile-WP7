@@ -129,6 +129,9 @@
     <Compile Include="View\StationInfoView.xaml.cs">
       <DependentUpon>StationInfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WindChartControl.xaml.cs">
+      <DependentUpon>WindChartControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WindMobileMap.xaml.cs">
       <DependentUpon>WindMobileMap.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,10 @@
     </Page>
     <Page Include="View\StationInfoView.xaml">
       <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindChartControl.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WindMobileMap.xaml">

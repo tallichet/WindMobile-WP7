@@ -3,6 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:Ch.Epix.WindMobile.WP7.View"
 	mc:Ignorable="d"
 	x:Class="Ch.Epix.WindMobile.WP7.StationDataControl"
 	d:DesignWidth="480" d:DesignHeight="617"
@@ -53,20 +54,6 @@
 			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}"/>
 			
 			<TextBlock Text="Tendance" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <!--<Canvas Grid.Column="2" Grid.Row="4" Width="50" Height="50" Margin="5">
-                <Canvas.RenderTransform>
-                    <RotateTransform x:Name="TrendRotateTransform" Angle="0" CenterX="25" CenterY="25" />
-                </Canvas.RenderTransform>
-                <Polygon Fill="{Binding StationData.WindTrend, Converter={StaticResource TrendToColorConverter}, ConverterParameter=Fill}" 
-                         Stroke="{Binding StationData.WindTrend, Converter={StaticResource TrendToColorConverter}, ConverterParameter=Stroke}">
-                    <Polygon.Points>
-                        <Point X="10" Y="25" />
-                        <Point X="3" Y="10" />
-                        <Point X="50" Y="25" />
-                        <Point X="3" Y="40" />
-                    </Polygon.Points>
-                </Polygon>
-            </Canvas>-->
             <Image x:Name="ImageTrend" Grid.Row="4" Grid.Column="2" Width="40" Height="40" Margin="15" Stretch="Uniform" RenderTransformOrigin="0.5,0.5"  >  <!--Source="../Images/arrow_green.png">-->
                 <Image.RenderTransform>
                     <RotateTransform x:Name="TrendRotateTransform" Angle="0" />                        
@@ -74,6 +61,9 @@
             </Image>
 
             <Path Grid.Column="3" Data="M237,0 L237,164" HorizontalAlignment="Left" Margin="1" Grid.RowSpan="5" Stretch="Fill" Stroke="{StaticResource PhoneForegroundBrush}" UseLayoutRounding="False" Width="1" StrokeThickness="2"/>
+            
+            <view:WindChartControl Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="5"
+                                    ChartPoints="{Binding Path=StationData.DirectionChartPoints}" />
             
             <Path Grid.ColumnSpan="5" Data="M0,180 L480,180" Height="1" Grid.Row="5" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" StrokeThickness="2" Stroke="{StaticResource PhoneForegroundBrush}"/>
 			

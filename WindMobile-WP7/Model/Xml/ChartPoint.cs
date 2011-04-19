@@ -16,7 +16,7 @@ namespace Ch.Epix.WindMobile.WP7.Model.Xml
     {
         public ChartPoint(XElement element)
         {
-            Date = new DateTime(int.Parse(element.Element("date").Value));
+            Date = new DateTime(long.Parse(element.Element("date").Value));
             Value = double.Parse(element.Element("value").Value);
         }
 
