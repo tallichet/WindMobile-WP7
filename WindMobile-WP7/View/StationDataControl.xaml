@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <Storyboard x:Name="RotateTrendAnimation">
             <DoubleAnimation x:Name="RotateTrendAnimationAngle" Storyboard.TargetName="TrendRotateTransform" Storyboard.TargetProperty="Angle"
-                             Duration="0:0:2" />
+                             Duration="0:0:1" />
         </Storyboard>
     </UserControl.Resources>
 

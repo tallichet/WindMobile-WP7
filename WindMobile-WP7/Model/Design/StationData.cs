@@ -66,5 +66,17 @@ namespace Ch.Epix.WindMobile.WP7.Model.Design
         {
             get { return 35; }
         }
+
+
+        public List<IChartPoint> DirectionChartPoints
+        {
+            get { return new List<IChartPoint>(); }
+        }
+
+
+        public int DirectionChartDuration
+        {
+            get { return 3600; }
+        }
     }
 }

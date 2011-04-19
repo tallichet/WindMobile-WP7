@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace Ch.Epix.WindMobile.WP7.Model.Xml
 {
@@ -77,6 +78,29 @@ namespace Ch.Epix.WindMobile.WP7.Model.Xml
         public double AirHumidity
         {
             get { return Double.Parse(element.Element("airHumidity").Value); }
+        }
+
+        private List<IChartPoint> chartPoints;
+        public List<IChartPoint> DirectionChartPoints
+        {
+            get 
+            {
+                if (chartPoints == null)
+                {
+                    chartPoints = new List<IChartPoint>();
+                    foreach (var pointElement in element.Element("windDirectionChart").Element("serie").Elements("points"))
+                    {
+                        chartPoints.Add(new ChartPoint(pointElement));
+                    }
+                }
+                return chartPoints;
+            }
+        }
+
+
+        public int DirectionChartDuration
+        {
+            get { return int.Parse(element.Element("windDirectionChart").Attribute("duration").Value); }
         }
     }
 }

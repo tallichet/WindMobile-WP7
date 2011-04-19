@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace Ch.Epix.WindMobile.WP7.Model
 {
@@ -25,5 +26,7 @@ namespace Ch.Epix.WindMobile.WP7.Model
         double WindHistoryMax { get; }
         double AirTemperature { get; }
         double AirHumidity { get; }
+        List<IChartPoint> DirectionChartPoints { get;}
+        int DirectionChartDuration { get; }
     }
 }

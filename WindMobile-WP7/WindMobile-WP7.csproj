@@ -91,6 +91,7 @@
     <Compile Include="Model\IStationInfo.cs" />
     <Compile Include="Model\IWindDirectionChart.cs" />
     <Compile Include="Model\MaintenanceStatus.cs" />
+    <Compile Include="Model\Xml\ChartPoint.cs" />
     <Compile Include="Model\Xml\LastUpdate.cs" />
     <Compile Include="Model\Xml\StationData.cs" />
     <Compile Include="Model\Xml\StationInfo.cs" />

@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Job
 {
@@ -126,7 +127,6 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
 
         private void InitWebClient() 
         {
-            Init();
             client = new WebClient();
             client.DownloadStringCompleted += (s, e) =>
             {
@@ -140,6 +140,9 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
                     worker.RunWorkerAsync(downloadedObject);
                 }
             };
+            client.Headers[HttpRequestHeader.UserAgent] = Assembly.GetExecutingAssembly().FullName + "/" +
+            System.Environment.OSVersion.Platform + "(" + System.Environment.OSVersion.Version + ") CLR:" +
+            System.Environment.Version;
         }
 
         private void InitWorker()
