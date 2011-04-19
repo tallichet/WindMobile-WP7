@@ -117,5 +117,52 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         }
 
         private IJob listStationInfoJob;
+
+        public bool StationExists(string id)
+        {
+            foreach (var station in StationInfoList)
+            {
+                if (station.Id == id) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Maintains multiple view models for stations data, so we can implement a tabbed view
+        /// The key if the station id
+        /// </summary>
+        private Dictionary<string, StationInfoViewModel> stationInfoViewModels;
+
+
+
+        public class StationInfoViewModelIndexer
+        {
+            public MainViewModel MainViewModel { get; private set; }
+
+            private StationInfoViewModelIndexer(MainViewModel mainViewModel) 
+            {
+                this.MainViewModel = mainViewModel;
+            }
+
+            public StationInfoViewModel this[string id]
+            {
+                get
+                {
+                    if (MainViewModel.stationInfoViewModels.ContainsKey(id) == false)
+                    {
+                        if (MainViewModel.StationExists(id))
+                        {
+                            MainViewModel.stationInfoViewModels[id] = new StationInfoViewModel(id);
+                        }
+                        else
+                        {
+                            throw new Exception("Station with ID : " + id + " don't exists");
+                        }
+                    }
+                    return MainViewModel.stationInfoViewModels[id];
+
+                }
+            }
+        }
     }
 }

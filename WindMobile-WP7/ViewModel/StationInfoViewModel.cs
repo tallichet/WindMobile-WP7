@@ -21,7 +21,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
     public class StationInfoViewModel : ViewModelBase
     {
         private IJob GetStationDataJob;
-
+        
         public string ApplicationTitle
         {
             get
