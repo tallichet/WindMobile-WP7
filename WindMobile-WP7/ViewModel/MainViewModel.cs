@@ -46,6 +46,11 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             get;
             private set;
         }
+        public List<StationInfoViewModel> StationInfoViewModelList
+        {
+            get;
+            private set;
+        }
 
         public IStationInfo CurrentStationInfo { get; set; }
 
@@ -94,6 +99,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                 listStationInfoJob.JobCompleted += (s, e) => {
                     StationInfoList = (List<IStationInfo>)e.Result;
                     RaisePropertyChanged("StationInfoList");
+                    InitStationInfoModelViewList();
                     GetStationInfoListCommand.RaiseCanExecuteChanged();
                 };
 
@@ -116,6 +122,16 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             }
         }
 
+        private void InitStationInfoModelViewList()
+        {
+            StationInfoViewModelList = new List<StationInfoViewModel>(StationInfoList.Count);
+            foreach (var stationInfo in StationInfoList)
+            {
+                StationInfoViewModelList.Add(new StationInfoViewModel(stationInfo));
+            }
+            RaisePropertyChanged("StationInfoViewModelList");
+        }
+
         private IJob listStationInfoJob;
 
         public bool StationExists(string id)
@@ -127,42 +143,13 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             return false;
         }
 
-        /// <summary>
-        /// Maintains multiple view models for stations data, so we can implement a tabbed view
-        /// The key if the station id
-        /// </summary>
-        private Dictionary<string, StationInfoViewModel> stationInfoViewModels;
-
-
-
-        public class StationInfoViewModelIndexer
+        public IStationInfo GetStationInfo(string id)
         {
-            public MainViewModel MainViewModel { get; private set; }
-
-            private StationInfoViewModelIndexer(MainViewModel mainViewModel) 
+            foreach (var station in StationInfoList)
             {
-                this.MainViewModel = mainViewModel;
+                if (station.Id == id) return station;
             }
-
-            public StationInfoViewModel this[string id]
-            {
-                get
-                {
-                    if (MainViewModel.stationInfoViewModels.ContainsKey(id) == false)
-                    {
-                        if (MainViewModel.StationExists(id))
-                        {
-                            MainViewModel.stationInfoViewModels[id] = new StationInfoViewModel(id);
-                        }
-                        else
-                        {
-                            throw new Exception("Station with ID : " + id + " don't exists");
-                        }
-                    }
-                    return MainViewModel.stationInfoViewModels[id];
-
-                }
-            }
+            throw new IndexOutOfRangeException();
         }
     }
 }

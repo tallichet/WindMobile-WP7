@@ -33,7 +33,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         public IStationData StationData { get; private set; }
         public string ErrorMessage { get; private set; }
 
-        public RelayCommand<string> GetStationDataCommand { get; private set; }
+        public RelayCommand GetStationDataCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the StationInfoViewModel class.
@@ -60,12 +60,17 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                         this.RaisePropertyChanged("ErrorMessage");
                     };
 
-                GetStationDataCommand = new RelayCommand<string>(
-                    (s) => GetStationDataJob.Execute(s),
-                    (s) => string.IsNullOrEmpty(s) == false
+                GetStationDataCommand = new RelayCommand(
+                    () => GetStationDataJob.Execute(StationInfo.Id)
                 );
                 StationInfo = ViewModelLocator.MainStatic.CurrentStationInfo;
             }
+        }
+
+        public StationInfoViewModel(IStationInfo stationInfo)
+            : this()
+        {
+            StationInfo = stationInfo;
         }
 
         public IStationInfo StationInfo

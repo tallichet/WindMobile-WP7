@@ -11,7 +11,7 @@ using Ch.Epix.WindMobile.WP7.Model;
 using Ch.Epix.WindMobile.WP7.ViewModel;
 using System.Windows.Media.Imaging;
 
-namespace Ch.Epix.WindMobile.WP7
+namespace Ch.Epix.WindMobile.WP7.View
 {
 	public partial class StationDataControl : UserControl
 	{
@@ -40,6 +40,7 @@ namespace Ch.Epix.WindMobile.WP7
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            (DataContext as StationInfoViewModel).GetStationDataCommand.Execute(this);
             UpdateTrend();
         }
 

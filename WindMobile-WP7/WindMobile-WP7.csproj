@@ -123,6 +123,9 @@
     <Compile Include="View\StationDataControl.xaml.cs">
       <DependentUpon>StationDataControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StationDataPivot.xaml.cs">
+      <DependentUpon>StationDataPivot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StationInfoControl.xaml.cs">
       <DependentUpon>StationInfoControl.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
     <Page Include="View\StationDataControl.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\StationDataPivot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StationInfoControl.xaml">
       <SubType>Designer</SubType>
