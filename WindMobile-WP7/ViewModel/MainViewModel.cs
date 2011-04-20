@@ -54,6 +54,21 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
 
         public IStationInfo CurrentStationInfo { get; set; }
 
+        public StationInfoViewModel CurrentStationInfoViewModel
+        {
+            get
+            {
+                foreach (var item in StationInfoViewModelList)
+                {
+                    if (item.StationInfo == CurrentStationInfo)
+                    {
+                        return item;
+                    }
+                }
+                return null;
+            }
+        }
+
         public RelayCommand GetStationInfoListCommand { get; private set; }
 
         private System.Device.Location.GeoCoordinateWatcher GeoCoordinateWatcher { get; set; }
