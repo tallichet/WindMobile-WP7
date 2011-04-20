@@ -135,9 +135,6 @@
     <Compile Include="View\WindChartControl.xaml.cs">
       <DependentUpon>WindChartControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\WindMobileMap.xaml.cs">
-      <DependentUpon>WindMobileMap.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -177,10 +174,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WindChartControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\WindMobileMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

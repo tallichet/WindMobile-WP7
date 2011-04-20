@@ -19,7 +19,8 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="{Binding Path=ApplicationTitle}" ItemsSource="{Binding StationInfoViewModelList}">
+        <controls:Pivot Name="StationPivot" LoadedPivotItem="StationPivot_LoadedPivotItem" Loaded="StationPivot_Loaded"
+                        Title="{Binding Path=ApplicationTitle}" ItemsSource="{Binding StationInfoViewModelList}">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Path=StationInfo.ShortName}" />

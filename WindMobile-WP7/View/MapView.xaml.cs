@@ -36,7 +36,7 @@ namespace Ch.Epix.WindMobile.WP7.View
         private void PushPin_Button_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.CurrentStationInfo = ((sender as Button).Tag as IStationInfo);
-            NavigationService.Navigate(new Uri("/View/StationInfoView.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/StationDataPivot.xaml", UriKind.Relative));
         }
 
         
