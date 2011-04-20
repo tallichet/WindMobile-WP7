@@ -3,6 +3,7 @@ using Ch.Epix.WindMobile.WP7.Model;
 using GalaSoft.MvvmLight.Command;
 using Ch.Epix.WindMobile.WP7.Service.Job;
 using Ch.Epix.WindMobile.WP7.Service.Design;
+using System;
 
 namespace Ch.Epix.WindMobile.WP7.ViewModel
 {
@@ -77,6 +78,16 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         {
             get;
             private set;
+        }
+
+        public event EventHandler Activated;
+
+        public void RaiseActivated()
+        {
+            if (this.Activated != null)
+            {
+                Activated(this, new EventArgs());
+            }
         }
     }
 }

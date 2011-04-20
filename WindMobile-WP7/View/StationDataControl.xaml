@@ -7,7 +7,8 @@
 	mc:Ignorable="d"
 	x:Class="Ch.Epix.WindMobile.WP7.View.StationDataControl"
 	d:DesignWidth="480" d:DesignHeight="617"
-    Loaded="UserControl_Loaded">
+    Loaded="UserControl_Loaded"
+    >
     <UserControl.Resources>
         <Storyboard x:Name="RotateTrendAnimation">
             <DoubleAnimation x:Name="RotateTrendAnimationAngle" Storyboard.TargetName="TrendRotateTransform" Storyboard.TargetProperty="Angle"

@@ -41,6 +41,7 @@ namespace Ch.Epix.WindMobile.WP7.View
         {
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
             (DataContext as StationInfoViewModel).GetStationDataCommand.Execute(this);
+            ViewModel.Activated += (s, arg) => Animate();
             UpdateTrend();
         }
 
@@ -49,8 +50,9 @@ namespace Ch.Epix.WindMobile.WP7.View
             if (ViewModel != null && ViewModel.StationData != null)
             {
                 //this.TrendRotateTransform.Angle = -ViewModel.StationData.WindTrend;
-                this.RotateTrendAnimationAngle.To = -ViewModel.StationData.WindTrend;
-                this.RotateTrendAnimation.Begin();
+                //this.RotateTrendAnimationAngle.To = -ViewModel.StationData.WindTrend;
+                //this.RotateTrendAnimation.Begin();
+                Animate();
                 ImageTrend.Source = new BitmapImage(
                     new Uri("../Images/arrow_" + 
                         (ViewModel.StationData.WindTrend > 0 ? "red" : "green") + ".png", UriKind.Relative)
@@ -66,5 +68,14 @@ namespace Ch.Epix.WindMobile.WP7.View
                 MessageBox.Show(ViewModel.ErrorMessage, "Erreur", MessageBoxButton.OK);
             }
         }
+
+        public void Animate()
+        {
+            this.RotateTrendAnimationAngle.From = 0;
+            this.RotateTrendAnimationAngle.To = -ViewModel.StationData.WindTrend;
+            this.RotateTrendAnimation.Begin();
+        }
+
+        
 	}
 }

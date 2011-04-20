@@ -17,7 +17,7 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <!--<Grid x:Name="LayoutRoot" Background="Transparent">-->
         <!--Pivot Control-->
         <controls:Pivot Name="StationPivot" LoadedPivotItem="StationPivot_LoadedPivotItem" Loaded="StationPivot_Loaded"
                         Title="{Binding Path=ApplicationTitle}" ItemsSource="{Binding StationInfoViewModelList}">
@@ -28,11 +28,11 @@
             </controls:Pivot.HeaderTemplate>
             <controls:Pivot.ItemTemplate>
                 <DataTemplate>
-                    <view:StationDataControl DataContext="{Binding}" />
+                    <view:StationDataControl x:Name="DataControl" DataContext="{Binding}" />
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
-    </Grid>
+    <!--</Grid>-->
 
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>
