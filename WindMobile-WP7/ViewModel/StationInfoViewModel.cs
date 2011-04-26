@@ -22,6 +22,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
     public class StationInfoViewModel : ViewModelBase
     {
         private IJob GetStationDataJob;
+        private IJob GetStationChartJob;
         
         public string ApplicationTitle
         {
@@ -32,9 +33,11 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         }
 
         public IStationData StationData { get; private set; }
+        public IChart StationChart { get; private set; }
         public string ErrorMessage { get; private set; }
 
         public RelayCommand GetStationDataCommand { get; private set; }
+        public RelayCommand<int> GetStationChartCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the StationInfoViewModel class.
@@ -65,6 +68,16 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                     () => GetStationDataJob.Execute(StationInfo.Id)
                 );
                 StationInfo = ViewModelLocator.MainStatic.CurrentStationInfo;
+
+                GetStationChartJob = new GetStationChartJob(this.StationInfo);
+                GetStationChartJob.JobCompleted += (s, e) =>
+                    {
+                        StationChart = e.Result as IChart;
+                        this.RaisePropertyChanged("StationChart");
+                    };
+                GetStationChartCommand = new RelayCommand<int>(
+                    (i) => GetStationChartJob.Execute(i.ToString())
+                    );
             }
         }
 

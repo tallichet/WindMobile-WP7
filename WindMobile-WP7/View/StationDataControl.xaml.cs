@@ -71,9 +71,12 @@ namespace Ch.Epix.WindMobile.WP7.View
 
         public void Animate()
         {
-            this.RotateTrendAnimationAngle.From = 0;
-            this.RotateTrendAnimationAngle.To = -ViewModel.StationData.WindTrend;
-            this.RotateTrendAnimation.Begin();
+            if (ViewModel.StationData != null)
+            {
+                this.RotateTrendAnimationAngle.From = 0;
+                this.RotateTrendAnimationAngle.To = -ViewModel.StationData.WindTrend;
+                this.RotateTrendAnimation.Begin();
+            }
         }
 
         

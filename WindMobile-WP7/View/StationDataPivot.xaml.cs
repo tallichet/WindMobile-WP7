@@ -38,5 +38,10 @@ namespace Ch.Epix.WindMobile.WP7.View
         {
             StationPivot.SelectedIndex = ViewModel.StationInfoList.IndexOf(ViewModel.CurrentStationInfo);
         }
+
+        private void ChartButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/ChartView.xaml", UriKind.Relative));
+        }
     }
 }

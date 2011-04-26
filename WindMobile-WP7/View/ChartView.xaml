@@ -28,9 +28,10 @@
                 <vc:Axis Title="Vent (moyenne/rafale) km/h"  />
             </vc:Chart.AxesY>
             <vc:Chart.Series>
-                <vc:DataSeries RenderAs="Area">
+                <vc:DataSeries RenderAs="Area" DataSource="{Binding Path=DirectionChartPoints}">
                     <vc:DataSeries.DataMappings>
-                        <vc:DataMapping MemberName="" Path="" />
+                        <vc:DataMapping MemberName="AxisXLabel" Path="Date" />
+                        <vc:DataMapping MemberName="YValue" Path="Value" />
                     </vc:DataSeries.DataMappings>
                 </vc:DataSeries>
             </vc:Chart.Series>
