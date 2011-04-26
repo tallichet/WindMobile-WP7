@@ -4,6 +4,8 @@ using GalaSoft.MvvmLight.Command;
 using Ch.Epix.WindMobile.WP7.Service.Job;
 using Ch.Epix.WindMobile.WP7.Service.Design;
 using System;
+using CustomControls.Graph;
+using System.Collections.Generic;
 
 namespace Ch.Epix.WindMobile.WP7.ViewModel
 {
@@ -52,6 +54,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             }
             else
             {
+                this.PropertyChanged += StationInfoViewModel_PropertyChanged;
                 GetStationDataJob = new GetStationDataJob();
                 GetStationDataJob.JobCompleted += (s, e) => 
                     {
@@ -81,6 +84,26 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             }
         }
 
+        public List<IGraphData> ChartAverage { get; private set; }
+        public List<IGraphData> ChartMax { get; private set; }
+
+        void StationInfoViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "StationChart")
+            {
+                if (StationChart != null && StationChart.WindAverage != null &&
+                    StationChart.WindAverage.Values != null && StationChart.WindAverage.Values.Count > 0)
+                {
+                    this.ChartAverage = new List<IGraphData>();
+                    foreach (var p in this.StationChart.WindAverage.Values)
+                    {
+                        ChartAverage.Add(new GraphData(p));
+                    }
+                    this.RaisePropertyChanged("ChartAverage");
+                }
+            }
+        }
+
         public StationInfoViewModel(IStationInfo stationInfo)
             : this()
         {
@@ -101,6 +124,36 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             {
                 Activated(this, new EventArgs());
             }
+        }
+    }
+
+    public class GraphData : IGraphData
+    {
+        IChartPoint point;
+
+        public GraphData(IChartPoint p)
+        {
+            this.point = p;
+        }
+
+        public double GetX()
+        {
+            return point.Date.Ticks;
+        }
+
+        public double GetY()
+        {
+            return point.Value;
+        }
+
+        public string GetXText(double x)
+        {
+            return point.Date.ToString();
+        }
+
+        public string GetYText(double y)
+        {
+            return point.Value.ToString();
         }
     }
 }

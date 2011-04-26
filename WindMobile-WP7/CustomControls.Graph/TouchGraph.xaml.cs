@@ -242,7 +242,7 @@ namespace CustomControls.Graph
         /// <param name="e"></param>
         void drawTimer_Tick(object sender, EventArgs e)
         {
-            if (graphData != null)
+            if (graphData != null && graphData.Length > 0)
             {
                 bool draw = true;
 

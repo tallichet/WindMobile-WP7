@@ -15,9 +15,22 @@ namespace Ch.Epix.WindMobile.WP7.View
 {
     public partial class ChartView : PhoneApplicationPage
     {
+        public ViewModel.StationInfoViewModel ViewModel
+        {
+            get
+            {
+                return this.DataContext as ViewModel.StationInfoViewModel;
+            }
+        }
+
         public ChartView()
         {
             InitializeComponent();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.GetStationChartCommand.Execute(3600);
         }
     }
 }
