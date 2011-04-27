@@ -104,7 +104,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             if (IsInDesignMode)
             {
                 // Code runs in Blend --> create design time data.
-                listStationInfoJob = new DesignJobBase();
+                listStationInfoJob = new DesignJobBase<object, List<IStationInfo>>();
                 //GetStationInfoListCommand = new RelayCommand(null);
             }
             else
@@ -121,7 +121,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                 // Init Command
                 GetStationInfoListCommand = new RelayCommand(
                     () => {
-                        listStationInfoJob.Execute();
+                        listStationInfoJob.Execute(null);
                         GetStationInfoListCommand.RaiseCanExecuteChanged();
                     },
                     () => {
@@ -147,7 +147,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             RaisePropertyChanged("StationInfoViewModelList");
         }
 
-        private IJob listStationInfoJob;
+        private IJob<object, List<IStationInfo>> listStationInfoJob;
 
         public bool StationExists(string id)
         {

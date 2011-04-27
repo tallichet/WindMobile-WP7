@@ -14,7 +14,7 @@ using System.Xml.Linq;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Job
 {
-    public class GetStationChartJob : JobBase
+    public class GetStationChartJob : JobBase<IStationInfo, string, IChart>
     {
         private IStationInfo stationInfo;
         private string duration;
@@ -29,15 +29,9 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             return new Uri(baseUrl + "/windchart/" + stationInfo.Id + "/" + duration);
         }
 
-        public override void Execute(string s)
+        protected override IChart JobRun(ref bool cancel, string arg)
         {
-            duration = s;
-            StartDownloadJob();
-        }
-
-        protected override object JobRun(ref bool cancel, object arg)
-        {
-            return new Chart(XElement.Parse((string)arg));
+            return new Chart(XElement.Parse(arg));
         }
     }
 }

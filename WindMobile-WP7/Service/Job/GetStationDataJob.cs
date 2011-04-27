@@ -10,10 +10,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using Ch.Epix.WindMobile.WP7.Model.Xml;
+using Ch.Epix.WindMobile.WP7.Model;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Job
 {
-    public class GetStationDataJob : JobBase
+    public class GetStationDataJob : JobBase<IStationInfo, string, IStationData>
     {
 
         public string StationId
@@ -22,19 +23,10 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             set;
         }
 
-        public override void Execute()
-        {
-            if (String.IsNullOrEmpty(StationId))
-            {
-                throw new Exception("No station ID defined");
-            }
-            StartDownloadJob();
-        }
-
         public override void Execute(string s)
         {
             StationId = s;
-            Execute();
+            StartDownloadJob();
         }
 
         protected override Uri GetUrl()
@@ -42,7 +34,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             return new Uri(baseUrl + "stationdatas/" + StationId);
         }
 
-        protected override object JobRun(ref bool cancel, object arg)
+        protected override IStationData JobRun(ref bool cancel, string arg)
         {
             return new StationData(XElement.Parse((string)arg));
         }

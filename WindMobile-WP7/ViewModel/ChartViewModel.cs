@@ -17,7 +17,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
 {
     public class ChartViewModel : ViewModelBase
     {
-        private IJob downloadChartDataJob;
+        private IJob<string, IChart> downloadChartDataJob;
 
         public IStationInfo StationInfo { get; private set; }
 

@@ -23,8 +23,8 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
     /// </summary>
     public class StationInfoViewModel : ViewModelBase
     {
-        private IJob GetStationDataJob;
-        private IJob GetStationChartJob;
+        private IJob<string, IStationData> GetStationDataJob;
+        private IJob<string, IChart> GetStationChartJob;
         
         public string ApplicationTitle
         {
@@ -49,7 +49,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             if (IsInDesignMode)
             {
                 StationData = new Ch.Epix.WindMobile.WP7.Model.Design.StationData();
-                GetStationDataJob = new DesignJobBase();
+                GetStationDataJob = new DesignJobBase<string, IStationData>();
                 StationInfo = new Ch.Epix.WindMobile.WP7.Model.Design.StationInfo();
             }
             else

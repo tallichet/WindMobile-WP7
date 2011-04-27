@@ -104,6 +104,8 @@
     <Compile Include="Model\Xml\StationInfo.cs" />
     <Compile Include="Model\Xml\XmlBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ApplicationRunData.cs" />
+    <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\Design\DesignJobBase.cs" />
     <Compile Include="Service\Job\GetStationChartJob.cs" />
     <Compile Include="Service\Job\GetStationDataJob.cs" />
@@ -111,6 +113,8 @@
     <Compile Include="Service\Job\JobBase.cs" />
     <Compile Include="Service\Job\LastUpdateJob.cs" />
     <Compile Include="Service\Job\ListStationInfoJob.cs" />
+    <Compile Include="Service\Job\XmlJob.cs" />
+    <Compile Include="Service\ServiceCentral.cs" />
     <Compile Include="ViewModel\ChartViewModel.cs" />
     <Compile Include="ViewModel\Converter\MaintenanceStatusToSolidColorBrushConverter.cs" />
     <Compile Include="ViewModel\Converter\StationInfoToGeoCoordinateConverter.cs" />

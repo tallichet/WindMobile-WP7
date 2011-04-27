@@ -13,13 +13,13 @@ using System.Reflection;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Job
 {
-    public abstract class JobBase : IJob
+    public abstract class JobBase<S, P, R> : IJob<P, R>
     {
         private BackgroundWorker worker;
         private WebClient client;
 
-        private object downloadedObject;
-        private object result;
+        private string downloadedString;
+        private R result;
 
         protected string baseUrl = "http://windmobile.vol-libre-suchet.ch:1588/windmobile/";
 
@@ -36,12 +36,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             private set;
         }
 
-        public virtual void Execute()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Execute(string s)
+        public virtual void Execute(P o)
         {
             throw new NotImplementedException();
         }
@@ -66,7 +61,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         /// </summary>
         /// <param name="downloadedString">The resulting string</param>
         /// <returns></returns>
-        protected virtual Object OnDownloadStringCompleted(String downloadedString) { return downloadedString; }
+        protected virtual void OnDownloadStringCompleted(String downloadedString) { }
         /// <summary>
         /// Allow to process download error message
         /// </summary>
@@ -77,7 +72,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         /// This happen in the UI Thread, just before starting the background worker
         /// </summary>
         /// <param name="arg">Object to use as argument for the background work</param>
-        protected virtual void OnJobStarting(object arg) { }
+        protected virtual void OnJobStarting(string arg) { }
 
         /// <summary>
         /// Background work. Done in the Background Thread (no access to UI thread Dependency properties)
@@ -85,23 +80,23 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         /// <param name="cancel">Was the job canceled?</param>
         /// <param name="arg">argument for the background job</param>
         /// <returns>Object return by the </returns>
-        protected virtual Object JobRun(ref bool cancel, object arg) { return null; }
+        protected abstract R JobRun(ref bool cancel, string arg);
 
         /// <summary>
         /// Occurs after the job ends, in the UI Thread, just before the JobCompleted event raise
         /// </summary>
         /// <param name="result">Result of the background job</param>
-        protected virtual void OnJobCompleted(object result) { }
+        protected virtual void OnJobCompleted(R result) { }
 
         /// <summary>
         /// Occurs when the job was completed
         /// </summary>
-        public event EventHandler<JobFinishedEventArgs> JobCompleted;
+        public event EventHandler<JobFinishedEventArgs<R>> JobCompleted;
 
         /// <summary>
         /// Occurs when the job got an error (like a download error)
         /// </summary>
-        public event EventHandler<ErrorEventArgs> JobError;
+        public event EventHandler<JobErrorEventArgs> JobError;
 
         /// <summary>
         /// Start a job when needing to download
@@ -119,7 +114,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
         /// Start a background job without download
         /// </summary>
         /// <param name="arg">Argument for the background job</param>
-        public void StartBackgroundJob(object arg)
+        public void StartBackgroundJob(string arg)
         {
             Init();
             worker.RunWorkerAsync(arg);
@@ -136,8 +131,9 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
                 }
                 else if (e.Cancelled == false)
                 {
-                    downloadedObject = OnDownloadStringCompleted(e.Result);
-                    worker.RunWorkerAsync(downloadedObject);
+                    downloadedString = e.Result;
+                    OnDownloadStringCompleted(e.Result);
+                    worker.RunWorkerAsync(downloadedString);
                 }
             };
             client.Headers[HttpRequestHeader.UserAgent] = Assembly.GetExecutingAssembly().FullName + "/" +
@@ -153,17 +149,17 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             worker.DoWork += (s, e) =>
                 {
                     bool cancel = false;
-                    e.Result = JobRun(ref cancel, e.Argument);
+                    e.Result = JobRun(ref cancel, (string)e.Argument);
                     e.Cancel = cancel;
                 };
             worker.RunWorkerCompleted += (s, e) =>
                 {
                     if (e.Cancelled && e.Error != null)
                     {
-                        result = null;
+                        // result = null;
                     }
                     else {
-                        result = e.Result;
+                        result = (R)e.Result;
                         OnJobCompleted(result);
                     }
                     IsBusy = false;
@@ -171,11 +167,11 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
                 };
         }
 
-        private void RaiseJobCompleted(object result)
+        private void RaiseJobCompleted(R result)
         {
             if (JobCompleted != null)
             {
-                JobCompleted(this, new JobFinishedEventArgs(result));
+                JobCompleted(this, new JobFinishedEventArgs<R>(result));
             }
         }
     }

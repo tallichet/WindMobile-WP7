@@ -23,6 +23,8 @@ namespace Ch.Epix.WindMobile.WP7
         // Easy access to the root frame
         public PhoneApplicationFrame RootFrame { get; private set; }
 
+        
+
         // Constructor
         public App()
         {
@@ -35,8 +37,6 @@ namespace Ch.Epix.WindMobile.WP7
 
             // Phone-specific initialization
             InitializePhoneApplication();
-
-            
         }
 
         // Code to execute when the application is launching (eg, from Start)
