@@ -12,42 +12,90 @@ using GalaSoft.MvvmLight;
 using Ch.Epix.WindMobile.WP7.Service.Job;
 using Ch.Epix.WindMobile.WP7.Model;
 using GalaSoft.MvvmLight.Command;
+using CustomControls.Graph;
+using Ch.Epix.WindMobile.WP7.Service.TypedServices;
+using Ch.Epix.WindMobile.WP7.Service;
 
 namespace Ch.Epix.WindMobile.WP7.ViewModel
 {
-    public class ChartViewModel : ViewModelBase
+    public class ChartViewModel : ApplicationViewModel
     {
-        private IJob<string, IChart> downloadChartDataJob;
+        private StationChartService chartService;
+        private RelayCommand<int> refreshCommand;
 
         public IStationInfo StationInfo { get; private set; }
 
-        public string LastErrorMessage { get; private set; }
-        public IChart LastChartData { get; private set; }
+        public string ErrorMessage { get { return (ChartService.LastException != null ? ChartService.LastException.Message : null); } }
+        public IChart ChartData { get { return ChartService.LastResult; } }
 
         public int Duration { get; private set; }
 
-        public RelayCommand<int> RefreshCommand { get; private set; }
-
         public ChartViewModel(IStationInfo station)
         {
+            if (station == null) throw new Exception("station info cannot be null");
             StationInfo = station;
-            RaisePropertyChanged("StationInfo");
+        }
 
-            downloadChartDataJob = new GetStationChartJob(station);
-            downloadChartDataJob.JobError += (s, e) =>
+        protected StationChartService ChartService
+        {
+            get
+            {
+                if (chartService == null)
                 {
-                    LastErrorMessage = "Erreur durant la récupération des données graphique de " + StationInfo.ShortName + "\r\n" + e.Exception.Message;
-                    RaisePropertyChanged("LastErrorMessage");
-                };
-            downloadChartDataJob.JobCompleted += (s, e) =>
-                {
-                    LastChartData = e.Result as IChart;
-                    RaisePropertyChanged("LastChartData");
-                };
+                    chartService = ServiceCentral.ChartServices[StationInfo];
+                    chartService.LastResultChanged += (s, e) => RaisePropertyChanged("ChartData");
+                }
+                return chartService;
+            }
+        }
 
-            RefreshCommand = new RelayCommand<int>(
-                (duration) => downloadChartDataJob.Execute(duration.ToString())
-            );
+        public RelayCommand<int> RefreshCommand
+        {
+            get
+            {
+                if (refreshCommand == null)
+                {
+                    refreshCommand = new RelayCommand<int>(
+                        (i) =>
+                        {
+                            ChartService.Refresh(i);
+                            refreshCommand.RaiseCanExecuteChanged();
+                        },
+                        (i) => ChartService.IsBusy
+                    );
+                }
+                return refreshCommand;
+            }
+        }
+    }
+
+    public class GraphData : IGraphData
+    {
+        IChartPoint point;
+
+        public GraphData(IChartPoint p)
+        {
+            this.point = p;
+        }
+
+        public double GetX()
+        {
+            return point.Date.Ticks;
+        }
+
+        public double GetY()
+        {
+            return point.Value;
+        }
+
+        public string GetXText(double x)
+        {
+            return point.Date.ToString();
+        }
+
+        public string GetYText(double y)
+        {
+            return point.Value.ToString();
         }
     }
 }

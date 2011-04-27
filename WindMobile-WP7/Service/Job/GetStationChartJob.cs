@@ -14,7 +14,7 @@ using System.Xml.Linq;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Job
 {
-    public class GetStationChartJob : JobBase<IStationInfo, string, IChart>
+    public class GetStationChartJob : JobBase<IStationInfo, int, IChart>
     {
         private IStationInfo stationInfo;
         private string duration;

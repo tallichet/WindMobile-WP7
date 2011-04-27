@@ -115,6 +115,10 @@
     <Compile Include="Service\Job\ListStationInfoJob.cs" />
     <Compile Include="Service\Job\XmlJob.cs" />
     <Compile Include="Service\ServiceCentral.cs" />
+    <Compile Include="Service\TypedServices\ListStationInfoService.cs" />
+    <Compile Include="Service\TypedServices\StationChartService.cs" />
+    <Compile Include="Service\TypedServices\StationDataService.cs" />
+    <Compile Include="ViewModel\ApplicationViewModel.cs" />
     <Compile Include="ViewModel\ChartViewModel.cs" />
     <Compile Include="ViewModel\Converter\MaintenanceStatusToSolidColorBrushConverter.cs" />
     <Compile Include="ViewModel\Converter\StationInfoToGeoCoordinateConverter.cs" />

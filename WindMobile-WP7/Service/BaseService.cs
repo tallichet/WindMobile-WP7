@@ -45,6 +45,14 @@ namespace Ch.Epix.WindMobile.WP7.Service
             }
         }
 
+        public bool IsBusy
+        {
+            get
+            {
+                return (job != null && job.IsBusy);
+            }
+        }
+
         protected void InitJob()
         {
             if (job == null)

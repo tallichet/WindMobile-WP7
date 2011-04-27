@@ -11,64 +11,53 @@ using System.Windows.Shapes;
 using Ch.Epix.WindMobile.WP7.Model;
 using System.Collections.Generic;
 using Ch.Epix.WindMobile.WP7.Service.Job;
+using Ch.Epix.WindMobile.WP7.Service.TypedServices;
 
 namespace Ch.Epix.WindMobile.WP7.Service
 {
     public class ServiceCentral
     {
-        private static BaseService<object, List<IStationInfo>> listService;
-        private static AutoCreateIndexer<IStationInfo, BaseService<string, IStationData>> dataServices;
-        private static AutoCreateIndexer<IStationInfo, BaseService<string, IChart>> chartServices;
+        private static ListStationInfoService listService;
+        private static AutoCreateIndexer<IStationInfo, StationDataService> dataServices;
+        private static AutoCreateIndexer<IStationInfo, StationChartService> chartServices;
+        private static System.Device.Location.GeoCoordinateWatcher coordinateWatcher;
 
-        public static BaseService<object, List<IStationInfo>> ListService
+        public static ListStationInfoService ListService
         {
             get
             {
                 if (listService == null)
                 {
-                    listService = new BaseService<object, List<IStationInfo>>(
-                        () => { return new ListStationInfoJob(); }
-                        );
+                    listService = new ListStationInfoService();
                 }
                 return listService;
             }
         }
 
-        public static AutoCreateIndexer<IStationInfo, BaseService<string, IStationData>> DataServices
+        public static AutoCreateIndexer<IStationInfo, StationDataService> DataServices
         {
             get
             {
                 if (dataServices == null)
                 {
-                    dataServices = new AutoCreateIndexer<IStationInfo, BaseService<string, IStationData>>(
-                        (info) => 
-                        {
-                            return new BaseService<string, IStationData>(
-                                () =>
-                                {
-                                    return new GetStationDataJob();
-                                });
-                        });
+                    dataServices = new AutoCreateIndexer<IStationInfo, StationDataService>(
+                        (info) => new StationDataService(() => new GetStationDataJob())
+                    );
                 }
                 return dataServices;
             }
         }
 
-        public static AutoCreateIndexer<IStationInfo, BaseService<string, IChart>> ChartServices
+        public static AutoCreateIndexer<IStationInfo, StationChartService> ChartServices
         {
             get
             {
                 if (chartServices == null)
                 {
-                    chartServices = new AutoCreateIndexer<IStationInfo, BaseService<string, IChart>>(
+                    chartServices = new AutoCreateIndexer<IStationInfo, StationChartService>(
                         (info) =>
-                        {
-                            return new BaseService<string, IChart>(
-                                () =>
-                                {
-                                    return new GetStationChartJob(info);
-                                });
-                        });
+                            new StationChartService(() => new GetStationChartJob(info))
+                    );
                 }
                 return chartServices;
             }
@@ -86,7 +75,7 @@ namespace Ch.Epix.WindMobile.WP7.Service
             }
         }
 
-        public static BaseService<string, IChart> CurrentChartService
+        public static StationChartService CurrentChartService
         {
             get
             {
@@ -95,6 +84,22 @@ namespace Ch.Epix.WindMobile.WP7.Service
                     return ChartServices[ApplicationRunData.CurrentStationStatic];
                 }
                 return null;
+            }
+        }
+
+        public static System.Device.Location.GeoCoordinateWatcher GeoCoordinateWatcher
+        {
+            get
+            {
+                if (coordinateWatcher == null)
+                {
+                    coordinateWatcher = new System.Device.Location.GeoCoordinateWatcher();
+                    if (coordinateWatcher.Status != System.Device.Location.GeoPositionStatus.Disabled)
+                    {
+                        coordinateWatcher.Start();
+                    }
+                }
+                return coordinateWatcher;
             }
         }
     }

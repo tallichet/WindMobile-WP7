@@ -15,11 +15,11 @@ namespace Ch.Epix.WindMobile.WP7.View
 {
     public partial class ChartView : PhoneApplicationPage
     {
-        public ViewModel.StationInfoViewModel ViewModel
+        public ViewModel.ChartViewModel ViewModel
         {
             get
             {
-                return this.DataContext as ViewModel.StationInfoViewModel;
+                return this.DataContext as ViewModel.ChartViewModel;
             }
         }
 
@@ -30,7 +30,7 @@ namespace Ch.Epix.WindMobile.WP7.View
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.GetStationChartCommand.Execute(3600);
+            ViewModel.RefreshCommand.Execute(3600);
         }
     }
 }

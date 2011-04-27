@@ -18,8 +18,7 @@ namespace Ch.Epix.WindMobile.WP7.View
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            (this.DataContext as StationInfoViewModel).GetStationDataCommand.Execute(
-                ViewModel.ViewModelLocator.MainStatic.CurrentStationInfo.Id);
+            (this.DataContext as StationInfoViewModel).RefreshCommand.Execute(null);
         }
 
     }
