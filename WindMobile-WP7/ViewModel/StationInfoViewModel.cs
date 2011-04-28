@@ -97,6 +97,10 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
 
         public void RaiseActivated()
         {
+            //if (RefreshCommand.CanExecute(null))
+            //{
+            //    RefreshCommand.Execute(null);
+            //}
             if (this.Activated != null)
             {
                 Activated(this, new EventArgs());

@@ -13,7 +13,7 @@ using Ch.Epix.WindMobile.WP7.Service.Job;
 
 namespace Ch.Epix.WindMobile.WP7.Service.TypedServices
 {
-    public class StationDataService : BaseService<string, IStationData>
+    public class StationDataService : BaseService<object, IStationData>
     {
         public StationDataService(GetJobAction action)
             : base(action)

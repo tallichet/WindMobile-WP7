@@ -123,6 +123,7 @@
     <Compile Include="ViewModel\Converter\MaintenanceStatusToSolidColorBrushConverter.cs" />
     <Compile Include="ViewModel\Converter\StationInfoToGeoCoordinateConverter.cs" />
     <Compile Include="ViewModel\Converter\TrendToColorConverter.cs" />
+    <Compile Include="ViewModel\DataViewModel.cs" />
     <Compile Include="ViewModel\ExceptionViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Model\Design\StationData.cs" />

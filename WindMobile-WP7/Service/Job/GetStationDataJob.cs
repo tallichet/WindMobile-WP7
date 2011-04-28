@@ -14,24 +14,27 @@ using Ch.Epix.WindMobile.WP7.Model;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Job
 {
-    public class GetStationDataJob : JobBase<IStationInfo, string, IStationData>
+    public class GetStationDataJob : JobBase<IStationInfo, object, IStationData>
     {
-
-        public string StationId
+        public GetStationDataJob(IStationInfo info)
         {
-            get;
-            set;
+            StationInfo = info;
         }
 
-        public override void Execute(string s)
+        public IStationInfo StationInfo
         {
-            StationId = s;
+            get;
+            private set;
+        }
+
+        public override void Execute(object arg)
+        {
             StartDownloadJob();
         }
 
         protected override Uri GetUrl()
         {
-            return new Uri(baseUrl + "stationdatas/" + StationId);
+            return new Uri(baseUrl + "stationdatas/" + StationInfo.Id);
         }
 
         protected override IStationData JobRun(ref bool cancel, string arg)

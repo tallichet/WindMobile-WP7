@@ -18,9 +18,9 @@ namespace Ch.Epix.WindMobile.WP7.View
 {
     public partial class StationDataPivot : PhoneApplicationPage
     {
-        public MainViewModel ViewModel 
+        public DataViewModel ViewModel 
         {
-            get { return this.DataContext as MainViewModel; }
+            get { return this.DataContext as DataViewModel; }
         }
 
         public StationDataPivot()
@@ -36,7 +36,14 @@ namespace Ch.Epix.WindMobile.WP7.View
 
         private void StationPivot_Loaded(object sender, RoutedEventArgs e)
         {
-            StationPivot.SelectedIndex = ViewModel.StationInfoList.IndexOf(ViewModel.CurrentStationInfo);
+            for (int i = 0; i < StationPivot.Items.Count; i++)
+            {
+                if ((StationPivot.Items[i] as StationInfoViewModel).StationInfo == ViewModel.CurrentStationInfo)
+                {
+                    StationPivot.SelectedIndex = i;
+                    break;
+                }
+            }
         }
 
         private void ChartButton_Click(object sender, EventArgs e)

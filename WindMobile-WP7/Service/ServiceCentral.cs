@@ -41,7 +41,7 @@ namespace Ch.Epix.WindMobile.WP7.Service
                 if (dataServices == null)
                 {
                     dataServices = new AutoCreateIndexer<IStationInfo, StationDataService>(
-                        (info) => new StationDataService(() => new GetStationDataJob())
+                        (info) => new StationDataService(() => new GetStationDataJob(info))
                     );
                 }
                 return dataServices;
@@ -63,7 +63,7 @@ namespace Ch.Epix.WindMobile.WP7.Service
             }
         }
 
-        public static BaseService<string, IStationData> CurrentDataService
+        public static BaseService<object, IStationData> CurrentDataService
         {
             get
             {

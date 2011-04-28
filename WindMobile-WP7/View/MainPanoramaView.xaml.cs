@@ -63,5 +63,10 @@ namespace Ch.Epix.WindMobile.WP7.View
             ViewModel.CurrentStationInfo = ((sender as Button).Tag as IStationInfo);
             NavigationService.Navigate(new Uri("/View/StationDataPivot.xaml", UriKind.Relative));
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RefreshCommand.Execute(null);
+        }
     }
 }

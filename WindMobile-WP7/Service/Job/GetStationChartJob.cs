@@ -29,6 +29,12 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             return new Uri(baseUrl + "/windchart/" + stationInfo.Id + "/" + duration);
         }
 
+        public override void Execute(int o)
+        {
+            duration = o.ToString();
+            StartDownloadJob();
+        }
+
         protected override IChart JobRun(ref bool cancel, string arg)
         {
             return new Chart(XElement.Parse(arg));

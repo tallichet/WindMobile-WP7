@@ -60,6 +60,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
     public class ViewModelLocator
     {
         private static MainViewModel main;
+        private static DataViewModel data;
         private static Dictionary<IStationInfo, StationInfoViewModel> infos;
         private static Dictionary<IStationInfo, ChartViewModel> charts;
 
@@ -83,6 +84,18 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                     main = new MainViewModel();
                 }
                 return main;
+            }
+        }
+
+        public static DataViewModel DataStatic
+        {
+            get
+            {
+                if (data == null)
+                {
+                    data = new DataViewModel();
+                }
+                return data;
             }
         }
 
@@ -154,6 +167,20 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             get
             {
                 return MainStatic;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Main property.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public DataViewModel Data
+        {
+            get
+            {
+                return DataStatic;
             }
         }
 

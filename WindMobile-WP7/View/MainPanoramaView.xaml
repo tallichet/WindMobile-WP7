@@ -16,6 +16,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False"
+    Loaded="PhoneApplicationPage_Loaded"
     DataContext="{Binding Main, Source={StaticResource Locator}}">
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
