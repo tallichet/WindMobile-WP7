@@ -48,7 +48,21 @@ namespace Ch.Epix.WindMobile.WP7.View
 
         private void ChartButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/View/ChartView.xaml", UriKind.Relative));
+            NavigateToChart(true);
         }
+
+        private void NavigateToChart(bool manual)
+        {
+            NavigationService.Navigate(new Uri("/View/ChartView.xaml?manual=" + manual, UriKind.Relative));
+        }
+
+        protected override void OnOrientationChanged(OrientationChangedEventArgs e)
+        {
+            if (e.Orientation == PageOrientation.LandscapeLeft || e.Orientation == PageOrientation.LandscapeRight)
+            {
+                NavigateToChart(false);
+            }
+        }
+    
     }
 }

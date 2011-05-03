@@ -14,6 +14,7 @@ namespace Ch.Epix.WindMobile.WP7.Model
     public interface IChartPoint
     {
         DateTime Date { get; }
+        long DateAsLong { get; }
         double Value { get; }
     }
 }

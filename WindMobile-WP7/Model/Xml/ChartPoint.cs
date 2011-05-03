@@ -14,9 +14,11 @@ namespace Ch.Epix.WindMobile.WP7.Model.Xml
 {
     public class ChartPoint : IChartPoint
     {
+        static DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0);
+
         public ChartPoint(XElement element)
         {
-            Date = new DateTime(long.Parse(element.Element("date").Value));
+            Date = dt.AddMilliseconds(long.Parse(element.Element("date").Value));            
             Value = double.Parse(element.Element("value").Value);
         }
 
@@ -24,6 +26,11 @@ namespace Ch.Epix.WindMobile.WP7.Model.Xml
         {
             get;
             private set;
+        }
+
+        public long DateAsLong
+        {
+            get { return Date.Ticks; }
         }
 
         public double Value

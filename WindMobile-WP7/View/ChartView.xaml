@@ -6,22 +6,85 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLWpVisifire.Charts"
-    xmlns:graph="clr-namespace:CustomControls.Graph;assembly=CustomControls.Graph"
+    
+    xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+    xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+    
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Landscape" Orientation="Landscape"
+    SupportedOrientations="PortraitOrLandscape"  Orientation="Landscape"
     mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="728"
     shell:SystemTray.IsVisible="True"
     DataContext="{Binding CurrentChartViewModelStatic, Source={StaticResource Locator}}"
     Loaded="PhoneApplicationPage_Loaded">
+    <!--xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLWpVisifire.Charts"-->
+    <!--xmlns:graph="clr-namespace:CustomControls.Graph;assembly=CustomControls.Graph"-->
 
     <!--LayoutRoot is the root grid where all page content is placed-->
+
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="PhoneChartStyle" TargetType="charting:Chart">
+            <Setter Property="LegendStyle">
+                <Setter.Value>
+                    <Style TargetType="datavis:Legend">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <!--<Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>-->
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="PlotAreaStyle">
+                <Setter.Value>
+                    <Style TargetType="Grid">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Storyboard x:Name="ShowChart">
+            <DoubleAnimation Storyboard.TargetName="MainChart" Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0"
+                             Duration="0:0:1" />
+        </Storyboard>
+    </phone:PhoneApplicationPage.Resources>
+
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <graph:TouchGraph GraphData="{Binding ChartAverage}">
+        <TextBlock Text="{Binding ErrorMessage}" />
+        
+        <charting:Chart
+            Style="{StaticResource PhoneChartStyle}"
+            x:Name="MainChart"
+            LegendTitle="legende"
+            Opacity="0"
+            Visibility="Collapsed">
+            <charting:Chart.Axes>
+                <charting:LinearAxis Location="Left" Orientation="Y" Minimum="0" />
+                <charting:DateTimeAxis Location="Bottom" Orientation="X" />
+            </charting:Chart.Axes>
             
-        </graph:TouchGraph>
+            <charting:LineSeries 
+                ItemsSource="{Binding Path=ChartData.WindMax.Values}" 
+                Title="Rafale"
+                DependentValuePath="Value" IndependentValuePath="Date">
+            </charting:LineSeries>
+
+            <charting:AreaSeries 
+                ItemsSource="{Binding Path=ChartData.WindAverage.Values}" 
+                Title="Moyenne"
+                DependentValuePath="Value" IndependentValuePath="Date">
+
+            </charting:AreaSeries>
+        </charting:Chart>
+        
+        
+        <!--<graph:TouchGraph GraphData="{Binding WindAverage}" ChartTitle="Vents">
+            
+        </graph:TouchGraph>-->
         <!--<vc:Chart>
             <vc:Chart.Titles>
                 <vc:Title Text="Historique des vents" />
@@ -33,7 +96,13 @@
                 <vc:Axis Title="Vent (moyenne/rafale) km/h"  />
             </vc:Chart.AxesY>
             <vc:Chart.Series>
-                <vc:DataSeries RenderAs="Area" DataSource="{Binding Path=DirectionChartPoints}">
+                <vc:DataSeries RenderAs="Area" DataSource="{Binding Path=ChartData.WindAverage.Values}">
+                    <vc:DataSeries.DataMappings>
+                        <vc:DataMapping MemberName="AxisXLabel" Path="Date" />
+                        <vc:DataMapping MemberName="YValue" Path="Value" />
+                    </vc:DataSeries.DataMappings>
+                </vc:DataSeries>
+                <vc:DataSeries RenderAs="Line" DataSource="{Binding Path=ChartData.WindMax.Values}">
                     <vc:DataSeries.DataMappings>
                         <vc:DataMapping MemberName="AxisXLabel" Path="Date" />
                         <vc:DataMapping MemberName="YValue" Path="Value" />
