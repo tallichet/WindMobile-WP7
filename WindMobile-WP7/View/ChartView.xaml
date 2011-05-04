@@ -7,21 +7,47 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    
     xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
     xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+    
+    xmlns:transition="clr-namespace:Ch.Epix.WindMobile.WP7.View.Transition"
     
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape"  Orientation="Landscape"
     mc:Ignorable="d" d:DesignHeight="480" d:DesignWidth="728"
-    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.IsVisible="False"
     DataContext="{Binding CurrentChartViewModelStatic, Source={StaticResource Locator}}"
     Loaded="PhoneApplicationPage_Loaded">
     <!--xmlns:vc="clr-namespace:Visifire.Charts;assembly=SLWpVisifire.Charts"-->
     <!--xmlns:graph="clr-namespace:CustomControls.Graph;assembly=CustomControls.Graph"-->
 
     <!--LayoutRoot is the root grid where all page content is placed-->
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <transition:FadeTransition FadeMode="FadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <transition:FadeTransition FadeMode="FadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <transition:FadeTransition FadeMode="FadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <transition:FadeTransition FadeMode="FadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
 
     <phone:PhoneApplicationPage.Resources>
         <Style x:Key="PhoneChartStyle" TargetType="charting:Chart">
@@ -50,6 +76,7 @@
             <DoubleAnimation Storyboard.TargetName="MainChart" Storyboard.TargetProperty="Opacity"
                              From="0.0" To="1.0"
                              Duration="0:0:1" />
+            
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 

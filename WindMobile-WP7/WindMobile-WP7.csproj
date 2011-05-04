@@ -61,9 +61,6 @@
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
-    <Reference Include="SLWpVisifire.Charts">
-      <HintPath>..\..\..\Lib\WP7\SLWpVisifire.Charts.dll</HintPath>
-    </Reference>
     <Reference Include="System.Device" />
     <Reference Include="System.Windows.Controls">
       <HintPath>..\..\..\Lib\WP7\System.Windows.Controls.dll</HintPath>
@@ -159,6 +156,7 @@
     <Compile Include="View\StationInfoView.xaml.cs">
       <DependentUpon>StationInfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Transition\FadeTransition.cs" />
     <Compile Include="View\WindChartControl.xaml.cs">
       <DependentUpon>WindChartControl.xaml</DependentUpon>
     </Compile>
@@ -204,6 +202,14 @@
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Transition\Storyboard\FadeOut.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transition\Storyboard\FadeIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WindChartControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,12 +233,6 @@
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="CustomControls.Graph\CustomControls.Graph.csproj">
-      <Project>{F65F9B71-12D3-402E-A34A-E3C963FB929E}</Project>
-      <Name>CustomControls.Graph</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

@@ -4,7 +4,6 @@ using GalaSoft.MvvmLight.Command;
 using Ch.Epix.WindMobile.WP7.Service.Job;
 using Ch.Epix.WindMobile.WP7.Service.Design;
 using System;
-using CustomControls.Graph;
 using System.Collections.Generic;
 using Ch.Epix.WindMobile.WP7.Service.TypedServices;
 using Ch.Epix.WindMobile.WP7.Service;

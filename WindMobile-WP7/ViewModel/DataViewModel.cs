@@ -23,6 +23,14 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             }
         }
 
+        public ChartViewModel CurrentChartViewModel
+        {
+            get
+            {
+                return ViewModelLocator.CurrentChartViewModelStatic;
+            }
+        }
+
         public Model.IStationInfo CurrentStationInfo 
         {
             get
@@ -32,7 +40,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             set 
             {
                 ApplicationRunData.CurrentStationStatic = value;
-                RaisePropertyChanged("CurrentStationInfo");
+                RaisePropertyChanged("CurrentStationInfo");                
             }
         }
     }

@@ -12,6 +12,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Ch.Epix.WindMobile.WP7.ViewModel;
+using System.Diagnostics;
 
 
 namespace Ch.Epix.WindMobile.WP7.View
@@ -31,7 +32,7 @@ namespace Ch.Epix.WindMobile.WP7.View
         private void StationPivot_LoadedPivotItem(object sender, PivotItemEventArgs e)
         {
             (e.Item.Content as StationInfoViewModel).RaiseActivated();
-            ViewModel.CurrentStationInfo = (e.Item.Content as StationInfoViewModel).StationInfo;
+            ViewModel.CurrentStationInfo = (e.Item.Content as StationInfoViewModel).StationInfo;            
         }
 
         private void StationPivot_Loaded(object sender, RoutedEventArgs e)
@@ -46,23 +47,33 @@ namespace Ch.Epix.WindMobile.WP7.View
             }
         }
 
-        private void ChartButton_Click(object sender, EventArgs e)
-        {
-            NavigateToChart(true);
-        }
+        //private void ShowChart_Completed(object sender, EventArgs e)
+        //{
+        //    MainChart.DataContext = ViewModel.CurrentChartViewModel;
+        //    ViewModel.CurrentChartViewModel.RefreshCommand.Execute(3600);
+        //}
 
-        private void NavigateToChart(bool manual)
-        {
-            NavigationService.Navigate(new Uri("/View/ChartView.xaml?manual=" + manual, UriKind.Relative));
-        }
+        //private void HideChart_Completed(object sender, EventArgs e)
+        //{
+        //    MainChart.DataContext = null;
+        //}
 
         protected override void OnOrientationChanged(OrientationChangedEventArgs e)
         {
-            if (e.Orientation == PageOrientation.LandscapeLeft || e.Orientation == PageOrientation.LandscapeRight)
+            if ((e.Orientation & PageOrientation.Portrait) != 0)
             {
-                NavigateToChart(false);
+                //NavigationService.Navigate(new Uri("/View/ChartView.xaml", UriKind.Relative));
+                VisualStateManager.GoToState(this, "PortraitVisualState", true);
+                MainChart.DataContext = null;
             }
+            else
+            {
+                VisualStateManager.GoToState(this, "LandscapeVisualState", true);
+                MainChart.DataContext = ViewModel.CurrentChartViewModel;
+                ViewModel.CurrentChartViewModel.RefreshCommand.Execute(3600);
+            }
+            
+            base.OnOrientationChanged(e);
         }
-    
     }
 }

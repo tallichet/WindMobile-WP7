@@ -12,7 +12,6 @@ using GalaSoft.MvvmLight;
 using Ch.Epix.WindMobile.WP7.Service.Job;
 using Ch.Epix.WindMobile.WP7.Model;
 using GalaSoft.MvvmLight.Command;
-using CustomControls.Graph;
 using Ch.Epix.WindMobile.WP7.Service.TypedServices;
 using Ch.Epix.WindMobile.WP7.Service;
 using System.Collections.Generic;

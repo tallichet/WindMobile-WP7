@@ -8,16 +8,157 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:view="clr-namespace:Ch.Epix.WindMobile.WP7.View"
+    
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    
+    xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+    xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+    
+    xmlns:transition="clr-namespace:Ch.Epix.WindMobile.WP7.View.Transition"
+    
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.IsVisible="False"
     DataContext="{Binding Data, Source={StaticResource Locator}}">
+    
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <transition:FadeTransition FadeMode="FadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <transition:FadeTransition FadeMode="FadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <transition:FadeTransition FadeMode="FadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <transition:FadeTransition FadeMode="FadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="PhoneChartStyle" TargetType="charting:Chart">
+            <Setter Property="LegendStyle">
+                <Setter.Value>
+                    <Style TargetType="datavis:Legend">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="PlotAreaStyle">
+                <Setter.Value>
+                    <Style TargetType="Grid">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--<Storyboard x:Name="ShowChart" Completed="ShowChart_Completed">
+            <DoubleAnimation Storyboard.TargetName="MainChart" Storyboard.TargetProperty="Opacity"
+                             To="1.0"
+                             BeginTime="0:0:1"
+                             Duration="0:0:1" />
+            <DoubleAnimation Storyboard.TargetName="StationPivot" Storyboard.TargetProperty="Opacity"
+                             To="0.0"
+                             Duration="0:0:1" />
+        </Storyboard>
+
+        <Storyboard x:Name="HideChart" Completed="HideChart_Completed">
+            <DoubleAnimation Storyboard.TargetName="MainChart" Storyboard.TargetProperty="Opacity"
+                             To="0.0"
+                             BeginTime="0:0:0"
+                             Duration="0:0:1" />
+            <DoubleAnimation Storyboard.TargetName="StationPivot" Storyboard.TargetProperty="Opacity"
+                             To="1.0"
+                             BeginTime="0:0:1"
+                             Duration="0:0:1" />
+        </Storyboard>-->
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <!--<Grid x:Name="LayoutRoot" Background="Transparent">-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="PortraitVisualState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="StationPivot">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MainChart">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="LandscapeVisualState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="StationPivot">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MainChart">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <charting:Chart
+            Style="{StaticResource PhoneChartStyle}"
+            x:Name="MainChart"
+            LegendTitle="legende"
+            Visibility="Collapsed">
+            <charting:Chart.Axes>
+                <charting:LinearAxis Location="Left" Orientation="Y" Minimum="0" />
+                <charting:DateTimeAxis Location="Bottom" Orientation="X" />
+            </charting:Chart.Axes>
+
+            <charting:LineSeries 
+                ItemsSource="{Binding Path=ChartData.WindMax.Values}" 
+                Title="Rafale"
+                DependentValuePath="Value" IndependentValuePath="Date">
+            </charting:LineSeries>
+
+            <charting:AreaSeries 
+                ItemsSource="{Binding Path=ChartData.WindAverage.Values}" 
+                Title="Moyenne"
+                DependentValuePath="Value" IndependentValuePath="Date">
+
+            </charting:AreaSeries>
+        </charting:Chart>
+
         <!--Pivot Control-->
         <controls:Pivot Name="StationPivot" LoadedPivotItem="StationPivot_LoadedPivotItem" Loaded="StationPivot_Loaded"
                         Title="{Binding Path=ApplicationTitle}" ItemsSource="{Binding StationInfoViewModels}">
@@ -32,18 +173,18 @@
                 </DataTemplate>
             </controls:Pivot.ItemTemplate>
         </controls:Pivot>
-    <!--</Grid>-->
+    </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton x:Name="chartButton" IconUri="/Images/appbar_button1.png" Text="chart" Click="ChartButton_Click" />
-            <!-- <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
                 <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>-->
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
     
 </phone:PhoneApplicationPage>
