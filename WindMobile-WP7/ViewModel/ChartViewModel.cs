@@ -21,10 +21,11 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
     public class ChartViewModel : ApplicationViewModel
     {
         private StationChartService chartService;
-        private RelayCommand<int> refreshCommand;
+        private RelayCommand<string> refreshCommand;
 
         public IStationInfo StationInfo { get; private set; }
         public event EventHandler<EventArgs> ValidChartDataFound;
+        public event EventHandler<EventArgs> StartRefreshing;
 
         public string ErrorMessage { get { return (ChartService.LastException != null ? ChartService.LastException.Message : null); } }
         public IChart ChartData { get { return ChartService.LastResult; } }
@@ -50,6 +51,7 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
                         {
                             RaisePropertyChanged("ChartData");
                             RaiseValidChartDataFound();
+                            //RefreshCommand.RaiseCanExecuteChanged();
                             //UpdateGraphData();
                         };
                     chartService.ErrorOccured += (s, e) => RaisePropertyChanged("ErrorMessage");
@@ -58,22 +60,31 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             }
         }
 
-        public RelayCommand<int> RefreshCommand
+        public RelayCommand<string> RefreshCommand
         {
             get
             {
                 if (refreshCommand == null)
                 {
-                    refreshCommand = new RelayCommand<int>(
+                    refreshCommand = new RelayCommand<string>(
                         (i) =>
                         {
-                            ChartService.Refresh(i);
-                            refreshCommand.RaiseCanExecuteChanged();
-                        },
-                        (i) => ChartService.IsBusy
+                            RaiseStartRefreshing();
+                            ChartService.Refresh(int.Parse(i));
+                            //refreshCommand.RaiseCanExecuteChanged();
+                        }
+                        //(i) => ChartService.IsBusy
                     );
                 }
                 return refreshCommand;
+            }
+        }
+
+        protected void RaiseStartRefreshing()
+        {
+            if (StartRefreshing != null)
+            {
+                StartRefreshing(this, new EventArgs());
             }
         }
 

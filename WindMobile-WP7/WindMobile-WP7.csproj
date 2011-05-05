@@ -132,9 +132,6 @@
     <Compile Include="View\ChartControl.xaml.cs">
       <DependentUpon>ChartControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ChartView.xaml.cs">
-      <DependentUpon>ChartView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ExceptionView.xaml.cs">
       <DependentUpon>ExceptionView.xaml</DependentUpon>
     </Compile>
@@ -167,10 +164,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="View\ChartControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ChartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

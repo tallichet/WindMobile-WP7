@@ -39,27 +39,37 @@ namespace Ch.Epix.WindMobile.WP7.View
             if (old != null)
             {
                 old.ValidChartDataFound -= control.ChartViewModel_ValidChartDataFound;
+                old.StartRefreshing -= control.ChartViewModel_StartRefreshing;
             }
 
             var newV = e.NewValue as ChartViewModel;
             if (newV != null)
             {
                 newV.ValidChartDataFound += control.ChartViewModel_ValidChartDataFound;
+                newV.StartRefreshing += control.ChartViewModel_StartRefreshing;
                 control.MainChart.DataContext = newV;
+                control.ButtonPallette.DataContext = newV;
             }
         }
 
         public void Activate()
         {
-            WaitingProgressBar.IsIndeterminate = true;
-            WaitingView.Visibility = System.Windows.Visibility.Visible;
-            ChartViewModel.RefreshCommand.Execute(3600);
+            //WaitingProgressBar.IsIndeterminate = true;
+            //WaitingView.Visibility = System.Windows.Visibility.Visible;
+            ChartViewModel.RefreshCommand.Execute("3600");
         }
 
         public void ChartViewModel_ValidChartDataFound(object sender, EventArgs arg)
         {
             WaitingProgressBar.IsIndeterminate = false;
             WaitingView.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        public void ChartViewModel_StartRefreshing(object sender, EventArgs e)
+        {
+            WaitingProgressBar.IsIndeterminate = true;
+            WaitingView.Visibility = System.Windows.Visibility.Visible;
+            
         }
         
     }

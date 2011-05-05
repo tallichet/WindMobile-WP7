@@ -3,15 +3,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.WP7"
              
     xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
     xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+             
+    
     
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
+    d:DesignHeight="480" d:DesignWidth="480"
+    Name="root">
+    
     
     <UserControl.Resources>
         <Style x:Key="PhoneChartStyle" TargetType="charting:Chart">
@@ -19,10 +27,10 @@
                 <Setter.Value>
                     <Style TargetType="datavis:Legend">
                         <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Top"/>
                         <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
                         <Setter Property="Background" Value="Transparent" />
-                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Margin" Value="5, 0"/>
                     </Style>
                 </Setter.Value>
             </Setter>
@@ -38,10 +46,21 @@
     </UserControl.Resources>
     
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
         <charting:Chart
             Style="{StaticResource PhoneChartStyle}"
             x:Name="MainChart"
-            LegendTitle="legende">
+            LegendTitle="legende"
+            Grid.RowSpan="2" Grid.ColumnSpan="2">
             <charting:Chart.Axes>
                 <charting:LinearAxis Location="Left" Orientation="Y" Minimum="0" />
                 <charting:DateTimeAxis Location="Bottom" Orientation="X" />
@@ -61,11 +80,28 @@
             </charting:AreaSeries>
         </charting:Chart>
         
-        <Grid Name="WaitingView">
+        <StackPanel Name="ButtonPallette"
+                    Orientation="Vertical"
+            Grid.Column="1" Grid.Row="1">
+            <Button 
+                Content="1h"
+                cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
+                cmd:ButtonBaseExtensions.CommandParameter="3600" />
+            <Button 
+                Content="3h"
+                cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
+                cmd:ButtonBaseExtensions.CommandParameter="10800" />
+            <Button 
+                Content="24h"
+                cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
+                cmd:ButtonBaseExtensions.CommandParameter="86400" />
+        </StackPanel>
+
+        <Grid Name="WaitingView" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity=".5" />
             </Grid.Background>
-            <ProgressBar Name="WaitingProgressBar" />
+            <toolkit:PerformanceProgressBar Name="WaitingProgressBar" />            
         </Grid>
     </Grid>
 </UserControl>
