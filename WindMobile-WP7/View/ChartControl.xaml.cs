@@ -49,6 +49,10 @@ namespace Ch.Epix.WindMobile.WP7.View
                 newV.StartRefreshing += control.ChartViewModel_StartRefreshing;
                 control.MainChart.DataContext = newV;
                 control.ButtonPallette.DataContext = newV;
+                if (control.Visibility == Visibility.Visible)
+                {
+                    control.Activate();
+                }
             }
         }
 
@@ -56,7 +60,10 @@ namespace Ch.Epix.WindMobile.WP7.View
         {
             //WaitingProgressBar.IsIndeterminate = true;
             //WaitingView.Visibility = System.Windows.Visibility.Visible;
-            ChartViewModel.RefreshCommand.Execute("3600");
+            if (ChartViewModel != null)
+            {
+                ChartViewModel.RefreshCommand.Execute("3600");
+            }
         }
 
         public void ChartViewModel_ValidChartDataFound(object sender, EventArgs arg)

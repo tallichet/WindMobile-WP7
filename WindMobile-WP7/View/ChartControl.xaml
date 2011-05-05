@@ -10,8 +10,6 @@
     xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
              
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-             
-    
     
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -42,6 +40,68 @@
                     </Style>
                 </Setter.Value>
             </Setter>
+
+            <Setter Property="Palette">
+                <Setter.Value>
+                    <datavis:ResourceDictionaryCollection>
+                        <!-- Red -->
+                        <ResourceDictionary>
+                            <!--<Style x:Key="LineStyle" TargetType="charting:LineSeries">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                            <GradientStop Color="Red"/>
+                                            <GradientStop Color="DarkGray" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>-->
+                            <Style x:Key="DataPointStyle" TargetType="charting:LineDataPoint">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                            <GradientStop Color="Red"/>
+                                            <GradientStop Color="DarkGray" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+
+                            <!--<SolidColorBrush x:Key="Background" Color="Red"/>
+                            <SolidColorBrush x:Key="Stroke" Color="Red"/>
+                            <Style x:Key="DataPointStyle" TargetType="Control">
+                                <Setter Property="Visibility" Value="Collapsed" />-->
+                                <!--<Setter Property="Background" Value="{StaticResource Background}" />-->
+                            <!--</Style>
+                            <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                <Setter Property="StrokeThickness" Value="2" />
+                                <Setter Property="StrokeMiterLimit" Value="1" />
+                                <Setter Property="Fill" Value="{StaticResource Background}" />
+                            </Style>-->                            
+                        </ResourceDictionary>
+                        <!-- Blue -->
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Background" Color="Blue" />
+                            <Style x:Key="DataPointStyle" TargetType="Control">
+                                <Setter Property="Background" Value="{StaticResource Background}" />
+                            </Style>
+                            <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                <Setter Property="StrokeThickness" Value="2" />
+                                <Setter Property="StrokeMiterLimit" Value="1" />
+                                <Setter Property="Fill" Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+
+                    </datavis:ResourceDictionaryCollection>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style TargetType="Polyline" x:Key="PolyLineMaxStyle">
+            <Setter Property="Stroke" Value="Red" />
+            <Setter Property="StrokeThickness" Value="3" />
         </Style>
     </UserControl.Resources>
     
@@ -65,11 +125,16 @@
                 <charting:LinearAxis Location="Left" Orientation="Y" Minimum="0" />
                 <charting:DateTimeAxis Location="Bottom" Orientation="X" />
             </charting:Chart.Axes>
+            
+            <charting:Chart.Palette>
+                
+            </charting:Chart.Palette>
 
             <charting:LineSeries 
                 ItemsSource="{Binding Path=ChartData.WindMax.Values}" 
                 Title="Rafale"
-                DependentValuePath="Value" IndependentValuePath="Date">
+                DependentValuePath="Value" IndependentValuePath="Date"
+                Foreground="Transparent">
             </charting:LineSeries>
 
             <charting:AreaSeries 
@@ -88,9 +153,9 @@
                 cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
                 cmd:ButtonBaseExtensions.CommandParameter="3600" />
             <Button 
-                Content="3h"
+                Content="6h"
                 cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
-                cmd:ButtonBaseExtensions.CommandParameter="10800" />
+                cmd:ButtonBaseExtensions.CommandParameter="21600" />
             <Button 
                 Content="24h"
                 cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
