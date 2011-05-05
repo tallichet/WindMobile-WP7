@@ -40,7 +40,8 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             set 
             {
                 ApplicationRunData.CurrentStationStatic = value;
-                RaisePropertyChanged("CurrentStationInfo");                
+                RaisePropertyChanged("CurrentStationInfo");
+                RaisePropertyChanged("CurrentChartViewModel");                
             }
         }
     }

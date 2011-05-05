@@ -64,13 +64,11 @@ namespace Ch.Epix.WindMobile.WP7.View
             {
                 //NavigationService.Navigate(new Uri("/View/ChartView.xaml", UriKind.Relative));
                 VisualStateManager.GoToState(this, "PortraitVisualState", true);
-                MainChart.DataContext = null;
             }
             else
             {
                 VisualStateManager.GoToState(this, "LandscapeVisualState", true);
-                MainChart.DataContext = ViewModel.CurrentChartViewModel;
-                ViewModel.CurrentChartViewModel.RefreshCommand.Execute(3600);
+                MainChart.Activate();
             }
             
             base.OnOrientationChanged(e);
