@@ -61,12 +61,13 @@
     <Compile Include="Job\XmlJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceCentral.cs" />
+    <Compile Include="TypedServices\ListMessagesService.cs" />
     <Compile Include="TypedServices\ListStationInfoService.cs" />
     <Compile Include="TypedServices\StationChartService.cs" />
     <Compile Include="TypedServices\StationDataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WindMobile-WP7-Model\WindMobile-WP7-Model.csproj">
+    <ProjectReference Include="..\WindMobile-WP7-Model\WindMobile-WP7-Model.csproj">
       <Project>{A6590DCD-2DD0-45F4-8D15-7E86CB0C38A8}</Project>
       <Name>WindMobile-WP7-Model</Name>
     </ProjectReference>

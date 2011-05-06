@@ -62,7 +62,9 @@
     <Compile Include="Xml\Chart.cs" />
     <Compile Include="Xml\ChartPoint.cs" />
     <Compile Include="Xml\ChartSerie.cs" />
+    <Compile Include="ISocialMessage.cs" />
     <Compile Include="Xml\LastUpdate.cs" />
+    <Compile Include="Xml\SocialMessage.cs" />
     <Compile Include="Xml\StationData.cs" />
     <Compile Include="Xml\StationInfo.cs" />
     <Compile Include="Xml\XmlBase.cs" />

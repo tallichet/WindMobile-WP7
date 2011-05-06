@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls.Graph", "Cus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindMobile-WP7-Model", "..\WindMobile-WP7-Model\WindMobile-WP7-Model.csproj", "{A6590DCD-2DD0-45F4-8D15-7E86CB0C38A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindMobile-WP7-Service", "WindMobile-WP7-Service\WindMobile-WP7-Service.csproj", "{E0430DA6-D9E8-46FC-ACD2-68E563F4CF95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindMobile-WP7-Service", "..\WindMobile-WP7-Service\WindMobile-WP7-Service.csproj", "{E0430DA6-D9E8-46FC-ACD2-68E563F4CF95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

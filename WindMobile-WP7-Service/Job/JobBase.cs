@@ -13,6 +13,13 @@ using System.Reflection;
 
 namespace Ch.Epyx.WindMobile.WP7.Service.Job
 {
+    /// <summary>
+    /// Base class for jobs
+    /// </summary>
+    /// <typeparam name="S"></typeparam>
+    /// <typeparam name="P">Parameter type, if any, for the job execution. 
+    /// use object as type and null as value if no paramter</typeparam>
+    /// <typeparam name="R">Result of the background job. Type of the Item returned by the job</typeparam>
     public abstract class JobBase<S, P, R> : IJob<P, R>
     {
         private BackgroundWorker worker;

@@ -6,7 +6,7 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WindMobile - Balise météo pour le vol en parapente")]
+[assembly: AssemblyTitle("WindMobile")]
 [assembly: AssemblyDescription("Balise météo pour le vol en parapente")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Epyx")]

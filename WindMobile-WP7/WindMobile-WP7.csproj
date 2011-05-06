@@ -182,10 +182,10 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationIcon.png">
+    <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Background.png">
+    <Content Include="ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\Panorama.png" />
@@ -201,7 +201,7 @@
       <Project>{A6590DCD-2DD0-45F4-8D15-7E86CB0C38A8}</Project>
       <Name>WindMobile-WP7-Model</Name>
     </ProjectReference>
-    <ProjectReference Include="WindMobile-WP7-Service\WindMobile-WP7-Service.csproj">
+    <ProjectReference Include="..\WindMobile-WP7-Service\WindMobile-WP7-Service.csproj">
       <Project>{E0430DA6-D9E8-46FC-ACD2-68E563F4CF95}</Project>
       <Name>WindMobile-WP7-Service</Name>
     </ProjectReference>
