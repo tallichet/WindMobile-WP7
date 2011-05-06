@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Data;
 
-namespace Ch.Epix.WindMobile.WP7.ViewModel.Converter
+namespace Ch.Epyx.WindMobile.WP7.ViewModel.Converter
 {
     public class TrendToColorConverter : IValueConverter
     {

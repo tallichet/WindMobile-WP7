@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ch.Epix.WindMobile.WP7</RootNamespace>
-    <AssemblyName>Ch.Epix.WindMobile.WP7</AssemblyName>
+    <RootNamespace>Ch.Epyx.WindMobile.WP7</RootNamespace>
+    <AssemblyName>Ch.Epyx.WindMobile.WP7</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
@@ -22,7 +22,7 @@
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>WindMobile_WP7.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>Ch.Epix.WindMobile.WP7.App</SilverlightAppEntry>
+    <SilverlightAppEntry>Ch.Epyx.WindMobile.WP7.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <Utf8Output>true</Utf8Output>
@@ -87,37 +87,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Design\StationInfo.cs" />
-    <Compile Include="Model\IChart.cs" />
-    <Compile Include="Model\IChartPoint.cs" />
-    <Compile Include="Model\IChartSerie.cs" />
-    <Compile Include="Model\ILastUpdate.cs" />
-    <Compile Include="Model\IStationData.cs" />
-    <Compile Include="Model\IStationInfo.cs" />
-    <Compile Include="Model\IWindDirectionChart.cs" />
-    <Compile Include="Model\MaintenanceStatus.cs" />
-    <Compile Include="Model\Xml\ChartPoint.cs" />
-    <Compile Include="Model\Xml\Chart.cs" />
-    <Compile Include="Model\Xml\ChartSerie.cs" />
-    <Compile Include="Model\Xml\LastUpdate.cs" />
-    <Compile Include="Model\Xml\StationData.cs" />
-    <Compile Include="Model\Xml\StationInfo.cs" />
-    <Compile Include="Model\Xml\XmlBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\ApplicationRunData.cs" />
-    <Compile Include="Service\BaseService.cs" />
-    <Compile Include="Service\Design\DesignJobBase.cs" />
-    <Compile Include="Service\Job\GetStationChartJob.cs" />
-    <Compile Include="Service\Job\GetStationDataJob.cs" />
-    <Compile Include="Service\Job\IJob.cs" />
-    <Compile Include="Service\Job\JobBase.cs" />
-    <Compile Include="Service\Job\LastUpdateJob.cs" />
-    <Compile Include="Service\Job\ListStationInfoJob.cs" />
-    <Compile Include="Service\Job\XmlJob.cs" />
-    <Compile Include="Service\ServiceCentral.cs" />
-    <Compile Include="Service\TypedServices\ListStationInfoService.cs" />
-    <Compile Include="Service\TypedServices\StationChartService.cs" />
-    <Compile Include="Service\TypedServices\StationDataService.cs" />
     <Compile Include="ViewModel\ApplicationViewModel.cs" />
     <Compile Include="ViewModel\ChartViewModel.cs" />
     <Compile Include="ViewModel\Converter\MaintenanceStatusToSolidColorBrushConverter.cs" />
@@ -126,7 +96,6 @@
     <Compile Include="ViewModel\DataViewModel.cs" />
     <Compile Include="ViewModel\ExceptionViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="Model\Design\StationData.cs" />
     <Compile Include="ViewModel\StationInfoViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\ChartControl.xaml.cs">
@@ -227,7 +196,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WindMobile-WP7-Model\WindMobile-WP7-Model.csproj">
+      <Project>{A6590DCD-2DD0-45F4-8D15-7E86CB0C38A8}</Project>
+      <Name>WindMobile-WP7-Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="WindMobile-WP7-Service\WindMobile-WP7-Service.csproj">
+      <Project>{E0430DA6-D9E8-46FC-ACD2-68E563F4CF95}</Project>
+      <Name>WindMobile-WP7-Service</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

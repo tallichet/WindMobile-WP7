@@ -9,14 +9,14 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight;
-using Ch.Epix.WindMobile.WP7.Service.Job;
-using Ch.Epix.WindMobile.WP7.Model;
+using Ch.Epyx.WindMobile.WP7.Service.Job;
+using Ch.Epyx.WindMobile.WP7.Model;
 using GalaSoft.MvvmLight.Command;
-using Ch.Epix.WindMobile.WP7.Service.TypedServices;
-using Ch.Epix.WindMobile.WP7.Service;
+using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
+using Ch.Epyx.WindMobile.WP7.Service;
 using System.Collections.Generic;
 
-namespace Ch.Epix.WindMobile.WP7.ViewModel
+namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
     public class ChartViewModel : ApplicationViewModel
     {

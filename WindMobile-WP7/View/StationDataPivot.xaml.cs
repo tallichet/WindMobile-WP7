@@ -11,11 +11,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using Ch.Epix.WindMobile.WP7.ViewModel;
+using Ch.Epyx.WindMobile.WP7.ViewModel;
 using System.Diagnostics;
 
 
-namespace Ch.Epix.WindMobile.WP7.View
+namespace Ch.Epyx.WindMobile.WP7.View
 {
     public partial class StationDataPivot : PhoneApplicationPage
     {

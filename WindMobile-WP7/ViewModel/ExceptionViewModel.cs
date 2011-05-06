@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight;
 
-namespace Ch.Epix.WindMobile.WP7.ViewModel
+namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
     public class ExceptionViewModel : ApplicationViewModel
     {

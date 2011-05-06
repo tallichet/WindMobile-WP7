@@ -14,7 +14,7 @@ using System.Windows.Resources;
 using System.IO;
 using System.Windows.Markup;
 
-namespace Ch.Epix.WindMobile.WP7.View.Transition
+namespace Ch.Epyx.WindMobile.WP7.View.Transition
 {
     public class FadeTransition : TransitionElement
     {

@@ -3,9 +3,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:view="clr-namespace:Ch.Epix.WindMobile.WP7.View"
+    xmlns:view="clr-namespace:Ch.Epyx.WindMobile.WP7.View"
 	mc:Ignorable="d"
-	x:Class="Ch.Epix.WindMobile.WP7.View.StationDataControl"
+	x:Class="Ch.Epyx.WindMobile.WP7.View.StationDataControl"
 	d:DesignWidth="480" d:DesignHeight="617"
     Loaded="UserControl_Loaded"
     >

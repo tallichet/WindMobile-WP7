@@ -11,9 +11,9 @@ using System.Windows.Shapes;
 using GalaSoft.MvvmLight;
 using Microsoft.Phone.Controls.Maps;
 using System.Device.Location;
-using Ch.Epix.WindMobile.WP7.Service;
+using Ch.Epyx.WindMobile.WP7.Service;
 
-namespace Ch.Epix.WindMobile.WP7.ViewModel
+namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
     public class ApplicationViewModel : ViewModelBase
     {

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Device.Location;
-using Ch.Epix.WindMobile.WP7.Model;
-using Ch.Epix.WindMobile.WP7.Service.Design;
-using Ch.Epix.WindMobile.WP7.Service.Job;
+using Ch.Epyx.WindMobile.WP7.Model;
+using Ch.Epyx.WindMobile.WP7.Service.Design;
+using Ch.Epyx.WindMobile.WP7.Service.Job;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Controls.Maps;
-using Ch.Epix.WindMobile.WP7.Service.TypedServices;
-using Ch.Epix.WindMobile.WP7.Service;
+using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
+using Ch.Epyx.WindMobile.WP7.Service;
 
-namespace Ch.Epix.WindMobile.WP7.ViewModel
+namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.

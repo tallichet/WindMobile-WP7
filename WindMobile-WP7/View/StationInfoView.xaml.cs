@@ -1,7 +1,7 @@
 ﻿using Microsoft.Phone.Controls;
-using Ch.Epix.WindMobile.WP7.ViewModel;
+using Ch.Epyx.WindMobile.WP7.ViewModel;
 
-namespace Ch.Epix.WindMobile.WP7.View
+namespace Ch.Epyx.WindMobile.WP7.View
 {
     /// <summary>
     /// Description for StationInfoView.

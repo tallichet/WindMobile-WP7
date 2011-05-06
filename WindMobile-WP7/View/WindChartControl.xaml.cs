@@ -9,9 +9,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Ch.Epix.WindMobile.WP7.Model;
+using Ch.Epyx.WindMobile.WP7.Model;
 
-namespace Ch.Epix.WindMobile.WP7.View
+namespace Ch.Epyx.WindMobile.WP7.View
 {
     public partial class WindChartControl : UserControl
     {

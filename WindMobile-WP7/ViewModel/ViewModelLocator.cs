@@ -14,11 +14,12 @@
   DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
 */
 
-using System.Collections.Generic;
-using Ch.Epix.WindMobile.WP7.Model;
-using Ch.Epix.WindMobile.WP7.Service;
 using System;
-namespace Ch.Epix.WindMobile.WP7.ViewModel
+using System.Collections.Generic;
+using Ch.Epyx.WindMobile.WP7.Model;
+using Ch.Epyx.WindMobile.WP7.Service;
+
+namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the

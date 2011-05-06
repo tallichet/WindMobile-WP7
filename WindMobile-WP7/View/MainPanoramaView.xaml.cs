@@ -10,11 +10,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using Ch.Epix.WindMobile.WP7.Model;
+using Ch.Epyx.WindMobile.WP7.Model;
 using System.Diagnostics;
 using Microsoft.Phone.Controls.Maps;
 
-namespace Ch.Epix.WindMobile.WP7.View
+namespace Ch.Epyx.WindMobile.WP7.View
 {
     public partial class MainPanoramaView : PhoneApplicationPage
     {

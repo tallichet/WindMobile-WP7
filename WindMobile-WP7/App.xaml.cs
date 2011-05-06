@@ -12,10 +12,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Ch.Epix.WindMobile.WP7.ViewModel;
+using Ch.Epyx.WindMobile.WP7.ViewModel;
 using System.Diagnostics;
 
-namespace Ch.Epix.WindMobile.WP7
+namespace Ch.Epyx.WindMobile.WP7
 {
     public partial class App : Application
     {
