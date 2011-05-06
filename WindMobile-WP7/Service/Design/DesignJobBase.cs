@@ -12,7 +12,7 @@ using Ch.Epix.WindMobile.WP7.Service.Job;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Design
 {
-    public class DesignJobBase : IJob
+    public class DesignJobBase<P, R> : IJob<P, R>
     {
 
         public bool IsBusy
@@ -20,15 +20,10 @@ namespace Ch.Epix.WindMobile.WP7.Service.Design
             get { return true; }
         }
 
-        public event EventHandler<JobFinishedEventArgs> JobCompleted;
-        public event EventHandler<ErrorEventArgs> JobError;
+        public event EventHandler<JobFinishedEventArgs<R>> JobCompleted;
+        public event EventHandler<JobErrorEventArgs> JobError;
 
-        public void Execute()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Execute(string s)
+        public void Execute(P o)
         {
             throw new NotImplementedException();
         }

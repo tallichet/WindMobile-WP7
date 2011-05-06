@@ -14,6 +14,10 @@
   DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
 */
 
+using System.Collections.Generic;
+using Ch.Epix.WindMobile.WP7.Model;
+using Ch.Epix.WindMobile.WP7.Service;
+using System;
 namespace Ch.Epix.WindMobile.WP7.ViewModel
 {
     /// <summary>
@@ -55,15 +59,17 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
-        private static MainViewModel _main;
-        //private static StationInfoViewModel _stationInfo;
+        private static MainViewModel main;
+        private static DataViewModel data;
+        private static Dictionary<IStationInfo, StationInfoViewModel> infos;
+        private static Dictionary<IStationInfo, ChartViewModel> charts;
 
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
         public ViewModelLocator()
         {
-            CreateMain();
+            
         }
 
         /// <summary>
@@ -73,12 +79,23 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         {
             get
             {
-                if (_main == null)
+                if (main == null)
                 {
-                    CreateMain();
+                    main = new MainViewModel();
                 }
+                return main;
+            }
+        }
 
-                return _main;
+        public static DataViewModel DataStatic
+        {
+            get
+            {
+                if (data == null)
+                {
+                    data = new DataViewModel();
+                }
+                return data;
             }
         }
 
@@ -88,22 +105,57 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             set;
         }
 
-        ///// <summary>
-        ///// Gets the StationInfo property.
-        ///// </summary>
-        //public static StationInfoViewModel StationInfoStatic
-        //{
-        //    get
-        //    {
-        //        if (_stationInfo == null)
-        //        {
-        //            _stationInfo = new StationInfoViewModel();
-        //        }
+        public static Dictionary<IStationInfo, StationInfoViewModel> InfoViewModelsStatic
+        {
+            get
+            {
+                if (infos == null)
+                {
+                    infos = new Dictionary<IStationInfo, StationInfoViewModel>(ServiceCentral.ListService.LastResult.Count);
+                    foreach (var info in ServiceCentral.ListService.LastResult)
+                    {
+                        infos.Add(info, new StationInfoViewModel(info));           
+                    }                    
+                }
+                return infos;
+            }
+        }
 
-        //        return _stationInfo;
-        //    }
-        //}
+        public static StationInfoViewModel CurrentInfoViewModelStatic
+        {
+            get
+            {
+                if (ApplicationRunData.CurrentStationStatic == null) throw new Exception("No station selected");
+                return InfoViewModelsStatic[ApplicationRunData.CurrentStationStatic];
+            }
+        }
 
+
+        public static Dictionary<IStationInfo, ChartViewModel> ChartViewModelsStatic
+        {
+            get
+            {
+                if (charts == null)
+                {
+                    charts = new Dictionary<IStationInfo, ChartViewModel>(ServiceCentral.ListService.LastResult.Count);
+                    foreach (var info in ServiceCentral.ListService.LastResult)
+                    {
+                        charts.Add(info, new ChartViewModel(info));
+                    }
+                }
+                return charts;
+            }
+        }
+
+        public static ChartViewModel CurrentChartViewModelStatic
+        {
+            get
+            {
+                if (ApplicationRunData.CurrentStationStatic == null) throw new Exception("No station selected");
+                return ChartViewModelsStatic[ApplicationRunData.CurrentStationStatic];
+            }
+        }
+        
         /// <summary>
         /// Gets the Main property.
         /// </summary>
@@ -119,16 +171,44 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
         }
 
         /// <summary>
+        /// Gets the Main property.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public DataViewModel Data
+        {
+            get
+            {
+                return DataStatic;
+            }
+        }
+
+        /// <summary>
         /// Gets the StationInfo property.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
-        public StationInfoViewModel StationInfo
+        public StationInfoViewModel CurrentStationInfoViewModel
         {
             get
             {
-                return new StationInfoViewModel();
+                return CurrentInfoViewModelStatic;
+            }
+        }
+
+        /// <summary>
+        /// Gets the StationInfo property.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ChartViewModel CurrentChartViewModel
+        {
+            get
+            {
+                return CurrentChartViewModelStatic;
             }
         }
 
@@ -148,34 +228,6 @@ namespace Ch.Epix.WindMobile.WP7.ViewModel
             {
                 ExceptionStatic = value;
             }
-        }
-
-        /// <summary>
-        /// Provides a deterministic way to delete the Main property.
-        /// </summary>
-        public static void ClearMain()
-        {
-            _main.Cleanup();
-            _main = null;
-        }
-
-        /// <summary>
-        /// Provides a deterministic way to create the Main property.
-        /// </summary>
-        public static void CreateMain()
-        {
-            if (_main == null)
-            {
-                _main = new MainViewModel();
-            }
-        }
-
-        /// <summary>
-        /// Cleans up all the resources.
-        /// </summary>
-        public static void Cleanup()
-        {
-            ClearMain();
         }
     }
 }

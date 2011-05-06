@@ -23,6 +23,8 @@ namespace Ch.Epix.WindMobile.WP7
         // Easy access to the root frame
         public PhoneApplicationFrame RootFrame { get; private set; }
 
+        
+
         // Constructor
         public App()
         {
@@ -35,8 +37,6 @@ namespace Ch.Epix.WindMobile.WP7
 
             // Phone-specific initialization
             InitializePhoneApplication();
-
-            
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -61,7 +61,7 @@ namespace Ch.Epix.WindMobile.WP7
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            ViewModelLocator.Cleanup();
+            
         }
 
         // Code to execute if a navigation fails
@@ -104,7 +104,8 @@ namespace Ch.Epix.WindMobile.WP7
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
+            RootFrame = //new TransitionFrame();
+                new PhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

@@ -12,17 +12,9 @@ using GalaSoft.MvvmLight;
 
 namespace Ch.Epix.WindMobile.WP7.ViewModel
 {
-    public class ExceptionViewModel : ViewModelBase
+    public class ExceptionViewModel : ApplicationViewModel
     {
         public Exception Exception { get; private set; }
-
-        public string ApplicationName
-        {
-            get
-            {
-                return "WIND MOBILE";
-            }
-        }
 
         public string PageName
         {

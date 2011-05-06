@@ -15,22 +15,39 @@ namespace Ch.Epix.WindMobile.WP7.View
 {
     public partial class ChartView : PhoneApplicationPage
     {
-        public ViewModel.StationInfoViewModel ViewModel
+        public ViewModel.ChartViewModel ViewModel
         {
             get
             {
-                return this.DataContext as ViewModel.StationInfoViewModel;
+                return this.DataContext as ViewModel.ChartViewModel;
             }
         }
 
         public ChartView()
         {
             InitializeComponent();
+            
+            this.ViewModel.ValidChartDataFound += ViewModel_ValidChartDataFound;
+        }
+
+        void ViewModel_ValidChartDataFound(object sender, EventArgs e)
+        {
+            MainChart.Visibility = System.Windows.Visibility.Visible;
+            ShowChart.Begin();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.GetStationChartCommand.Execute(3600);
+            ViewModel.RefreshCommand.Execute(3600);
+        }
+
+        protected override void OnOrientationChanged(OrientationChangedEventArgs e)
+        {
+            if (e.Orientation == PageOrientation.PortraitDown || e.Orientation == PageOrientation.PortraitUp)
+            {
+                NavigationService.GoBack();
+            }
+            base.OnOrientationChanged(e);            
         }
     }
 }

@@ -53,5 +53,16 @@ namespace Ch.Epix.WindMobile.WP7.Model.Design
         {
             get { return "Id"; }
         }
+
+        public override bool Equals(object obj)
+        {
+            var info = obj as StationInfo;
+            return info != null && info.Id == this.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 }

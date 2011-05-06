@@ -40,7 +40,7 @@ namespace Ch.Epix.WindMobile.WP7.View
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-            (DataContext as StationInfoViewModel).GetStationDataCommand.Execute(this);
+            (DataContext as StationInfoViewModel).RefreshCommand.Execute(null);
             ViewModel.Activated += (s, arg) => Animate();
             UpdateTrend();
         }

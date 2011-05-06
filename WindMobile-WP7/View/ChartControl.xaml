@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="Ch.Epix.WindMobile.WP7.View.ChartControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.WP7"
+             
+    xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+    xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480"
+    Name="root">
+    
+    
+    <UserControl.Resources>
+        <Style x:Key="PhoneChartStyle" TargetType="charting:Chart">
+            <Setter Property="LegendStyle">
+                <Setter.Value>
+                    <Style TargetType="datavis:Legend">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Top"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Margin" Value="5, 0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="PlotAreaStyle">
+                <Setter.Value>
+                    <Style TargetType="Grid">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Palette">
+                <Setter.Value>
+                    <datavis:ResourceDictionaryCollection>
+                        <!-- Red -->
+                        <ResourceDictionary>
+                            <!--<Style x:Key="LineStyle" TargetType="charting:LineSeries">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                            <GradientStop Color="Red"/>
+                                            <GradientStop Color="DarkGray" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>-->
+                            <Style x:Key="DataPointStyle" TargetType="charting:LineDataPoint">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                            <GradientStop Color="Red"/>
+                                            <GradientStop Color="DarkGray" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+
+                            <!--<SolidColorBrush x:Key="Background" Color="Red"/>
+                            <SolidColorBrush x:Key="Stroke" Color="Red"/>
+                            <Style x:Key="DataPointStyle" TargetType="Control">
+                                <Setter Property="Visibility" Value="Collapsed" />-->
+                                <!--<Setter Property="Background" Value="{StaticResource Background}" />-->
+                            <!--</Style>
+                            <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                <Setter Property="StrokeThickness" Value="2" />
+                                <Setter Property="StrokeMiterLimit" Value="1" />
+                                <Setter Property="Fill" Value="{StaticResource Background}" />
+                            </Style>-->                            
+                        </ResourceDictionary>
+                        <!-- Blue -->
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Background" Color="Blue" />
+                            <Style x:Key="DataPointStyle" TargetType="Control">
+                                <Setter Property="Background" Value="{StaticResource Background}" />
+                            </Style>
+                            <Style x:Key="DataShapeStyle" TargetType="Shape">
+                                <Setter Property="Stroke" Value="{StaticResource Background}" />
+                                <Setter Property="StrokeThickness" Value="2" />
+                                <Setter Property="StrokeMiterLimit" Value="1" />
+                                <Setter Property="Fill" Value="{StaticResource Background}" />
+                            </Style>
+                        </ResourceDictionary>
+
+                    </datavis:ResourceDictionaryCollection>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style TargetType="Polyline" x:Key="PolyLineMaxStyle">
+            <Setter Property="Stroke" Value="Red" />
+            <Setter Property="StrokeThickness" Value="3" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <charting:Chart
+            Style="{StaticResource PhoneChartStyle}"
+            x:Name="MainChart"
+            LegendTitle="legende"
+            Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <charting:Chart.Axes>
+                <charting:LinearAxis Location="Left" Orientation="Y" Minimum="0" />
+                <charting:DateTimeAxis Location="Bottom" Orientation="X" />
+            </charting:Chart.Axes>
+            
+            <charting:Chart.Palette>
+                
+            </charting:Chart.Palette>
+
+            <charting:LineSeries 
+                ItemsSource="{Binding Path=ChartData.WindMax.Values}" 
+                Title="Rafale"
+                DependentValuePath="Value" IndependentValuePath="Date"
+                Foreground="Transparent">
+            </charting:LineSeries>
+
+            <charting:AreaSeries 
+                ItemsSource="{Binding Path=ChartData.WindAverage.Values}" 
+                Title="Moyenne"
+                DependentValuePath="Value" IndependentValuePath="Date">
+
+            </charting:AreaSeries>
+        </charting:Chart>
+        
+        <StackPanel Name="ButtonPallette"
+                    Orientation="Vertical"
+            Grid.Column="1" Grid.Row="1">
+            <Button 
+                Content="1h"
+                cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
+                cmd:ButtonBaseExtensions.CommandParameter="3600" />
+            <Button 
+                Content="6h"
+                cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
+                cmd:ButtonBaseExtensions.CommandParameter="21600" />
+            <Button 
+                Content="24h"
+                cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
+                cmd:ButtonBaseExtensions.CommandParameter="86400" />
+        </StackPanel>
+
+        <Grid Name="WaitingView" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity=".5" />
+            </Grid.Background>
+            <toolkit:PerformanceProgressBar Name="WaitingProgressBar" />            
+        </Grid>
+    </Grid>
+</UserControl>

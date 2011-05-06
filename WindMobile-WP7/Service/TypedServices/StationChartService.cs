@@ -8,13 +8,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Ch.Epix.WindMobile.WP7.Model;
 
-namespace Ch.Epix.WindMobile.WP7.Model
+namespace Ch.Epix.WindMobile.WP7.Service.TypedServices
 {
-    public interface IChartPoint
+    public class StationChartService: BaseService<int, IChart>
     {
-        DateTime Date { get; }
-        long DateAsLong { get; }
-        double Value { get; }
+        public StationChartService(GetJobAction action)
+            : base(action)
+        {
+
+        }
+
     }
 }

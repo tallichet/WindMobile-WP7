@@ -35,7 +35,7 @@ namespace Ch.Epix.WindMobile.WP7.Model.Xml
                 if (values == null)
                 {
                     values = new List<IChartPoint>();
-                    foreach (var point in element.Elements("point"))
+                    foreach (var point in element.Elements("points"))
                     {
                         values.Add(new ChartPoint(point));
                     }

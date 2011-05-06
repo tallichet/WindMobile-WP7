@@ -15,21 +15,16 @@ using Ch.Epix.WindMobile.WP7.Model.Xml;
 
 namespace Ch.Epix.WindMobile.WP7.Service.Job
 {
-    public class ListStationInfoJob : JobBase
+    public class ListStationInfoJob : JobBase<App, object, List<IStationInfo>>
     {
         protected override Uri GetUrl()
         {
             return new Uri(baseUrl + "stationinfos");
         }
 
-        protected override object OnDownloadStringCompleted(string downloadedString)
+        protected override List<IStationInfo> JobRun(ref bool cancel, string arg)
         {
-            return downloadedString;
-        }
-
-        protected override object JobRun(ref bool cancel, object arg)
-        {
-            var listElement = XElement.Parse((string)arg);
+            var listElement = XElement.Parse(arg);
             var result = new List<IStationInfo>();
 
             foreach (var station in listElement.Elements("stationInfo"))
@@ -39,7 +34,7 @@ namespace Ch.Epix.WindMobile.WP7.Service.Job
             return result;
         }
 
-        public override void Execute()
+        public override void Execute(object o)
         {
             StartDownloadJob();
         }
