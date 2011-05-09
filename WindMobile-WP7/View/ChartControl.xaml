@@ -82,16 +82,22 @@
                         </ResourceDictionary>
                         <!-- Blue -->
                         <ResourceDictionary>
-                            <SolidColorBrush x:Key="Background" Color="Blue" />
+                            <!--<SolidColorBrush x:Key="Background" Color="Blue" />-->
+                            <LinearGradientBrush x:Key="Background" StartPoint="0.5, 0" EndPoint="0.5,1">
+                                <GradientStop Color="DarkBlue" Offset="0" />
+                                <GradientStop Color="Blue" Offset="1" />
+                            </LinearGradientBrush>   
+                            
                             <Style x:Key="DataPointStyle" TargetType="Control">
+                                <Setter Property="Background" Value="Transparent" />
                                 <Setter Property="Background" Value="{StaticResource Background}" />
                             </Style>
-                            <Style x:Key="DataShapeStyle" TargetType="Shape">
+                            <!--<Style x:Key="DataShapeStyle" TargetType="Shape">
                                 <Setter Property="Stroke" Value="{StaticResource Background}" />
-                                <Setter Property="StrokeThickness" Value="2" />
+                                <Setter Property="StrokeThickness" Value="6" />
                                 <Setter Property="StrokeMiterLimit" Value="1" />
                                 <Setter Property="Fill" Value="{StaticResource Background}" />
-                            </Style>
+                            </Style>-->
                         </ResourceDictionary>
 
                     </datavis:ResourceDictionaryCollection>
