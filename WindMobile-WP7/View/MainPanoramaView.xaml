@@ -123,7 +123,7 @@
                         <HyperlinkButton NavigateUri="http://www.la-haut.info" TargetName="La-Haut.info" Content="la-haut.info"
                                          Style="{StaticResource InvisibleHyperlingButton}" />
 
-                        <HyperlinkButton NavigateUri="/view/SettingsView.xaml" Content="paramètres"
+                        <HyperlinkButton NavigateUri="/view/Settings.xaml" Content="paramètres"
                                          Style="{StaticResource InvisibleHyperlingButton}" />
                             
                     </StackPanel>
