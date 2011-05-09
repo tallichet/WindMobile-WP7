@@ -25,7 +25,7 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
 
         protected override Uri GetUrl()
         {
-            return new Uri(baseUrl + "stationdatas/" + StationInfo.Id);
+            return new Uri(BaseUrl + "stationdatas/" + StationInfo.Id);
         }
 
         protected override IStationData JobRun(ref bool cancel, string arg)

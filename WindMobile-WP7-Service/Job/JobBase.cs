@@ -28,7 +28,10 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
         private string downloadedString;
         private R result;
 
-        protected string baseUrl = "http://windmobile.vol-libre-suchet.ch:1588/windmobile/";
+        public static string BaseUrl
+        {
+            get { return Constants.BaseUrl; }
+        }
 
         public JobBase()
         {

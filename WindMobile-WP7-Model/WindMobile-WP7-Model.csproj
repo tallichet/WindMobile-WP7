@@ -55,6 +55,7 @@
     <Compile Include="IChartPoint.cs" />
     <Compile Include="IChartSerie.cs" />
     <Compile Include="ILastUpdate.cs" />
+    <Compile Include="ISendMessage.cs" />
     <Compile Include="IStationData.cs" />
     <Compile Include="IStationInfo.cs" />
     <Compile Include="IWindDirectionChart.cs" />

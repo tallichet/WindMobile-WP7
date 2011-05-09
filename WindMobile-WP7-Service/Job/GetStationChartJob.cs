@@ -26,7 +26,7 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
 
         protected override Uri GetUrl()
         {
-            return new Uri(baseUrl + "windchart/" + stationInfo.Id + "/" + duration);
+            return new Uri(BaseUrl + "windchart/" + stationInfo.Id + "/" + duration);
         }
 
         public override void Execute(int o)
