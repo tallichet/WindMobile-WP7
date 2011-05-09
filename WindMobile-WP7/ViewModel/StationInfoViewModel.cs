@@ -75,6 +75,19 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             }
         }
 
+        public string TimeAgo
+        {
+            get
+            {
+                if (StationData == null) return "";
+                var span = DateTime.Now - StationData.LastUpdate;
+                if (span.Days > 0) return span.Days + " jours";
+                if (span.Hours > 0) return span.Hours + " heures";
+                if (span.Minutes > 0) return span.Minutes + " minutes";
+                return "quelques instants";
+            }
+        }
+
         public StationDataService DataService
         {
             get
@@ -85,6 +98,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                     dataService.LastResultChanged += (s, e) =>
                     {
                         RaisePropertyChanged("StationData");
+                        RaisePropertyChanged("TimeAgo");
                         RefreshCommand.RaiseCanExecuteChanged();
                     };
                 }
