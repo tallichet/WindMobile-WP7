@@ -32,7 +32,7 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
                     RaiseJobCompleted();
             };
 
-
+            client.Headers["Content-Type"] = "text/plain";
             client.UploadStringAsync(new Uri(Constants.BaseUrl + String.Format("chatrooms/{0}/postmessage", param.ChatRoomId), UriKind.Absolute), "POST", param.Message);
         }
 

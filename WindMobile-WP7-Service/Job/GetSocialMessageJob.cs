@@ -28,19 +28,19 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
         public override void Execute(string o)
         {
             chatRoomId = o;
-            base.Execute(o);
+            StartDownloadJob();
         }
 
         protected override Uri GetUrl()
         {
-            return new Uri(BaseUrl + string.Format("chatrooms/{0}/lastMessage/{1%s}", chatRoomId, maxCount), UriKind.Absolute);
+            return new Uri(BaseUrl + string.Format("chatrooms/{0}/lastmessages/{1}", chatRoomId, maxCount), UriKind.Absolute);
         }
 
         protected override List<ISocialMessage> JobRun(ref bool cancel, string arg)
         {
             var result = new List<ISocialMessage>();
             var messages = XElement.Parse(arg);
-            foreach (var msg in messages.Element("messages").Elements("message"))
+            foreach (var msg in messages.Elements("message"))
             {
                 result.Add(new SocialMessage(msg));
             }

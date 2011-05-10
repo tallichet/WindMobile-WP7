@@ -98,9 +98,10 @@
     <Compile Include="ViewModel\ExceptionViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\SocialViewModel.cs" />
     <Compile Include="ViewModel\StationInfoViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\ChartControl.xaml.cs">
+    <Compile Include="View\Control\ChartControl.xaml.cs">
       <DependentUpon>ChartControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ExceptionView.xaml.cs">
@@ -115,20 +116,23 @@
     <Compile Include="View\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\StationDataControl.xaml.cs">
+    <Compile Include="View\Control\StationDataControl.xaml.cs">
       <DependentUpon>StationDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SocialView.xaml.cs">
+      <DependentUpon>SocialView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StationDataPivot.xaml.cs">
       <DependentUpon>StationDataPivot.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\StationInfoControl.xaml.cs">
+    <Compile Include="View\Control\StationInfoControl.xaml.cs">
       <DependentUpon>StationInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StationInfoView.xaml.cs">
       <DependentUpon>StationInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Transition\FadeTransition.cs" />
-    <Compile Include="View\WindChartControl.xaml.cs">
+    <Compile Include="View\Control\WindChartControl.xaml.cs">
       <DependentUpon>WindChartControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -137,7 +141,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\ChartControl.xaml">
+    <Page Include="View\Control\ChartControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,15 +161,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\StationDataControl.xaml">
+    <Page Include="View\Control\StationDataControl.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SocialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StationDataPivot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\StationInfoControl.xaml">
+    <Page Include="View\Control\StationInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,7 +189,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\WindChartControl.xaml">
+    <Page Include="View\Control\WindChartControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

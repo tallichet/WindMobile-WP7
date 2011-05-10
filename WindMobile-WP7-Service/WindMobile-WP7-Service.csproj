@@ -66,6 +66,7 @@
     <Compile Include="ServiceCentral.cs" />
     <Compile Include="TypedServices\ListMessagesService.cs" />
     <Compile Include="TypedServices\ListStationInfoService.cs" />
+    <Compile Include="TypedServices\SocialService.cs" />
     <Compile Include="TypedServices\StationChartService.cs" />
     <Compile Include="TypedServices\StationDataService.cs" />
   </ItemGroup>

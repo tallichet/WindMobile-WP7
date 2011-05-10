@@ -46,10 +46,7 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
             private set;
         }
 
-        public virtual void Execute(P o)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Execute(P o);
 
         /// <summary>
         /// Executed before doing anything else. 

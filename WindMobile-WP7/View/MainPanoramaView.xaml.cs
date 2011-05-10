@@ -68,5 +68,10 @@ namespace Ch.Epyx.WindMobile.WP7.View
         {
             ViewModel.RefreshCommand.Execute(null);
         }
+
+        private void StationInfoControl_ChatButtonClick(object sender, ChatButtonClickedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/view/SocialView.xaml?chatroomid=" + "test", UriKind.Relative));
+        }
     }
 }

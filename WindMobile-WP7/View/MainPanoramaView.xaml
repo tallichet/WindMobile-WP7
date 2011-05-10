@@ -67,7 +67,7 @@
                     </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>                           
-                            <view:StationInfoControl DataContext="{Binding}"/>
+                            <view:StationInfoControl DataContext="{Binding}" ChatButtonClick="StationInfoControl_ChatButtonClick"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
