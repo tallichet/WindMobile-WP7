@@ -41,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json.WindowsPhone">
+      <HintPath>..\WindMobile-WP7\packages\Newtonsoft.Json.4.0.2\lib\sl3-wp\Newtonsoft.Json.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -59,6 +63,7 @@
     <Compile Include="IStationData.cs" />
     <Compile Include="IStationInfo.cs" />
     <Compile Include="IWindDirectionChart.cs" />
+    <Compile Include="Json\StationInfo.cs" />
     <Compile Include="MaintenanceStatus.cs" />
     <Compile Include="Xml\Chart.cs" />
     <Compile Include="Xml\ChartPoint.cs" />
@@ -70,6 +75,9 @@
     <Compile Include="Xml\StationInfo.cs" />
     <Compile Include="Xml\XmlBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

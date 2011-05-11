@@ -53,5 +53,12 @@
         {
             return Id.GetHashCode();
         }
+
+        public int CompareTo(IStationInfo other)
+        {
+            return this.Id.CompareTo(other.Id);
+        }
+
+        
     }
 }

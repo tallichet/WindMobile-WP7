@@ -27,6 +27,19 @@ namespace Ch.Epyx.WindMobile.WP7.Service
             GetJob = jobDelegate;
         }
 
+        /// <summary>
+        /// Used when back to the application
+        /// </summary>
+        /// <param name="lastResult"></param>
+        public void LoadLastResult(R lastResult)
+        {
+            this.LastResult = lastResult;
+            if (lastResult != null)
+            {
+                RaiseLastResultChanged(lastResult);
+            }
+        }
+
         public void Refresh(P param)
         {
             InitJob();

@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Ch.Epyx.WindMobile.WP7.Service;
+using Ch.Epyx.WindMobile.WP7.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Ch.Epyx.WindMobile.WP7.ViewModel;
-using System.Diagnostics;
 
 namespace Ch.Epyx.WindMobile.WP7
 {
@@ -49,12 +41,16 @@ namespace Ch.Epyx.WindMobile.WP7
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            ApplicationRunData.LoadState(PhoneApplicationService.Current.State);
+            ServiceCentral.LoadState(PhoneApplicationService.Current.State);
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            ApplicationRunData.SaveState(PhoneApplicationService.Current.State);
+            ServiceCentral.SaveState(PhoneApplicationService.Current.State);
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -63,6 +59,7 @@ namespace Ch.Epyx.WindMobile.WP7
         {
             
         }
+        
 
         // Code to execute if a navigation fails
         void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)

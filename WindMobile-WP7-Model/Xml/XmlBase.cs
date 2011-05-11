@@ -9,17 +9,21 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using System.Runtime.Serialization;
 
 namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 {
-    public class XmlBase
-    {
+    public class XmlBase {
         protected XElement element;
-
 
         public XmlBase(XElement element)
         {
             this.element = element;
+        }
+
+        public XElement XElement
+        {
+            get { return element; }
         }
     }
 }

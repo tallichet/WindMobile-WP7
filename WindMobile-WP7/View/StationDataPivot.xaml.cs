@@ -39,7 +39,7 @@ namespace Ch.Epyx.WindMobile.WP7.View
         {
             for (int i = 0; i < StationPivot.Items.Count; i++)
             {
-                if ((StationPivot.Items[i] as StationInfoViewModel).StationInfo == ViewModel.CurrentStationInfo)
+                if ((StationPivot.Items[i] as StationInfoViewModel).StationInfo.Id == ViewModel.CurrentStationInfo.Id)
                 {
                     StationPivot.SelectedIndex = i;
                     break;

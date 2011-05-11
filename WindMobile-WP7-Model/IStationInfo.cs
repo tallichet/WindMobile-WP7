@@ -8,10 +8,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace Ch.Epyx.WindMobile.WP7.Model
 {
-    public interface IStationInfo
+    public interface IStationInfo : IComparable<IStationInfo>
     {
         MaintenanceStatus MaintenanceStatus { get; }
         int Altitude { get; }
@@ -21,5 +22,18 @@ namespace Ch.Epyx.WindMobile.WP7.Model
         string Name { get; }
         string ShortName { get; }
         string Id { get; }
+    }
+
+    public class StationInfoComparer : IEqualityComparer<IStationInfo>
+    {
+        public bool Equals(IStationInfo x, IStationInfo y)
+        {
+            return x.Id == y.Id;
+        }
+
+        public int GetHashCode(IStationInfo obj)
+        {
+            return obj.Id.GetHashCode();
+        }
     }
 }

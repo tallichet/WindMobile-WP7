@@ -112,7 +112,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             {
                 if (infos == null)
                 {
-                    infos = new Dictionary<IStationInfo, StationInfoViewModel>(ServiceCentral.ListService.LastResult.Count);
+                    infos = new Dictionary<IStationInfo, StationInfoViewModel>(ServiceCentral.ListService.LastResult.Count, new StationInfoComparer());
                     foreach (var info in ServiceCentral.ListService.LastResult)
                     {
                         infos.Add(info, new StationInfoViewModel(info));           
@@ -138,7 +138,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             {
                 if (charts == null)
                 {
-                    charts = new Dictionary<IStationInfo, ChartViewModel>(ServiceCentral.ListService.LastResult.Count);
+                    charts = new Dictionary<IStationInfo, ChartViewModel>(ServiceCentral.ListService.LastResult.Count, new StationInfoComparer());
                     foreach (var info in ServiceCentral.ListService.LastResult)
                     {
                         charts.Add(info, new ChartViewModel(info));

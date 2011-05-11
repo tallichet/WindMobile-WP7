@@ -63,6 +63,8 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
         /// <returns>Url to access the data</returns>
         protected abstract Uri GetUrl();
 
+        protected virtual WebHeaderCollection GetWebHeaders() { return new WebHeaderCollection(); }
+
         /// <summary>
         /// Occurs when the string was downloaded correctly
         /// </summary>
@@ -73,7 +75,7 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
         /// Allow to process download error message
         /// </summary>
         /// <param name="exception">Error exception</param>
-        protected virtual void OnDownloadStringError(Exception exception) { }
+        protected virtual void OnDownloadStringError(Exception exception) { RaiseJobError("unknown source", exception); }
 
         /// <summary>
         /// This happen in the UI Thread, just before starting the background worker
@@ -143,6 +145,8 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
                     worker.RunWorkerAsync(downloadedString);
                 }
             };
+
+            client.Headers = GetWebHeaders();
             client.Headers[HttpRequestHeader.UserAgent] = Assembly.GetExecutingAssembly().FullName + "/" +
             System.Environment.OSVersion.Platform + "(" + System.Environment.OSVersion.Version + ") CLR:" +
             System.Environment.Version;
@@ -179,6 +183,14 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
             if (JobCompleted != null)
             {
                 JobCompleted(this, new JobFinishedEventArgs<R>(result));
+            }
+        }
+
+        private void RaiseJobError(String source, Exception e)
+        {
+            if (JobError != null)
+            {
+                JobError(this, new JobErrorEventArgs(source, e));
             }
         }
     }

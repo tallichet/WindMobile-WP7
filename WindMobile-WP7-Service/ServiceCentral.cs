@@ -2,6 +2,8 @@
 using Ch.Epyx.WindMobile.WP7.Model;
 using Ch.Epyx.WindMobile.WP7.Service.Job;
 using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
+using System.Runtime.Serialization;
+using Ch.Epyx.WindMobile.WP7.Model.Json;
 
 namespace Ch.Epyx.WindMobile.WP7.Service
 {
@@ -91,6 +93,31 @@ namespace Ch.Epyx.WindMobile.WP7.Service
                 }
                 return coordinateWatcher;
             }
+        }
+
+        public static void SaveState(IDictionary<string, object> state)
+        {
+            if (ListService.LastResult != null)
+            {
+                var infos = new StationInfoList();
+                infos.AddRange(listService.LastResult);
+                state["application-list-service"] = infos;
+            }
+        }
+
+        public static void LoadState(IDictionary<string, object> state)
+        {
+            if (state.ContainsKey("application-list-service"))
+            {
+                ListService.LoadLastResult((List<IStationInfo>)state["application-list-service"]);
+            }
+        }
+
+        [CollectionDataContract]
+        [KnownType(typeof(StationInfo))]
+        public class StationInfoList : List<IStationInfo>
+        {
+
         }
     }
 

@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using Ch.Epyx.WindMobile.WP7.Model;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Ch.Epyx.WindMobile.WP7.Service
 {
@@ -35,6 +37,22 @@ namespace Ch.Epyx.WindMobile.WP7.Service
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+
+        public static void SaveState(IDictionary<string, object> state)
+        {
+            if (currentStation != null)
+            {
+                state["application-currentStation"] = currentStation;
+            }
+        }
+
+        public static void LoadState(IDictionary<string, object> state)
+        {
+            if (state.ContainsKey("application-currentStation"))
+            {
+                currentStation = (IStationInfo)state["application-currentStation"];
             }
         }
     }

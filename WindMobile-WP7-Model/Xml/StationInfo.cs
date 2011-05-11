@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using System.Runtime.Serialization;
 
 namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 {
@@ -57,6 +58,11 @@ namespace Ch.Epyx.WindMobile.WP7.Model.Xml
         public string Id
         {
             get { return element.Attribute("id").Value; }
+        }
+
+        public int CompareTo(IStationInfo other)
+        {
+            return this.Id.CompareTo(other.Id);
         }
     }
 }
