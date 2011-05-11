@@ -116,9 +116,9 @@
                                          Style="{StaticResource InvisibleHyperlingButton}"
                                          />
                         
-                        <HyperlinkButton NavigateUri="http://www.epyx.ch" TargetName="Epyx.ch" Content="epyx"
+                        <!--<HyperlinkButton NavigateUri="http://www.epyx.ch" TargetName="Epyx.ch" Content="epyx"
                                          HorizontalAlignment="Left"                                         
-                                         Style="{StaticResource InvisibleHyperlingButton}" />
+                                         Style="{StaticResource InvisibleHyperlingButton}" />-->
 
                         <HyperlinkButton NavigateUri="http://www.la-haut.info" TargetName="La-Haut.info" Content="la-haut.info"
                                          Style="{StaticResource InvisibleHyperlingButton}" />
