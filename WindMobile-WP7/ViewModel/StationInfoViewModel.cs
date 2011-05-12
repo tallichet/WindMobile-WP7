@@ -104,7 +104,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                     };
                     dataService.ErrorOccured += (s, e) =>
                     {
-                        MessageBox.Show("Impossible de récupérer les infos de la balise de " + this.StationInfo.Name;
+                        MessageBox.Show("Impossible de récupérer les infos de la balise de " + this.StationInfo.Name);
                         RaisePropertyChanged("ErrorMessage");                        
                     };
                 }

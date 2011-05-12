@@ -54,7 +54,7 @@ namespace Ch.Epyx.WindMobile.WP7.View
                 //this.RotateTrendAnimation.Begin();
                 Animate();
                 ImageTrend.Source = new BitmapImage(
-                    new Uri("../Images/arrow_" + 
+                    new Uri("../../Images/arrow_" + 
                         (ViewModel.StationData.WindTrend > 0 ? "red" : "green") + ".png", UriKind.Relative)
                     );
                 //"/WindMobile-WP7;component
