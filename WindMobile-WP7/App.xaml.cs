@@ -84,8 +84,8 @@ namespace Ch.Epyx.WindMobile.WP7
                 System.Diagnostics.Debugger.Break();
             }
             e.Handled = true;
-            ViewModel.ViewModelLocator.ExceptionStatic = new ExceptionViewModel(e.ExceptionObject);
-            (RootVisual as PhoneApplicationFrame).Source = new Uri("/View/ExceptionView.xaml", UriKind.Relative);
+            //ViewModel.ViewModelLocator.ExceptionStatic = new ExceptionViewModel(e.ExceptionObject);
+            //(RootVisual as PhoneApplicationFrame).Source = new Uri("/View/ExceptionView.xaml", UriKind.Relative);
         }
 
         #region Phone application initialization
