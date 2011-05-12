@@ -54,7 +54,11 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                             //RefreshCommand.RaiseCanExecuteChanged();
                             //UpdateGraphData();
                         };
-                    chartService.ErrorOccured += (s, e) => RaisePropertyChanged("ErrorMessage");
+                    chartService.ErrorOccured += (s, e) =>                        
+                        {
+                            MessageBox.Show("Impossible de récupérer les données pour " + StationInfo.Name);
+                            RaisePropertyChanged("ErrorMessage");
+                        };
                 }
                 return chartService;
             }

@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Controls.Maps;
 using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
 using Ch.Epyx.WindMobile.WP7.Service;
+using System.Windows;
 
 namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
@@ -53,6 +54,12 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                     {
                         RaisePropertyChanged("StationInfoList");
                         RefreshCommand.RaiseCanExecuteChanged();
+                    };
+                    listService.ErrorOccured += (s, e) =>
+                    {
+                        MessageBox.Show(@"Une erreur s'est produite. 
+Le réseau n'est peut-être pas accessible.
+Veuillez réessayer plus tard");
                     };
                 }
                 return listService;

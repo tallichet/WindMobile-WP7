@@ -28,7 +28,11 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         {
             ChatRoomId = chatRoomId;
             SocialService = new SocialService();
-            SocialService.ErrorOccured += (s, e) => RaisePropertyChanged("LastError");
+            SocialService.ErrorOccured += (s, e) =>
+            {
+                MessageBox.Show("Impossible de récupérer les messages");
+                RaisePropertyChanged("LastError");
+            };
             SocialService.LastResultChanged += (s, e) => RaisePropertyChanged("LatestMessages");
         }
 

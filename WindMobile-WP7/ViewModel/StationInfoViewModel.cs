@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
 using Ch.Epyx.WindMobile.WP7.Service;
+using System.Windows;
 
 namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
@@ -100,6 +101,11 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                         RaisePropertyChanged("StationData");
                         RaisePropertyChanged("TimeAgo");
                         RefreshCommand.RaiseCanExecuteChanged();
+                    };
+                    dataService.ErrorOccured += (s, e) =>
+                    {
+                        MessageBox.Show("Impossible de récupérer les infos de la balise de " + this.StationInfo.Name;
+                        RaisePropertyChanged("ErrorMessage");                        
                     };
                 }
                 return dataService;
