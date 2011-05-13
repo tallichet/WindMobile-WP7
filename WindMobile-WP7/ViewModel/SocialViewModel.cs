@@ -35,7 +35,8 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                 MessageBox.Show("Impossible de récupérer les messages");
                 RaisePropertyChanged("LastError");
             };
-            SocialService.LastResultChanged += (s, e) => RaisePropertyChanged("LatestMessages");
+            SocialService.LastResultChanged += (s, e) => 
+                RaisePropertyChanged("LatestMessages");
         }
 
         public void RefreshMessages()

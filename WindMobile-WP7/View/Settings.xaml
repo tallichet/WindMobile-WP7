@@ -39,7 +39,8 @@
         <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="Nom d'utilisateur" Style="{StaticResource PhoneTextSmallStyle}"/>
-                <TextBox Text="{Binding Source={StaticResource ViewModel}, Path=Username, Mode=TwoWay}" />
+                <TextBox InputScope="EmailNameOrAddress"
+                    Text="{Binding Source={StaticResource ViewModel}, Path=Username, Mode=TwoWay}" />
 
                 <TextBlock Text="Mot de passe" Style="{StaticResource PhoneTextSmallStyle}"/>
                 <PasswordBox Password="{Binding Source={StaticResource ViewModel}, Path=Password, Mode=TwoWay}" />                

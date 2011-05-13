@@ -30,14 +30,14 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="Content" Grid.Row="1" Margin="12,0,12,0">
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             
             <TextBlock Text="{Binding LastError}" />
             
-            <ListBox Grid.Row="0" ItemsSource="{Binding Path=LatestMessages}" Name="ListBoxMessage">
+            <ListBox Grid.Row="0" ItemsSource="{Binding Path=LatestMessages}" Name="ListBoxMessage" MinHeight="0" >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -55,13 +55,18 @@
 
                             <TextBlock Grid.Row="0"
                                         Text="{Binding Pseudo}"
+                                       Margin="5"
                                         Foreground="{StaticResource PhoneBackgroundBrush}"/>
                                 
                             <TextBlock Grid.Row="1"
-                                        Text="{Binding Text}" />
+                                       Margin="5"
+                                        Text="{Binding Text}"
+                                       TextWrapping="Wrap"/>
                                 
                             <TextBlock Grid.Row="2"
+                                       Margin="5"
                                         Text="{Binding Date}" 
+                                       TextWrapping="Wrap"
                                         Foreground="{StaticResource PhoneBackgroundBrush}"/>
                         </Grid>
                     </DataTemplate>
@@ -72,7 +77,8 @@
                      Grid.Row="1" 
                      AcceptsReturn="True"
                      Margin="50, 5, 5, 5"
-                     Text="{Binding Path=NewMessage, Mode=TwoWay}">                
+                     Text="{Binding Path=NewMessage, Mode=TwoWay}"
+                     InputScope="Chat">
             </TextBox>            
         </Grid>
     </Grid>
