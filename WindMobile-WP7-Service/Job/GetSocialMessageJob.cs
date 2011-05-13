@@ -42,7 +42,7 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
             var messages = XElement.Parse(arg);
             foreach (var msg in messages.Elements("message"))
             {
-                result.Add(new SocialMessage(msg));
+                result.Insert(0, new SocialMessage(msg));
             }
             return result;
         }

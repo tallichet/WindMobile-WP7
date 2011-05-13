@@ -26,7 +26,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                 }
                 else
                 {
-                    return null;
+                    return "cedric@epyx.ch";
                 }
             }
             set
@@ -46,7 +46,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                 }
                 else
                 {
-                    return null;
+                    return "456";
                 }
             }
             set

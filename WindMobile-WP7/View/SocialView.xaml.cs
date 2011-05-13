@@ -31,15 +31,21 @@ namespace Ch.Epyx.WindMobile.WP7.View
         {
             string roomid = NavigationContext.QueryString["chatroomid"];
             this.DataContext = new SocialViewModel(roomid);
-            ViewModel.RefreshMessages();
+            ViewModel.MessageSent += MessageSent;
+            ViewModel.RefreshMessages();            
         }
 
         public void Send(object sender, EventArgs args)
         {
             BindingExpression be = textboxNewMessage.GetBindingExpression(TextBox.TextProperty);
-            be.UpdateSource();
+            be.UpdateSource();            
             
             ViewModel.SendMessage();
+        }
+
+        private void MessageSent(object sender, EventArgs args)
+        {
+            this.ListBoxMessage.Focus(); // remove focus from the text box to hide the keyboard
         }
     }
 }

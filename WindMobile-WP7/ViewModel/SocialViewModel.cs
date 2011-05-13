@@ -22,6 +22,8 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
 
         public string ChatRoomId { get; private set; }
 
+        public event EventHandler MessageSent;
+
         private SocialService SocialService { get; set; }
 
         public SocialViewModel(string chatRoomId)
@@ -66,7 +68,22 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         public void SendMessage()
         {
             var sendJob = new SendSocialMessageJob();
+            sendJob.JobCompleted += (s, e) =>
+                {
+                    this.RefreshMessages();
+                    this.NewMessage = "";
+                    RaisePropertyChanged("NewMessage");
+                    RaiseMessageSent();
+                };
             sendJob.Execute(new SendMessageData() { ChatRoomId = this.ChatRoomId, Message = NewMessage });
+        }
+
+        protected void RaiseMessageSent()
+        {
+            if (MessageSent != null)
+            {
+                MessageSent(this, new EventArgs());
+            }
         }
 
         private class SendMessageData : ISendMessage
@@ -87,6 +104,16 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             {
                 get;
                 set;
+            }
+
+
+            public string BasicAuthentication
+            {
+                get {
+                    var toEncode = SettingsViewModel.UsernameStatic + ":" + SettingsViewModel.PasswordStatic;
+                    var strBytes = System.Text.Encoding.UTF8.GetBytes(toEncode);
+                    return System.Convert.ToBase64String(strBytes);
+                }
             }
         }
     }

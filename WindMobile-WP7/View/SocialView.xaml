@@ -37,7 +37,7 @@
             
             <TextBlock Text="{Binding LastError}" />
             
-            <ListBox Grid.Row="0" ItemsSource="{Binding LatestMessages}" Name="ListBoxMessage">
+            <ListBox Grid.Row="0" ItemsSource="{Binding Path=LatestMessages}" Name="ListBoxMessage">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -55,14 +55,14 @@
 
                             <TextBlock Grid.Row="0"
                                         Text="{Binding Pseudo}"
-                                        Foreground="{Binding PhoneBackgroundBrush}"/>
+                                        Foreground="{StaticResource PhoneBackgroundBrush}"/>
                                 
                             <TextBlock Grid.Row="1"
                                         Text="{Binding Text}" />
                                 
                             <TextBlock Grid.Row="2"
                                         Text="{Binding Date}" 
-                                        Foreground="{Binding PhoneBackgroundBrush}"/>
+                                        Foreground="{StaticResource PhoneBackgroundBrush}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>                    

@@ -30,5 +30,7 @@ namespace Ch.Epyx.WindMobile.WP7.Model
         /// The message itself
         /// </summary>
         string Message { get; }
+
+        string BasicAuthentication { get; }
     }
 }
