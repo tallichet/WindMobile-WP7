@@ -29,10 +29,11 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         private ListStationInfoService listService;
         private RelayCommand refreshCommand;
 
+        private Visibility progressVisibility;
 
         public MainViewModel()
         {
-           
+            ProgressVisibility = Visibility.Collapsed;
         }
 
         public string PageName
@@ -54,6 +55,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                     {
                         RaisePropertyChanged("StationInfoList");
                         RefreshCommand.RaiseCanExecuteChanged();
+                        ProgressVisibility = Visibility.Collapsed;
                     };
                     listService.ErrorOccured += (s, e) =>
                     {
@@ -95,6 +97,7 @@ Veuillez réessayer plus tard");
                     refreshCommand = new RelayCommand(
                     () =>
                     {
+                        ProgressVisibility = Visibility.Visible;
                         ListService.Refresh(null);
                         refreshCommand.RaiseCanExecuteChanged();
                     },
@@ -104,5 +107,16 @@ Veuillez réessayer plus tard");
                 return refreshCommand;
             }            
         }
+
+        public Visibility ProgressVisibility
+        {
+            get { return progressVisibility; }
+            set
+            {
+                progressVisibility = value;
+                RaisePropertyChanged("ProgressVisibility");
+            }
+        }
+
     }
 }

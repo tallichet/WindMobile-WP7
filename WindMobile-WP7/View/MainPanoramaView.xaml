@@ -129,7 +129,12 @@
                     </StackPanel>
                 </ScrollViewer>
             </controls:PanoramaItem>
-        </controls:Panorama>        
+        </controls:Panorama>
+
+        <toolkit:PerformanceProgressBar Visibility="{Binding ProgressVisibility}"  IsIndeterminate="True" 
+                                        VerticalAlignment="Top"/>
+
+
     </Grid>
 
     <!--Panorama-based applications should not show an ApplicationBar-->
