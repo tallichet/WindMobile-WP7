@@ -11,6 +11,38 @@
     d:DesignHeight="480" d:DesignWidth="480"
     HorizontalContentAlignment="Stretch">
     
+    <UserControl.Resources>
+        <ControlTemplate x:Key="ChatButtonTemplate" TargetType="Button">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="15" />
+                </Grid.RowDefinitions>
+
+                <Rectangle Grid.Row="0"
+                           Fill="{StaticResource PhoneDisabledBrush}" />
+                
+                <ContentPresenter Name="contentControl"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                <Polygon Grid.Row="1"
+                         Fill="{StaticResource PhoneDisabledBrush}" 
+                         Points="15,0 15,15 27,0"/>
+            </Grid>
+        </ControlTemplate>
+        
+        <Style x:Key="ChatButtonStyle" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ChatButtonTemplate}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Width" Value="55" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </UserControl.Resources>
+    
     <Grid x:Name="LayoutRoot">        
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -43,7 +75,9 @@
                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
                    Style="{StaticResource PhoneTextSmallStyle}" />
 
-        <Button Grid.RowSpan="2" Grid.Column="2" Content="+" Click="chatButtonClicked" />
+        <Button Style="{StaticResource ChatButtonStyle}"
+            Grid.RowSpan="2" Grid.Column="2" 
+            Content="+" Click="chatButtonClicked" />
         
     </Grid>
 </UserControl>
