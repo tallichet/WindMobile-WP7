@@ -14,6 +14,7 @@ using Ch.Epyx.WindMobile.WP7.ViewModel;
 using System.Windows.Data;
 using System.Threading;
 using System.Diagnostics;
+using Ch.Epyx.WindMobile.WP7.Service;
 
 namespace Ch.Epyx.WindMobile.WP7.View
 {
@@ -32,7 +33,8 @@ namespace Ch.Epyx.WindMobile.WP7.View
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             string roomid = NavigationContext.QueryString["chatroomid"];
-            this.DataContext = new SocialViewModel(roomid);
+            var station = ServiceCentral.ListService.LastResult.Where((s) => s.Id == roomid).First();
+            this.DataContext = new SocialViewModel(station);
             ViewModel.MessageSent += MessageSent;
             ViewModel.MessageRefreshed += MessageRefreshed;
             ViewModel.RefreshMessages();            

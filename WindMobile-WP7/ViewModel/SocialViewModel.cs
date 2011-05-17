@@ -18,7 +18,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
     public class SocialViewModel : ApplicationViewModel
     {
-        public string PageTitle { get { return "social"; } }
+        public string PageTitle { get; private set; }
 
         public string ChatRoomId { get; private set; }
 
@@ -29,9 +29,10 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
 
         private SocialService SocialService { get; set; }
 
-        public SocialViewModel(string chatRoomId)
+        public SocialViewModel(IStationInfo stationInfo)
         {
-            ChatRoomId = chatRoomId;
+            ChatRoomId = stationInfo.Id;
+            PageTitle = stationInfo.Name;
             this.MessageSent += MessageSentHandler;
             SocialService = new SocialService();
             SocialService.ErrorOccured += (s, e) =>

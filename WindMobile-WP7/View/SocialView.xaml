@@ -26,7 +26,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding ApplicationTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding PageTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
             <!--<TextBlock x:Name="PageTitle" Text="{Binding PageTitle}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>-->
         </StackPanel>
 
@@ -93,7 +93,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Images/Buttons/appbar.feature.send.rest.png" Text="envoyer" Click="Send"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/Buttons/appbar.refresh.rest.png" Text="rafraichir" Click="Refresh"/>
+            <!--<shell:ApplicationBarIconButton IconUri="/Images/Buttons/appbar.refresh.rest.png" Text="rafraichir" Click="Refresh"/>-->
             <!--<shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
