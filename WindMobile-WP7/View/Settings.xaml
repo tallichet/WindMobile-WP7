@@ -38,6 +38,11 @@
         <!--ContentPanel - place additional content here-->
         <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
+                <TextBlock Text="Pseudo" Style="{StaticResource PhoneTextSmallStyle}"/>
+                <TextBox InputScope="EmailNameOrAddress"
+                    Text="{Binding Source={StaticResource ViewModel}, Path=Pseudo, Mode=TwoWay}" />
+
+
                 <TextBlock Text="Nom d'utilisateur" Style="{StaticResource PhoneTextSmallStyle}"/>
                 <TextBox InputScope="EmailNameOrAddress"
                     Text="{Binding Source={StaticResource ViewModel}, Path=Username, Mode=TwoWay}" />

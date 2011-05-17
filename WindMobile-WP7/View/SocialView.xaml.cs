@@ -12,6 +12,8 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Ch.Epyx.WindMobile.WP7.ViewModel;
 using System.Windows.Data;
+using System.Threading;
+using System.Diagnostics;
 
 namespace Ch.Epyx.WindMobile.WP7.View
 {
@@ -39,7 +41,9 @@ namespace Ch.Epyx.WindMobile.WP7.View
         public void Send(object sender, EventArgs args)
         {
             BindingExpression be = textboxNewMessage.GetBindingExpression(TextBox.TextProperty);
-            be.UpdateSource();            
+            be.UpdateSource();
+
+            this.Focus();
             
             ViewModel.SendMessage();
         }
@@ -49,14 +53,15 @@ namespace Ch.Epyx.WindMobile.WP7.View
             ViewModel.RefreshMessages();
         }
 
-        private void MessageSent(object sender, EventArgs args)
+        private void MessageSent(object sender, MessageSentEventArgs args)
         {
-
+            
         }
 
         private void MessageRefreshed(object sender, EventArgs args)
         {
-            this.ListBoxMessage.ScrollIntoView(this.ListBoxMessage.Items.Last());
+            ListBoxMessage.UpdateLayout();
+            ListBoxMessage.ScrollIntoView(ListBoxMessage.Items.Last());
         }
     }
 }

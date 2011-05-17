@@ -38,7 +38,7 @@
             </Grid.RowDefinitions>
 
             
-            <TextBlock Text="{Binding LastError}" />
+            <!--<TextBlock Text="{Binding LastError}" />-->
             
             <ListBox Grid.Row="0" ItemsSource="{Binding Path=LatestMessages}" Name="ListBoxMessage" MinHeight="0"  >
                 <ListBox.ItemContainerStyle>
@@ -64,7 +64,8 @@
                             <TextBlock Grid.Row="1"
                                        Margin="5"
                                         Text="{Binding Text}"
-                                       TextWrapping="Wrap"/>
+                                       TextWrapping="Wrap"
+                                       Foreground="{StaticResource PhoneForegroundBrush}"/>
                                 
                             <TextBlock Grid.Row="2"
                                        Margin="5"
@@ -76,14 +77,15 @@
                 </ListBox.ItemTemplate>                
                 
             </ListBox>
-
+            
             <TextBox x:Name="textboxNewMessage"
                      Grid.Row="1" 
                      AcceptsReturn="True"
                      Margin="50, 5, 5, 5"
                      Text="{Binding Path=NewMessage, Mode=TwoWay}"
                      InputScope="Chat">
-            </TextBox>            
+            </TextBox>
+
         </Grid>
     </Grid>
  

@@ -55,6 +55,27 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             }
         }
 
+        public static string PseudoStatic
+
+        {
+            get
+            {
+                string pseudo;
+                if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<string>("pseudo", out pseudo))
+                {
+                    return pseudo;
+                }
+                else
+                {
+                    return "cedric";
+                }
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["password"] = value;
+            }
+        }
+
         public static ICredentials Credentials
         {
             get { return new NetworkCredential(UsernameStatic, PasswordStatic); }
@@ -72,10 +93,17 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             set { PasswordStatic = value; }
         }
 
+        public string Pseudo
+        {
+            get { return PseudoStatic; }
+            set { PseudoStatic = value; }
+        }
+
         public string PageTitle
         {
             get { return "paramètres"; }
         }
+
         
     }
 }

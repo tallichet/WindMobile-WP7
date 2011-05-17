@@ -22,7 +22,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
 
         public string ChatRoomId { get; private set; }
 
-        public event EventHandler MessageSent;
+        public event EventHandler<MessageSentEventArgs> MessageSent;
         public event EventHandler MessageRefreshed;
 
         public Visibility ShowProgress { get; private set; }
@@ -32,6 +32,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         public SocialViewModel(string chatRoomId)
         {
             ChatRoomId = chatRoomId;
+            this.MessageSent += MessageSentHandler;
             SocialService = new SocialService();
             SocialService.ErrorOccured += (s, e) =>
             {
@@ -85,18 +86,19 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             sendJob.JobCompleted += (s, e) =>
                 {
                     this.RefreshMessages();
-                    this.NewMessage = "";
+                    RaiseMessageSent(NewMessage);
+                    this.NewMessage = String.Empty;
                     RaisePropertyChanged("NewMessage");
-                    RaiseMessageSent();
+                    
                 };
             sendJob.Execute(new SendMessageData() { ChatRoomId = this.ChatRoomId, Message = NewMessage });
         }
 
-        protected void RaiseMessageSent()
+        protected void RaiseMessageSent(string message)
         {
             if (MessageSent != null)
             {
-                MessageSent(this, new EventArgs());
+                MessageSent(this, new MessageSentEventArgs(message));
             }
         }
 
@@ -106,6 +108,12 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             {
                 MessageRefreshed(this, new EventArgs());
             }
+        }
+
+        private void MessageSentHandler(object sender, MessageSentEventArgs args)
+        {
+            SocialService.LastResult.Add(args.Message);
+            RaisePropertyChanged("LatestMessages");
         }
 
         private class SendMessageData : ISendMessage
@@ -140,6 +148,45 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         }
 
         
+    }
+
+
+
+    public class MessageSentEventArgs : EventArgs
+    {
+        public ISocialMessage Message { get; private set; }
+
+        public MessageSentEventArgs(string message)
+        {
+            this.Message = new SocialMessage()
+            {
+                Date = DateTime.Now,
+                Pseudo = SettingsViewModel.PseudoStatic,
+                Text = message
+            };
+        }
+
+
+        class SocialMessage : ISocialMessage
+        {
+            public DateTime Date
+            {
+                get;
+                set;
+            }
+
+            public string Pseudo
+            {
+                get;
+                set;
+            }
+
+            public string Text
+            {
+                get;
+                set;
+            }
+        }
     }
 
     
