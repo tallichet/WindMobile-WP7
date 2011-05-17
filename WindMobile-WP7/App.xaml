@@ -6,6 +6,8 @@
     <converter:MaintenanceStatusToSolidColorBrushConverter x:Key="MaintenanceStatusConverter" />
     <converter:StationInfoToGeoCoordinateConverter x:Key="StationInfoToGeoCoordinateConverter" />
     <converter:TrendToColorConverter x:Key="TrendToColorConverter" />
+    <converter:DateToMessageDateFormatConverter x:Key="DateToMessageDateFormatConverter" />
+      
     <Style TargetType="Button" x:Key="InvisibleButton">
       <Setter Property="Padding" Value="0" />
       <Setter Property="Margin" Value="0" />

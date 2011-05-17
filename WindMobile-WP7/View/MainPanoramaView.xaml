@@ -131,6 +131,15 @@
             </controls:PanoramaItem>
         </controls:Panorama>
 
+        <Rectangle Fill="Black" Height="75" Visibility="{Binding ProgressVisibility}" VerticalAlignment="Top">
+            <Rectangle.OpacityMask>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Black" Offset="-.5" />
+                    <GradientStop Color="Transparent" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.OpacityMask>            
+        </Rectangle>
+        
         <toolkit:PerformanceProgressBar Visibility="{Binding ProgressVisibility}"  IsIndeterminate="True" 
                                         VerticalAlignment="Top"/>
 

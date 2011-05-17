@@ -32,6 +32,7 @@ namespace Ch.Epyx.WindMobile.WP7.View
             string roomid = NavigationContext.QueryString["chatroomid"];
             this.DataContext = new SocialViewModel(roomid);
             ViewModel.MessageSent += MessageSent;
+            ViewModel.MessageRefreshed += MessageRefreshed;
             ViewModel.RefreshMessages();            
         }
 
@@ -43,9 +44,19 @@ namespace Ch.Epyx.WindMobile.WP7.View
             ViewModel.SendMessage();
         }
 
+        public void Refresh(object sender, EventArgs args)
+        {
+            ViewModel.RefreshMessages();
+        }
+
         private void MessageSent(object sender, EventArgs args)
         {
-            this.ListBoxMessage.Focus(); // remove focus from the text box to hide the keyboard
+
+        }
+
+        private void MessageRefreshed(object sender, EventArgs args)
+        {
+            this.ListBoxMessage.ScrollIntoView(this.ListBoxMessage.Items.Last());
         }
     }
 }

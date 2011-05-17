@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -19,7 +20,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
+
+        <toolkit:PerformanceProgressBar x:Name="ProgressBar" Visibility="{Binding ShowProgress}" IsIndeterminate="True" VerticalAlignment="Top"/>
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
@@ -37,15 +40,15 @@
             
             <TextBlock Text="{Binding LastError}" />
             
-            <ListBox Grid.Row="0" ItemsSource="{Binding Path=LatestMessages}" Name="ListBoxMessage" MinHeight="0" >
+            <ListBox Grid.Row="0" ItemsSource="{Binding Path=LatestMessages}" Name="ListBoxMessage" MinHeight="0"  >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListBox.ItemContainerStyle>
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
+                <ListBox.ItemTemplate>                                        
+                    <DataTemplate>                       
                         <Grid Margin="5,5,50,5" Background="{StaticResource PhoneAccentBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -65,14 +68,15 @@
                                 
                             <TextBlock Grid.Row="2"
                                        Margin="5"
-                                        Text="{Binding Date}" 
+                                        Text="{Binding Date, Converter={StaticResource DateToMessageDateFormatConverter}}" 
                                        TextWrapping="Wrap"
                                         Foreground="{StaticResource PhoneBackgroundBrush}"/>
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>                    
+                </ListBox.ItemTemplate>                
+                
             </ListBox>
-            
+
             <TextBox x:Name="textboxNewMessage"
                      Grid.Row="1" 
                      AcceptsReturn="True"
@@ -86,7 +90,8 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button_send.png" Text="Send" Click="Send"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Buttons/appbar.feature.send.rest.png" Text="envoyer" Click="Send"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Buttons/appbar.refresh.rest.png" Text="rafraichir" Click="Refresh"/>
             <!--<shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="MenuItem 1"/>

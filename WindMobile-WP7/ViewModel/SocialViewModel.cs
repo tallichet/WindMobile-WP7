@@ -23,6 +23,9 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         public string ChatRoomId { get; private set; }
 
         public event EventHandler MessageSent;
+        public event EventHandler MessageRefreshed;
+
+        public Visibility ShowProgress { get; private set; }
 
         private SocialService SocialService { get; set; }
 
@@ -34,14 +37,24 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             {
                 MessageBox.Show("Impossible de récupérer les messages");
                 RaisePropertyChanged("LastError");
+
+                ShowProgress = Visibility.Collapsed;
+                RaisePropertyChanged("ShowProgress");
             };
-            SocialService.LastResultChanged += (s, e) => 
-                RaisePropertyChanged("LatestMessages");
+            SocialService.LastResultChanged += (s, e) =>
+                {
+                    RaisePropertyChanged("LatestMessages");
+                    ShowProgress = Visibility.Collapsed;
+                    RaisePropertyChanged("ShowProgress");
+                    RaiseMessageRefreshed();
+                };
         }
 
         public void RefreshMessages()
         {
             SocialService.Refresh(ChatRoomId);
+            ShowProgress = Visibility.Visible;
+            RaisePropertyChanged("ShowProgress");
         }
 
         public List<ISocialMessage> LatestMessages
@@ -87,6 +100,14 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             }
         }
 
+        protected void RaiseMessageRefreshed()
+        {
+            if (MessageRefreshed != null)
+            {
+                MessageRefreshed(this, new EventArgs());
+            }
+        }
+
         private class SendMessageData : ISendMessage
         {
 
@@ -117,6 +138,8 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                 }
             }
         }
+
+        
     }
 
     
