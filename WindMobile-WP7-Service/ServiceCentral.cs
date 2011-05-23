@@ -12,7 +12,7 @@ namespace Ch.Epyx.WindMobile.WP7.Service
         private static ListStationInfoService listService;
         private static AutoCreateIndexer<IStationInfo, StationDataService> dataServices;
         private static AutoCreateIndexer<IStationInfo, StationChartService> chartServices;
-        private static System.Device.Location.GeoCoordinateWatcher coordinateWatcher;
+        //private static System.Device.Location.GeoCoordinateWatcher coordinateWatcher;
 
         public static ListStationInfoService ListService
         {
@@ -79,21 +79,21 @@ namespace Ch.Epyx.WindMobile.WP7.Service
             }
         }
 
-        public static System.Device.Location.GeoCoordinateWatcher GeoCoordinateWatcher
-        {
-            get
-            {
-                if (coordinateWatcher == null)
-                {
-                    coordinateWatcher = new System.Device.Location.GeoCoordinateWatcher();
-                    if (coordinateWatcher.Status != System.Device.Location.GeoPositionStatus.Disabled)
-                    {
-                        coordinateWatcher.Start();
-                    }
-                }
-                return coordinateWatcher;
-            }
-        }
+        //public static System.Device.Location.GeoCoordinateWatcher GeoCoordinateWatcher
+        //{
+        //    get
+        //    {
+        //        if (coordinateWatcher == null)
+        //        {
+        //            coordinateWatcher = new System.Device.Location.GeoCoordinateWatcher();
+        //            if (coordinateWatcher.Status != System.Device.Location.GeoPositionStatus.Disabled)
+        //            {
+        //                coordinateWatcher.Start();
+        //            }
+        //        }
+        //        return coordinateWatcher;
+        //    }
+        //}
 
         public static void SaveState(IDictionary<string, object> state)
         {
