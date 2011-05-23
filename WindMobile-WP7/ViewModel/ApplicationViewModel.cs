@@ -37,14 +37,14 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         {
             get
             {
-                if (ServiceCentral.GeoCoordinateWatcher.Position.Location.IsUnknown)
-                {
+                //if (ServiceCentral.GeoCoordinateWatcher.Position.Location.IsUnknown)
+                //{
                     return new GeoCoordinate(46.681609, 6.723654);
-                }
-                else
-                {
-                    return ServiceCentral.GeoCoordinateWatcher.Position.Location;
-                }
+                //}
+                //else
+                //{
+                //    return ServiceCentral.GeoCoordinateWatcher.Position.Location;
+                //}
             }
         }
     }
