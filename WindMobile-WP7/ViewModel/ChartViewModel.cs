@@ -15,6 +15,7 @@ using GalaSoft.MvvmLight.Command;
 using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
 using Ch.Epyx.WindMobile.WP7.Service;
 using System.Collections.Generic;
+using Ch.Epyx.WindMobile.WP7.Resources;
 
 namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
@@ -56,7 +57,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                         };
                     chartService.ErrorOccured += (s, e) =>                        
                         {
-                            MessageBox.Show("Impossible de récupérer les données pour " + StationInfo.Name);
+                            MessageBox.Show(String.Format(AppResources.Error_NoDataForStation, StationInfo.Name));
                             RaisePropertyChanged("ErrorMessage");
                         };
                 }

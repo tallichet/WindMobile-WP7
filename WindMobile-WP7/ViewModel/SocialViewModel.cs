@@ -13,6 +13,7 @@ using Ch.Epyx.WindMobile.WP7.Model;
 using System.Collections.Generic;
 using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
 using Ch.Epyx.WindMobile.WP7.Service.Job;
+using Ch.Epyx.WindMobile.WP7.Resources;
 
 namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
@@ -37,7 +38,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             SocialService = new SocialService();
             SocialService.ErrorOccured += (s, e) =>
             {
-                MessageBox.Show("Impossible de récupérer les messages");
+                MessageBox.Show(AppResources.Error_NoMessage);
                 RaisePropertyChanged("LastError");
 
                 ShowProgress = Visibility.Collapsed;

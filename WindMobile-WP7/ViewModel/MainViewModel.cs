@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls.Maps;
 using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
 using Ch.Epyx.WindMobile.WP7.Service;
 using System.Windows;
+using Ch.Epyx.WindMobile.WP7.Resources;
 
 namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
@@ -40,7 +41,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         {
             get
             {
-                return "station list";
+                return AppResources.PageName_StationList;
             }
         }
 
@@ -59,9 +60,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                     };
                     listService.ErrorOccured += (s, e) =>
                     {
-                        MessageBox.Show(@"Une erreur s'est produite. 
-Le réseau n'est peut-être pas accessible.
-Veuillez réessayer plus tard");
+                        MessageBox.Show(AppResources.Error_Network);
                     };
                 }
                 return listService;

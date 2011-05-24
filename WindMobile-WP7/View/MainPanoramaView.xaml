@@ -55,7 +55,7 @@
             </controls:Panorama.Background>
             
             <!-- stations -->
-            <controls:PanoramaItem Header="stations">
+            <controls:PanoramaItem Header="{Binding Path=Localizedresources.Header_Stations, Source={StaticResource LocalizedStrings}, Mode=OneTime}">
                 <ListBox ItemsSource="{Binding StationInfoList}" 
                          SelectedItem="{Binding CurrentStationInfo, Mode=TwoWay}"
                          toolkit:TiltEffect.IsTiltEnabled="True"
@@ -81,8 +81,10 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="carte" Style="{StaticResource PhoneTextTitle1Style}" Grid.Column="0"/>
-                        <HyperlinkButton Content="plein écran" NavigateUri="/View/MapView.xaml"
+                        <TextBlock Text="{Binding Path=Localizedresources.Header_Map, Source={StaticResource LocalizedStrings}, Mode=OneTime}" 
+                                   Style="{StaticResource PhoneTextTitle1Style}" Grid.Column="0"/>
+                        <HyperlinkButton Content="{Binding Path=Localizedresources.Full_Screen, Source={StaticResource LocalizedStrings}, Mode=OneTime}" 
+                                         NavigateUri="/View/MapView.xaml"
                                          Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                     </Grid>
                 </controls:PanoramaItem.Header>
@@ -111,7 +113,8 @@
             <controls:PanoramaItem Header="menu">
                 <ScrollViewer>
                     <StackPanel toolkit:TiltEffect.IsTiltEnabled="True">
-                        <HyperlinkButton NavigateUri="/view/MapView.xaml" Content="carte"
+                        <HyperlinkButton NavigateUri="/view/MapView.xaml" 
+                                         Content="{Binding Path=Localizedresources.Menu_Map, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
                                          HorizontalAlignment="Left"                                         
                                          Style="{StaticResource InvisibleHyperlingButton}"
                                          />
@@ -123,8 +126,9 @@
                         <HyperlinkButton NavigateUri="http://www.la-haut.info" TargetName="La-Haut.info" Content="la-haut.info"
                                          Style="{StaticResource InvisibleHyperlingButton}" />
 
-                        <!--<HyperlinkButton NavigateUri="/view/Settings.xaml" Content="paramètres"
-                                         Style="{StaticResource InvisibleHyperlingButton}" />-->
+                        <HyperlinkButton NavigateUri="/view/Settings.xaml" 
+                                         Content="{Binding Path=Localizedresources.Menu_Settings, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
+                                         Style="{StaticResource InvisibleHyperlingButton}" />
                             
                     </StackPanel>
                 </ScrollViewer>

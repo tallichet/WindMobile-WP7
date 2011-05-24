@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight;
+using Ch.Epyx.WindMobile.WP7.Resources;
 
 namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
@@ -20,7 +21,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
         {
             get
             {
-                return "exception";
+                return AppResources.PageName_Excpetion;
             }
         }
 

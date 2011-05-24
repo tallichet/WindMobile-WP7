@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Ch.Epyx.WindMobile.WP7.Service.TypedServices;
 using Ch.Epyx.WindMobile.WP7.Service;
 using System.Windows;
+using Ch.Epyx.WindMobile.WP7.Resources;
 
 namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
@@ -82,10 +83,10 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
             {
                 if (StationData == null) return "";
                 var span = DateTime.Now - StationData.LastUpdate;
-                if (span.Days > 0) return span.Days + " jours";
-                if (span.Hours > 0) return span.Hours + " heures";
-                if (span.Minutes > 0) return span.Minutes + " minutes";
-                return "quelques instants";
+                if (span.Days > 0) return String.Format(AppResources.TimeAgo_Day, span.Days);
+                if (span.Hours > 0) return String.Format(AppResources.TimeAgo_Hour, span.Hours);
+                if (span.Minutes > 0) return String.Format(AppResources.TimeAgo_Minutes, span.Minutes);
+                return String.Format (AppResources.TimeAgo_Seconds, span.Seconds);
             }
         }
 
@@ -104,7 +105,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
                     };
                     dataService.ErrorOccured += (s, e) =>
                     {
-                        MessageBox.Show("Impossible de récupérer les infos de la balise de " + this.StationInfo.Name);
+                        MessageBox.Show(String.Format(AppResources.Error_NoDataForStation, this.StationInfo.Name));
                         RaisePropertyChanged("ErrorMessage");                        
                     };
                 }

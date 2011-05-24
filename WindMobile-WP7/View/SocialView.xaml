@@ -92,7 +92,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/Buttons/appbar.feature.send.rest.png" Text="envoyer" Click="Send"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Buttons/appbar.feature.send.rest.png" Text="envoyer" Click="Send" />
             <!--<shell:ApplicationBarIconButton IconUri="/Images/Buttons/appbar.refresh.rest.png" Text="rafraichir" Click="Refresh"/>-->
             <!--<shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
             <shell:ApplicationBar.MenuItems>

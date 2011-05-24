@@ -38,16 +38,19 @@
         <!--ContentPanel - place additional content here-->
         <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <TextBlock Text="Pseudo" Style="{StaticResource PhoneTextSmallStyle}"/>
+                <TextBlock Text="{Binding Path=Localizedresources.Settings_Nickname, Source={StaticResource LocalizedStrings}, Mode=OneTime}" 
+                           Style="{StaticResource PhoneTextSmallStyle}"/>
                 <TextBox InputScope="EmailNameOrAddress"
                     Text="{Binding Source={StaticResource ViewModel}, Path=Pseudo, Mode=TwoWay}" />
 
 
-                <TextBlock Text="Nom d'utilisateur" Style="{StaticResource PhoneTextSmallStyle}"/>
+                <TextBlock Text="{Binding Path=Localizedresources.Settings_UserName, Source={StaticResource LocalizedStrings}, Mode=OneTime}" 
+                           Style="{StaticResource PhoneTextSmallStyle}"/>
                 <TextBox InputScope="EmailNameOrAddress"
                     Text="{Binding Source={StaticResource ViewModel}, Path=Username, Mode=TwoWay}" />
 
-                <TextBlock Text="Mot de passe" Style="{StaticResource PhoneTextSmallStyle}"/>
+                <TextBlock Text="{Binding Path=Localizedresources.Settings_Password, Source={StaticResource LocalizedStrings}, Mode=OneTime}" 
+                           Style="{StaticResource PhoneTextSmallStyle}"/>
                 <PasswordBox Password="{Binding Source={StaticResource ViewModel}, Path=Password, Mode=TwoWay}" />                
             </StackPanel>
         </ScrollViewer>

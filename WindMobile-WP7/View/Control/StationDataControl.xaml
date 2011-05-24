@@ -43,21 +43,20 @@
 				<ColumnDefinition Width="0.181*"/>
 			</Grid.ColumnDefinitions>
 
-            <TextBlock Text="Il y a " VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource PhoneSubtleBrush}" Grid.Row="0" />
             <TextBlock Text="{Binding TimeAgo}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Right" />
 
-            <TextBlock Text="Altitude" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource PhoneSubtleBrush}" Grid.Row="1" />
+            <TextBlock Text="{Binding Path=Localizedresources.StationData_Altitud, Source={StaticResource LocalizedStrings}, Mode=OneTime}" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource PhoneSubtleBrush}" Grid.Row="1" />
 			<TextBlock Text="{Binding StationInfo.Altitude, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1"  Grid.Column="2" Foreground="{StaticResource PhoneSubtleBrush}" />
-			
-			<TextBlock Text="Vent" d:LayoutOverrides="Width, Height" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <TextBlock Text="{Binding Path=Localizedresources.StationData_Wind, Source={StaticResource LocalizedStrings}, Mode=OneTime}" d:LayoutOverrides="Width, Height" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			<TextBlock Text="{Binding StationData.WindAverage, Mode=OneWay}" HorizontalAlignment="Right" FontSize="48" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="1"/>
-			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" Text="km/h" Foreground="{StaticResource PhoneSubtleBrush}" VerticalAlignment="Bottom"/>
-			
-			<TextBlock Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="Rafale" Foreground="{StaticResource PhoneSubtleBrush}" />
+            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" Text="{Binding Path=Localizedresources.StationData_Kmh, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="{StaticResource PhoneSubtleBrush}" VerticalAlignment="Bottom"/>
+
+            <TextBlock Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Path=Localizedresources.StationData_WindMax, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="{StaticResource PhoneSubtleBrush}" />
 			<TextBlock Text="{Binding StationData.WindMax, Mode=OneWay}" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" />
-			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="4" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}"/>
-			
-			<TextBlock Text="Tendance" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="4" Text="{Binding Path=Localizedresources.StationData_Kmh, Source={StaticResource LocalizedStrings}, Mode=OneTime}" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}"/>
+
+            <TextBlock Text="{Binding Path=Localizedresources.StationData_WindTrend, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Image x:Name="ImageTrend" Grid.Row="5" Grid.Column="2"
                    Width="45" Height="36" Margin="5" Stretch="Uniform" RenderTransformOrigin="0.5,0.5"  >  <!--Source="../Images/arrow_green.png">-->
                 <Image.RenderTransform>
@@ -71,26 +70,26 @@
                                     ChartPoints="{Binding Path=StationData.DirectionChartPoints}" />
             
             <Path Grid.ColumnSpan="5" Data="M0,180 L480,180" Height="1" Grid.Row="6" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" StrokeThickness="2" Stroke="{StaticResource PhoneForegroundBrush}"/>
-			
-            
-            <TextBlock Grid.Row="6" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Vent dernière heure"/>
-			<TextBlock Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Minimum" Foreground="{StaticResource PhoneSubtleBrush}" />
-			<TextBlock Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Moyenne" Foreground="{StaticResource PhoneSubtleBrush}"/>
-			<TextBlock Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Maximum" Foreground="{StaticResource PhoneSubtleBrush}"/>
+
+
+            <TextBlock Grid.Row="6" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Localizedresources.StationData_WindLastHour, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>
+            <TextBlock Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Localizedresources.StationData_Minimum, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="{StaticResource PhoneSubtleBrush}" />
+            <TextBlock Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Localizedresources.StationData_Average, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="{StaticResource PhoneSubtleBrush}"/>
+            <TextBlock Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Localizedresources.StationData_Maximum, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="{StaticResource PhoneSubtleBrush}"/>
 			<TextBlock Text="{Binding StationData.WindHistoryMin, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="7" FontSize="29.333"/>
             <TextBlock Text="{Binding StationData.WindHistoryAverage, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="8" FontSize="29.333"/>            
-            <TextBlock Text="{Binding StationData.WindHistoryMax, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="9" FontSize="29.333"/>			
-			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="7" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
-			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="8" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
-			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="9" Text="km/h" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+            <TextBlock Text="{Binding StationData.WindHistoryMax, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="9" FontSize="29.333"/>
+            <TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="7" Text="{Binding Path=Localizedresources.StationData_Kmh, Source={StaticResource LocalizedStrings}, Mode=OneTime}" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+            <TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="8" Text="{Binding Path=Localizedresources.StationData_Kmh, Source={StaticResource LocalizedStrings}, Mode=OneTime}" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+            <TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="9" Text="{Binding Path=Localizedresources.StationData_Kmh, Source={StaticResource LocalizedStrings}, Mode=OneTime}" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
 			<Path Grid.ColumnSpan="5" Data="M0,180 L480,180" Height="1" Grid.Row="10" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" StrokeThickness="2" Stroke="{StaticResource PhoneForegroundBrush}"/>
-			
-            
-            <TextBlock Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Air"/>
-			<TextBlock Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Température" Foreground="{StaticResource PhoneSubtleBrush}" Grid.ColumnSpan="3"/>
-			<TextBlock Grid.Row="12" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Humidité" Foreground="{StaticResource PhoneSubtleBrush}" Grid.ColumnSpan="3"/>
-			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="11" Text="degré" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
-			<TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="12" Text="% relatif" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+
+
+            <TextBlock Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Localizedresources.StationData_Air, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>
+            <TextBlock Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Localizedresources.StationData_Air_Temperature, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="{StaticResource PhoneSubtleBrush}" Grid.ColumnSpan="3"/>
+            <TextBlock Grid.Row="12" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Localizedresources.StationData_Air_Humidity, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="{StaticResource PhoneSubtleBrush}" Grid.ColumnSpan="3"/>
+            <TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="11" Text="{Binding Path=Localizedresources.StationData_Air_Degree, Source={StaticResource LocalizedStrings}, Mode=OneTime}" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
+            <TextBlock Grid.Column="4" HorizontalAlignment="Right" Grid.Row="12" Text="{Binding Path=Localizedresources.StationData_Air_Relative, Source={StaticResource LocalizedStrings}, Mode=OneTime}" VerticalAlignment="Center" Foreground="{StaticResource PhoneSubtleBrush}" d:LayoutOverrides="GridBox"/>
 			<TextBlock Text="{Binding StationData.AirTemperature, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="11" FontSize="29.333"/>
 			<TextBlock Text="{Binding StationData.AirHumidity, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3" Grid.Row="12" FontSize="29.333"/>
 		</Grid>

@@ -138,14 +138,14 @@
 
             <charting:LineSeries 
                 ItemsSource="{Binding Path=ChartData.WindMax.Values}" 
-                Title="Rafale"
+                Title="{Binding Path=Localizedresources.Chart_Title_Max, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
                 DependentValuePath="Value" IndependentValuePath="Date"
                 Foreground="Transparent">
             </charting:LineSeries>
 
             <charting:AreaSeries 
                 ItemsSource="{Binding Path=ChartData.WindAverage.Values}" 
-                Title="Moyenne"
+                Title="{Binding Path=Localizedresources.Chart_Title_Average, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
                 DependentValuePath="Value" IndependentValuePath="Date">
 
             </charting:AreaSeries>
@@ -155,15 +155,15 @@
                     Orientation="Vertical"
             Grid.Column="1" Grid.Row="1">
             <Button 
-                Content="1h"
+                Content="{Binding Path=Localizedresources.Chart_Button_1h, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
                 cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
                 cmd:ButtonBaseExtensions.CommandParameter="3600" />
             <Button 
-                Content="6h"
+                Content="{Binding Path=Localizedresources.Chart_Button_6h, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
                 cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
                 cmd:ButtonBaseExtensions.CommandParameter="21600" />
             <Button 
-                Content="24h"
+                Content="{Binding Path=Localizedresources.Chart_Button_24h, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
                 cmd:ButtonBaseExtensions.Command="{Binding RefreshCommand}"
                 cmd:ButtonBaseExtensions.CommandParameter="86400" />
         </StackPanel>

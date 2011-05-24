@@ -15,6 +15,8 @@ using System.Windows.Data;
 using System.Threading;
 using System.Diagnostics;
 using Ch.Epyx.WindMobile.WP7.Service;
+using Microsoft.Phone.Shell;
+using Ch.Epyx.WindMobile.WP7.Resources;
 
 namespace Ch.Epyx.WindMobile.WP7.View
 {
@@ -28,6 +30,8 @@ namespace Ch.Epyx.WindMobile.WP7.View
         public SocialView()
         {
             InitializeComponent();
+
+            (ApplicationBar.Buttons[0] as ApplicationBarIconButton).Text = AppResources.ApplicationBar_Send;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

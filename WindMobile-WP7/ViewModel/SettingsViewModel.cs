@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Ch.Epyx.WindMobile.WP7.Model;
 using System.IO.IsolatedStorage;
+using Ch.Epyx.WindMobile.WP7.Resources;
 
 namespace Ch.Epyx.WindMobile.WP7.ViewModel
 {
@@ -101,7 +102,7 @@ namespace Ch.Epyx.WindMobile.WP7.ViewModel
 
         public string PageTitle
         {
-            get { return "paramètres"; }
+            get { return AppResources.PageName_Settings; }
         }
 
         
