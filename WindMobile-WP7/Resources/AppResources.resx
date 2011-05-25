@@ -136,7 +136,7 @@
     <value>max</value>
   </data>
   <data name="Error_Network" xml:space="preserve">
-    <value>An error occured. \r\nThe network may not be available.\r\n Please restart later.</value>
+    <value>An error occured. \r\nThe network may not be available.\r\n Please retry later.</value>
   </data>
   <data name="Error_NoDataForStation" xml:space="preserve">
     <value>Unable to recover data for station {0}.</value>

@@ -115,7 +115,7 @@ namespace Ch.Epyx.WindMobile.WP7.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured. \r\nThe network may not be available.\r\n Please restart later..
+        ///   Looks up a localized string similar to An error occured. \r\nThe network may not be available.\r\n Please retry later..
         /// </summary>
         public static string Error_Network {
             get {

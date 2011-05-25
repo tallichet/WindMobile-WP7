@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplicationBar_Send" xml:space="preserve">
-    <value>envoyer</value>
+    <value>senden</value>
   </data>
   <data name="Chart_Button_1h" xml:space="preserve">
     <value>1h</value>
@@ -130,76 +130,76 @@
     <value>6h</value>
   </data>
   <data name="Chart_Title_Average" xml:space="preserve">
-    <value>moyenne</value>
+    <value>Durchschnitt</value>
   </data>
   <data name="Chart_Title_Max" xml:space="preserve">
-    <value>rafale</value>
+    <value>Maximum</value>
   </data>
   <data name="Error_Network" xml:space="preserve">
-    <value>Une erreur est survenue. \r\nIl n'y a peut-être pas de réseau disponible\r\nVeuillez réessayer plus tard.</value>
+    <value>Ein Fehler aufgetreten.\r\nDie Netzwerk möglicherweise nicht verfügbar.\r\nBitte versuchen Sie es später.</value>
   </data>
   <data name="Error_NoDataForStation" xml:space="preserve">
-    <value>Impossible de récupérer les données de la station {0}.</value>
+    <value>Kann nicht Daten für die Station {0} erholen.</value>
   </data>
   <data name="Error_NoMessage" xml:space="preserve">
-    <value>Impossible de récupérer des messages.\r\nIl n'y a peut-être pas de réseau disponible\r\nVeuillez réessayer plus tard.</value>
+    <value>Kann nicht sich zu erholen Nachricht. Überprüfen Sie Ihre Netzwerkverbindung und versuchen Sie es später erneut</value>
   </data>
   <data name="Full_Screen" xml:space="preserve">
-    <value>plein écran</value>
+    <value>vollbild</value>
   </data>
   <data name="Header_Map" xml:space="preserve">
-    <value>carte</value>
+    <value>karte</value>
   </data>
   <data name="Header_Stations" xml:space="preserve">
-    <value>stations</value>
+    <value>stationen</value>
   </data>
   <data name="Menu_Map" xml:space="preserve">
-    <value>carte</value>
+    <value>karte</value>
   </data>
   <data name="Menu_Settings" xml:space="preserve">
-    <value>paramètres</value>
+    <value>einstellungen</value>
   </data>
   <data name="PageName_Excpetion" xml:space="preserve">
     <value>exception</value>
   </data>
   <data name="PageName_Settings" xml:space="preserve">
-    <value>paramètres</value>
+    <value>einstellungen</value>
   </data>
   <data name="PageName_StationList" xml:space="preserve">
-    <value>liste des stations</value>
+    <value>stationslist</value>
   </data>
   <data name="Settings_Nickname" xml:space="preserve">
-    <value>Pseudo</value>
+    <value>Beiname</value>
   </data>
   <data name="Settings_Password" xml:space="preserve">
-    <value>Mot de passe</value>
+    <value>Passwort</value>
   </data>
   <data name="Settings_UserName" xml:space="preserve">
-    <value>Nom d'ulitlisateur</value>
+    <value>Benutzername</value>
   </data>
   <data name="StartionData_WindLastHour" xml:space="preserve">
-    <value>Vent pendant la derinère heure</value>
+    <value>Wind letzte Stunde</value>
   </data>
   <data name="StationData_Air" xml:space="preserve">
-    <value>Air</value>
+    <value>Luft</value>
   </data>
   <data name="StationData_Air_Degree" xml:space="preserve">
-    <value>degrès</value>
+    <value>grad</value>
   </data>
   <data name="StationData_Air_Humidity" xml:space="preserve">
-    <value>Humidité</value>
+    <value>Luftfeuchtigkeit</value>
   </data>
   <data name="StationData_Air_Relative" xml:space="preserve">
-    <value>% relatif</value>
+    <value>% relativen</value>
   </data>
   <data name="StationData_Air_Temperature" xml:space="preserve">
-    <value>Température</value>
+    <value>Temperatur</value>
   </data>
   <data name="StationData_Altitud" xml:space="preserve">
-    <value>Altitude</value>
+    <value>Höhe</value>
   </data>
   <data name="StationData_Average" xml:space="preserve">
-    <value>Moyenne</value>
+    <value>Durchschnitt</value>
   </data>
   <data name="StationData_Kmh" xml:space="preserve">
     <value>km/h</value>
@@ -211,24 +211,24 @@
     <value>Minimum</value>
   </data>
   <data name="StationData_Wind" xml:space="preserve">
-    <value>Vent</value>
+    <value>Wind</value>
   </data>
   <data name="StationData_WindMax" xml:space="preserve">
-    <value>Rafale</value>
+    <value>Maximum</value>
   </data>
   <data name="StationData_WindTrend" xml:space="preserve">
-    <value>Tendance</value>
+    <value>Tendenz</value>
   </data>
   <data name="TimeAgo_Day" xml:space="preserve">
-    <value>il y a {0} jours</value>
+    <value>Vor {0} Tagen</value>
   </data>
   <data name="TimeAgo_Hour" xml:space="preserve">
-    <value>il y a {0} heures</value>
+    <value>Vor {0} Houren</value>
   </data>
   <data name="TimeAgo_Minutes" xml:space="preserve">
-    <value>il y a {0} minutes</value>
+    <value>Vor {0} Minuten</value>
   </data>
   <data name="TimeAgo_Seconds" xml:space="preserve">
-    <value>il y a quelques secondes</value>
+    <value>gibt es ein paar Sekunden</value>
   </data>
 </root>
