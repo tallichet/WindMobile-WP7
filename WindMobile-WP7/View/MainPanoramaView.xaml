@@ -126,9 +126,9 @@
                         <HyperlinkButton NavigateUri="http://www.la-haut.info/windmobile-wp7/" TargetName="La-Haut.info" Content="la-haut.info"
                                          Style="{StaticResource InvisibleHyperlingButton}" />
 
-                        <HyperlinkButton NavigateUri="/view/Settings.xaml" 
+                        <!--<HyperlinkButton NavigateUri="/view/Settings.xaml" 
                                          Content="{Binding Path=Localizedresources.Menu_Settings, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
-                                         Style="{StaticResource InvisibleHyperlingButton}" />
+                                         Style="{StaticResource InvisibleHyperlingButton}" />-->
                             
                     </StackPanel>
                 </ScrollViewer>

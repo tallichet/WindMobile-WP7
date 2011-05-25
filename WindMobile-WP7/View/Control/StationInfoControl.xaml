@@ -75,9 +75,9 @@
                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
                    Style="{StaticResource PhoneTextSmallStyle}" />
 
-        <Button Style="{StaticResource ChatButtonStyle}"
+        <!--<Button Style="{StaticResource ChatButtonStyle}"
             Grid.RowSpan="2" Grid.Column="2" 
-            Content="+" Click="chatButtonClicked" />
+            Content="+" Click="chatButtonClicked" />-->
         
     </Grid>
 </UserControl>
