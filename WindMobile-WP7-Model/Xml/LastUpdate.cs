@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using System.Globalization;
 
 namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 {
@@ -23,7 +24,7 @@ namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 
         public DateTime Date
         {
-            get { return DateTime.Parse(_lastUpdate.Value); }
+            get { return DateTime.Parse(_lastUpdate.Value, CultureInfo.InvariantCulture.DateTimeFormat); }
         }
     }
 }

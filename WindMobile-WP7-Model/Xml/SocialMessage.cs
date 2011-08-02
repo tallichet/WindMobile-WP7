@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using System.Globalization;
 
 namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 {
@@ -12,7 +13,7 @@ namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 
         public DateTime Date
         {
-            get { return DateTime.Parse(element.Element("date").Value); }
+            get { return DateTime.Parse(element.Element("date").Value, CultureInfo.InvariantCulture.DateTimeFormat); }
         }
 
         public string Pseudo
