@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using System.Runtime.Serialization;
+using System.Globalization;
 
 namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 {
@@ -32,12 +33,12 @@ namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 
         public double Wgs84Longitude
         {
-            get { return double.Parse(element.Attribute("wgs84Longitude").Value); }
+            get { return double.Parse(element.Attribute("wgs84Longitude").Value, CultureInfo.InvariantCulture.NumberFormat); }
         }
 
         public double Wgs84Latitude
         {
-            get { return double.Parse(element.Attribute("wgs84Latitude").Value); }
+            get { return double.Parse(element.Attribute("wgs84Latitude").Value, CultureInfo.InvariantCulture.NumberFormat); }
         }
 
         public int DataValidity

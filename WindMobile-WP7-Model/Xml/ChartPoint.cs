@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using System.Globalization;
 
 namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 {
@@ -18,8 +19,8 @@ namespace Ch.Epyx.WindMobile.WP7.Model.Xml
 
         public ChartPoint(XElement element)
         {
-            Date = dt.AddMilliseconds(long.Parse(element.Element("date").Value));            
-            Value = double.Parse(element.Element("value").Value);
+            Date = dt.AddMilliseconds(long.Parse(element.Element("date").Value));
+            Value = double.Parse(element.Element("value").Value, CultureInfo.InvariantCulture.NumberFormat);
         }
 
         public DateTime Date
