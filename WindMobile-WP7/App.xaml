@@ -14,8 +14,6 @@
   <!--Application Resources-->
   <Application.Resources>
         <res:LocalizedStrings x:Key="LocalizedStrings" />
-
-
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
     <converter:MaintenanceStatusToSolidColorBrushConverter x:Key="MaintenanceStatusConverter" />
     <converter:StationInfoToGeoCoordinateConverter x:Key="StationInfoToGeoCoordinateConverter" />
