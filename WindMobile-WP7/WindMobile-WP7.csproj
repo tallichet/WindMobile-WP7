@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ch.Epyx.Common">
+      <HintPath>packages\Ch.Epyx.Common.1.0\lib\sl40-wp\Ch.Epyx.Common.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WP7, Version=3.0.0.27837, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLight.3.0.2\lib\sl3-wp\GalaSoft.MvvmLight.Extras.WP7.dll</HintPath>
     </Reference>
@@ -247,6 +250,7 @@
     <Content Include="Images\Buttons\button.refresh.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\gravatar-blue.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -150,6 +150,9 @@ namespace Ch.Epyx.WindMobile.WP7.Service.Job
             client.Headers[HttpRequestHeader.UserAgent] = Assembly.GetExecutingAssembly().FullName + "/" +
             System.Environment.OSVersion.Platform + "(" + System.Environment.OSVersion.Version + ") CLR:" +
             System.Environment.Version;
+
+            client.Headers["Cache-Control"] = "no-cache";
+            client.Headers["Pragma"] = "no-cache";            
         }
 
         private void InitWorker()

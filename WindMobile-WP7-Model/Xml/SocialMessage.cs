@@ -24,5 +24,10 @@ namespace Ch.Epyx.WindMobile.WP7.Model.Xml
         {
             get { return element.Element("text").Value; }
         }
+
+        public string EmailHash
+        {
+            get { return element.Element("emailHash").Value; }
+        }
     }
 }
