@@ -3,5 +3,7 @@
   <PropertyGroup>
     <FullDeploy>true</FullDeploy>
     <ProjectView>ProjectFiles</ProjectView>
+    <CurrentDeployCmdId />
+    <CurrentDeployID />
   </PropertyGroup>
 </Project>
