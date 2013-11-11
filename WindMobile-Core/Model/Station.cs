@@ -16,7 +16,7 @@ namespace Ch.Epyx.WindMobile.Core.Model
         [DataMember(Name="status")]
         public string StatusString { get; set; }
 
-        [DataMember(Name="loc")]
+        [DataMember(Name = "loc")]
         public Location Location { get; set; }
 
         [DataMember(Name="short")]
@@ -34,7 +34,7 @@ namespace Ch.Epyx.WindMobile.Core.Model
         [DataMember(Name="cat")]
         public string Category { get; set; }
 
-        [DataMember(Name="seen")]
+        [DataMember(Name = "seen")]
         public long LastSeen { get; set; }
 
         [DataMember(Name = "alt")]
@@ -43,8 +43,8 @@ namespace Ch.Epyx.WindMobile.Core.Model
         [DataMember(Name="timezone")]
         public string TimeZoneString { get; set; }
 
-        [DataMember(Name="last")]
-        public StationData Last { get; set; }
+        //[DataMember(Name="last")]
+        //public StationData Last { get; set; }
 
         [DataMember(Name="url")]
         public string Url { get; set; }
@@ -73,21 +73,30 @@ namespace Ch.Epyx.WindMobile.Core.Model
         public int WindDirection { get; set; }
 
         [DataMember(Name="temp")]
-        public double Temperature { get; set; }
+        public double? Temperature { get; set; }
 
         [DataMember(Name = "w-min")]
-        public int WindMin { get; set; }
+        public double?[] WindMin { get; set; }
         [DataMember(Name = "w-max")]
-        public int WindMax { get; set; }
+        public double? WindMax { get; set; }
 
         [DataMember(Name = "w-avg")]
-        public int WindAverage { get; set; }
+        public double? WindAverage { get; set; }
 
         [DataMember(Name = "w-inst")]
-        public int WindInstant { get; set; }
+        public double?[] WindInstant { get; set; }
 
 
         [DataMember(Name="hum")]
-        public double Humidity { get; set; }
+        public double? Humidity { get; set; }
+    }
+
+    [DataContract]
+    public class TextSearchResult
+    {
+        [DataMember(Name="score")]
+        public double Score { get; set; }
+        [DataMember(Name="obj")]
+        public Station Station { get; set; }
     }
 }

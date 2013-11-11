@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -17,6 +18,38 @@ namespace Ch.Epyx.WindMobile.Core.Service
         {
             var uri = new Uri(BacklogManApiBaseUri, "stations/?limit=" + limit);
             return DownloadDocument<List<Core.Model.Station>>(uri);
+        }
+
+        public Task<List<Core.Model.Station>> SearchStations(string searchCriteria)
+        {
+            var uri = new Uri(BacklogManApiBaseUri, "stations/?search=" + searchCriteria);
+            return DownloadDocument<List<Core.Model.Station>>(uri);
+        }
+
+        public Task<List<Core.Model.Station>> GeoSearchStations(double latitude, double longitude, long distanceInMeters)
+        {
+            var uri = new Uri(BacklogManApiBaseUri, string.Format("stations/?lat={0}&lon={1}&distance={2}", 
+                latitude.ToString(CultureInfo.InvariantCulture),
+                longitude.ToString(CultureInfo.InvariantCulture), 
+                distanceInMeters));
+            return DownloadDocument<List<Core.Model.Station>>(uri);
+        }
+        public async Task<List<Core.Model.Station>> TextSearchStations(string searchCriteria)
+        {
+            var uri = new Uri(BacklogManApiBaseUri, "stations/?word=" + searchCriteria);
+            return (await DownloadDocument<List<Core.Model.TextSearchResult>>(uri)).Select(r => r.Station).ToList();
+        }
+
+        public Task<Core.Model.Station> GetStation(string stationId)
+        {
+            var uri = new Uri(BacklogManApiBaseUri, "stations/" + stationId + "/");
+            return DownloadDocument<Core.Model.Station>(uri);
+        }
+
+        public Task<List<Core.Model.StationData>> GetStationData(string stationId, TimeSpan duration)
+        {
+            var uri = new Uri(BacklogManApiBaseUri, "stations/" + stationId + "/historic/?duration=" + (long)duration.TotalSeconds);
+            return DownloadDocument<List<Core.Model.StationData>>(uri);
         }
 
         #region Network methods
