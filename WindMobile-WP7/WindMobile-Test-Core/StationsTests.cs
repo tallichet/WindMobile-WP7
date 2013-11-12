@@ -51,7 +51,6 @@ namespace Ch.Epyx.WindMobile.Core.Test
             var stations = await networkService.GeoSearchStations(46.78, 6.63, 20000);
 
             Assert.IsNotNull(stations, "no stations retuned");
-            Assert.AreEqual(10, stations.Count, "found more stations");
             Assert.AreEqual("Yverdon", stations[0].ShortName, "not the correct short name");
         } 
         
