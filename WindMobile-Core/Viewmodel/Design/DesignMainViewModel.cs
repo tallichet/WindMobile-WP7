@@ -11,8 +11,8 @@ namespace Ch.Epyx.WindMobile.Core.Viewmodel.Design
     {
         public DesignMainViewModel()
         {
-            Stations = new System.Collections.ObjectModel.ObservableCollection<Model.Station>();
-            Stations.Add(new Model.Station()
+            CloseStations = new System.Collections.ObjectModel.ObservableCollection<Model.Station>();
+            CloseStations.Add(new Model.Station()
             {
                 ShortName = "Yverdon",
                 DisplayName = "Yverdon-les-bains",
@@ -20,7 +20,7 @@ namespace Ch.Epyx.WindMobile.Core.Viewmodel.Design
                 Altitude = 458,
                 StatusString = "green"
             });
-            Stations.Add(new Model.Station()
+            CloseStations.Add(new Model.Station()
             {
                 ShortName = "Suchet",
                 DisplayName = "Sommet du suchet",
@@ -30,7 +30,7 @@ namespace Ch.Epyx.WindMobile.Core.Viewmodel.Design
             });
         }
 
-        public System.Collections.ObjectModel.ObservableCollection<Model.Station> Stations
+        public System.Collections.ObjectModel.ObservableCollection<Model.Station> CloseStations
         {
             get; private set;
         }
@@ -39,6 +39,28 @@ namespace Ch.Epyx.WindMobile.Core.Viewmodel.Design
         public bool InProgress
         {
             get { return true; }
+        }
+
+        public Model.Station CurrentStation
+        {
+            get
+            {
+                return CloseStations.First();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public List<Model.StationData> CurrentStationData
+        {
+            get; private set;
+        }
+
+        public void SetLocation(Model.Location CurrentLocation)
+        {
+            throw new NotImplementedException();
         }
     }
 }

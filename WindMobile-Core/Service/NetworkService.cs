@@ -26,11 +26,11 @@ namespace Ch.Epyx.WindMobile.Core.Service
             return DownloadDocument<List<Core.Model.Station>>(uri);
         }
 
-        public Task<List<Core.Model.Station>> GeoSearchStations(double latitude, double longitude, long distanceInMeters)
+        public Task<List<Core.Model.Station>> GeoSearchStations(Model.Location location, long distanceInMeters)
         {
             var uri = new Uri(BacklogManApiBaseUri, string.Format("stations/?lat={0}&lon={1}&distance={2}", 
-                latitude.ToString(CultureInfo.InvariantCulture),
-                longitude.ToString(CultureInfo.InvariantCulture), 
+                location.Latitude.ToString(CultureInfo.InvariantCulture),
+                location.Longitude.ToString(CultureInfo.InvariantCulture), 
                 distanceInMeters));
             return DownloadDocument<List<Core.Model.Station>>(uri);
         }
@@ -70,12 +70,6 @@ namespace Ch.Epyx.WindMobile.Core.Service
         {
             var s = await Client.GetStringAsync(url);
             return Helper.Deserialize<T>(s);
-            //if (Seriliazers.ContainsKey(typeof(T)) == false)
-            //{
-            //    Seriliazers.Add(typeof(T), new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(T)));
-            //}
-            //var serializer = Seriliazers[typeof(T)];
-            //return (T)serializer.ReadObject(s);
         }
 
         private async Task<R> PostOrPutData<T, R>(Uri uri, T objectToSend, bool post = true)

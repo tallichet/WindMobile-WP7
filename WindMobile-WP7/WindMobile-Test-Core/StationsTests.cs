@@ -8,6 +8,7 @@ namespace Ch.Epyx.WindMobile.Core.Test
     public class StationsTests
     {
         [TestMethod]
+        [TestCategory("network")]
         public async Task TestLists()
         {
             var networkService = new Core.Service.NetworkService();
@@ -20,6 +21,7 @@ namespace Ch.Epyx.WindMobile.Core.Test
         }
 
         [TestMethod]
+        [TestCategory("network")]
         public async Task TestSearch()
         {
             var networkService = new Core.Service.NetworkService();
@@ -32,6 +34,7 @@ namespace Ch.Epyx.WindMobile.Core.Test
         }
 
         [TestMethod]
+        [TestCategory("network")]
         public async Task TestTextSearchStation()
         {
             var networkService = new Core.Service.NetworkService();
@@ -44,17 +47,19 @@ namespace Ch.Epyx.WindMobile.Core.Test
         }
 
         [TestMethod]
+        [TestCategory("network")]
         public async Task TestGeoSearchStations()
         {
             var networkService = new Core.Service.NetworkService();
 
-            var stations = await networkService.GeoSearchStations(46.78, 6.63, 20000);
+            var stations = await networkService.GeoSearchStations(new Model.Location() { Latitude = 46.78, Longitude = 6.63 }, 20000);
 
             Assert.IsNotNull(stations, "no stations retuned");
             Assert.AreEqual("Yverdon", stations[0].ShortName, "not the correct short name");
-        } 
-        
+        }
+
         [TestMethod]
+        [TestCategory("network")]
         public async Task TestGetStationById()
         {
             var networkService = new Core.Service.NetworkService();
@@ -66,6 +71,7 @@ namespace Ch.Epyx.WindMobile.Core.Test
         }
 
         [TestMethod]
+        [TestCategory("network")]
         public async Task TestGetStationDataJDC()
         {
             var networkService = new Core.Service.NetworkService();
@@ -77,6 +83,7 @@ namespace Ch.Epyx.WindMobile.Core.Test
         }
 
         [TestMethod]
+        [TestCategory("network")]
         public async Task TestGetStationDataFFVL()
         {
             var networkService = new Core.Service.NetworkService();
